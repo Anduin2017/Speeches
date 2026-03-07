@@ -20,7 +20,7 @@ Kmeans，向量化一切，图片，视频，聚类，
 AI 模型会建立一个**“高维上下文空间”**。它在评估震动和温度趋势时，会同时把当前的飞行高度、马赫数、机外气温、甚至是这架飞机刚刚飞过的是不是沙尘暴高发区域，全部作为变量输入。
 AI 画出的红线不是一条直直的横线，而是一条随着飞行姿态和环境实时扭曲、动态浮动的引力波。
 
-卡牌 B：
+卡牌 B：（已经在演讲稿种Demo过了）
 
 现代人工智能是以一个非常精准强大的底层算法，以至于其强大到几乎不可能完成计算，叠加了一系列加速算法。
 
@@ -86,7 +86,7 @@ Demo A：
 
 CppRunner 的 MCP 暴露给 OpenWeb使用。
 
-Demo B：
+Demo B： （已经在演讲稿种Demo过了）
 
 Selfhost一个Ollama 并聊天。
 
@@ -94,9 +94,9 @@ Demo C：
 
 Demo 使用 Gemini Canvas 让我头脑中的一个小游戏，例如Flappy bird，但是飞行员版，现场做出来。
 
-Demo D：
+Demo D：（已经在演讲稿种Demo过了）
 
-Demo现成的 Gemini Bot。
+Demo现成的 Gemini Bot。整理我电脑上的文件。
 
 Demo E：
 
@@ -132,7 +132,7 @@ Demo L:
 
 让AI扮演空中交通管制员，和他对话。
 
-Demo M:
+Demo M:（已经在演讲稿种Demo过了）
 
 使用Cpprunner跑CUDA代码和CPU的代码，看看CUDA快多少
 
