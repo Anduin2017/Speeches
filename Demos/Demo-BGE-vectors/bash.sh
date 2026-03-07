@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🚀 正在调用本地 Ollama (bge-m3) 进行 1024 维降维打击，请稍候..."
+echo "🚀 正在调用本地 Ollama (bge-m3) 进行 1024 维向量化，请稍候..."
 
 # 1. 提取四篇文章的 1024 维特征向量
 V1=$(ollama run bge-m3 "A320 的起飞")
