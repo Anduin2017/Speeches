@@ -51,33 +51,6 @@
 .reveal h3 { font-size: 1.2em; }
 </style>
 </section>
-<section id="今天的分享议程" class="slide level2">
-<h2>今天的分享议程</h2>
-<div style="font-size: 0.8em;">
-<ul>
-<li><strong>第一章</strong>：问候</li>
-<li><strong>第二章</strong>：AI 的误解</li>
-<li><strong>第三章</strong>：从基础聚类算法：直观理解 K-Means 开始</li>
-<li><strong>第四章</strong>：万物皆可向量：把文字变成数字</li>
-<li><strong>第五章</strong>：大模型的降维打击：从离散标签到连续向量空间</li>
-<li><strong>第六章</strong>：万物皆可向量：从视觉解析到意图推断</li>
-<li><strong>第七章</strong>：扫盲时间与算力引擎：AI的三大黑话与英伟达的护城河</li>
-<li><strong>第八章</strong>：工程的奇迹：向量数据库与高维空间的“高速公路网”</li>
-<li><strong>第九章</strong>：从聊天框到数字员工：人类驯服 AI
-的工程进化史</li>
-<li><strong>第十章</strong>：能力的边界：为何当前AI不适用于高度复杂的金融预测？</li>
-<li><strong>第十一章</strong>：镜头拉远：2026 全球 AI
-诸神之战与商业阳谋</li>
-</ul>
-</div>
-<aside class="notes">
-<p>这是我们今天的分享议程。我们将从最基础的误解和模型原理出发，通过直观的比喻和生动的代码演示，带大家一步步拆解
-AI
-是如何从早期的语言模型演化成今天能够干活的数字员工的。同时，我们还会共同探讨大语言模型所具备的能力边界，以及在
-2026
-年这波时代浪潮下，科技巨头们的战略布局和我们航空业该采取的终极护城河策略。内容紧凑硬核，那么我们就直接开始。</p>
-</aside>
-</section>
 <section>
 <section id="第一章问候" class="title-slide slide level1">
 <h1>第一章：问候</h1>
@@ -89,8 +62,9 @@ data-background-size="45vw" data-background-position="right">
 <h2 data-background-image="Pics/Anduin_Profile.jpg"
 data-background-size="45vw" data-background-position="right">欢迎：遇见
 Anduin</h2>
-<div
-style="width: 50%; float: left; text-align: left; padding-top: 10%;">
+<div class="columns">
+<div class="column"
+style="background-color: rgba(255,255,255,0.85); padding: 20px; border-radius: 10px; margin-top: 5%;">
 <div>
 <ul>
 <li class="fragment">🎓 东北大学毕业</li>
@@ -98,6 +72,9 @@ style="width: 50%; float: left; text-align: left; padding-top: 10%;">
 <li class="fragment">🏢 深耕 数据中心基础设施</li>
 <li class="fragment">✈️ 山河航空私照飞行学员 (40小时飞行经验)</li>
 </ul>
+</div>
+</div><div class="column" style="width:45%;">
+
 </div>
 </div>
 <aside class="notes">
@@ -108,11 +85,14 @@ style="width: 50%; float: left; text-align: left; padding-top: 10%;">
 </aside>
 </section>
 <section id="ai-时代的新征程" class="slide level2"
-data-background-image="Pics/Flowise_AI_Agent_Workflow_Builder.webp"
-data-background-size="45vw" data-background-position="right">
-<h2 data-background-image="Pics/Flowise_AI_Agent_Workflow_Builder.webp"
+data-background-image="Pics/aiursoft.png" data-background-size="45vw"
+data-background-position="right">
+<h2 data-background-image="Pics/aiursoft.png"
 data-background-size="45vw" data-background-position="right">AI
 时代的新征程</h2>
+<div class="columns">
+<div class="column"
+style="background-color: rgba(255,255,255,0.85); padding: 20px; border-radius: 10px; margin-top: 5%;">
 <div>
 <ul>
 <li class="fragment">🚀 AI 需求全面爆发</li>
@@ -120,6 +100,10 @@ data-background-size="45vw" data-background-position="right">AI
 <li class="fragment">🏢 创立 AIURSOFT LIMITED</li>
 <li class="fragment">🎯 专注 AI 技术研发</li>
 </ul>
+</div>
+</div><div class="column" style="width:45%;">
+
+</div>
 </div>
 <aside class="notes">
 <p>现在，各个公司对 AI 的兴趣越来越大，几乎我们方方面面都离不开
@@ -194,9 +178,38 @@ AI 驱动，人类下指令，AI 执行的方式。我们现在已经进入了�
 </div>
 </div>
 <aside class="notes">
-<p>今天很荣幸能在这里和大家分享一些关于 AI 的有趣内容。我们将一起探索 AI
-的本质，了解它是如何工作的，以及它为什么会让我们感觉它“懂我们”。当然最重要的事情是，在这个飞速变化的背景下，我们究竟如何让我们的业务和流程能够更好的适应这个时代？我们是否要做改变、如何做出哪些转变？这都是我们要讨论的话题。</p>
+<p>面对这股洪流，我们需要探索：我们究竟如何让业务和流程能够更好地适应这个时代？我们是否要做改变、做出哪些转变？今天我们就要深入拆解这些问题。</p>
 </aside>
+</section>
+<section id="今天的分享议程" class="slide level2">
+<h2>今天的分享议程</h2>
+<div style="font-size: 0.8em;">
+<ul>
+<li><strong>第一章</strong>：问候</li>
+<li><strong>第二章</strong>：AI 的误解</li>
+<li><strong>第三章</strong>：从基础聚类算法：直观理解 K-Means 开始</li>
+<li><strong>第四章</strong>：万物皆可向量：把文字变成数字</li>
+<li><strong>第五章</strong>：大模型的降维打击：从离散标签到连续向量空间</li>
+<li><strong>第六章</strong>：万物皆可向量：从视觉解析到意图推断</li>
+<li><strong>第七章</strong>：扫盲时间与算力引擎：AI的三大黑话与英伟达的护城河</li>
+<li><strong>第八章</strong>：工程的奇迹：向量数据库与高维空间的“高速公路网”</li>
+<li><strong>第九章</strong>：从聊天框到数字员工：人类驯服 AI
+的工程进化史</li>
+<li><strong>第十章</strong>：能力的边界：为何当前AI不适用于高度复杂的金融预测？</li>
+<li><strong>第十一章</strong>：镜头拉远：2026 全球 AI
+诸神之战与商业阳谋</li>
+</ul>
+</div>
+<aside class="notes">
+<p>为了解答这些问题，请看我们今天的分享议程。我们将从最基础的误解和模型原理出发，通过直观的比喻和生动的代码演示，带大家一步步拆解
+AI
+是如何从早期的语言模型演化成今天能够干活的数字员工的。同时，我们还会探讨其能力边界，以及在
+2026
+年这波时代浪潮下我们要采取的终极护城河策略。内容紧凑硬核，那么我们就直接开始。</p>
+</aside>
+</section>
+<section class="slide level2">
+
 </section></section>
 <section>
 <section id="第二章ai-的误解" class="title-slide slide level1">
@@ -1105,12 +1118,16 @@ Matrix）</strong>。</p>
 <div class="fragment">
 <p><br></p>
 <p><strong>绝对正交的编号状态</strong>：</p>
-<p>$ <em>{} </em>{} = 0 <em>{} </em>{} = 0 $</p>
+<p><span class="math display">\[ \mathbf{x}_{\text{飞机}} \cdot
+\mathbf{x}_{\text{苹果}} = 0 \quad \text{与} \quad
+\mathbf{x}_{\text{飞机}} \cdot \mathbf{x}_{\text{航空器}} = 0
+\]</span></p>
 </div>
 <div class="fragment">
 <p><br></p>
 <p><strong>精密坐标映射 (Embedding Matrix)</strong>：</p>
-<p>$ _i = E _i (E ^{1024 |V|}) $</p>
+<p><span class="math display">\[ \mathbf{e}_i = E \cdot \mathbf{x}_i
+\quad (E \in \mathbb{R}^{1024 \times |V|}) \]</span></p>
 </div>
 <div class="fragment">
 <p><br></p>
@@ -1214,7 +1231,8 @@ Weight），也就是飞机不载客、不加油时有多重。</li>
 <div class="fragment">
 <p><br></p>
 <p><strong>核心注意力分配矩阵：</strong></p>
-<p>$ (Q, K, V) = ()V $</p>
+<p><span class="math display">\[ \text{Attention}(Q, K, V) =
+\text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V \]</span></p>
 </div>
 <div class="fragment">
 <p><br></p>

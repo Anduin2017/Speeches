@@ -7,46 +7,27 @@ date: "2026-03-10"
 <style>
 .reveal { font-size: 28px; }
 .reveal h1 { font-size: 1.8em; }
-.reveal h2 { font-size: 1.4em; }
+.reveal h2 { font-size: 1.4em; text-align: left; }
 .reveal h3 { font-size: 1.2em; }
 </style>
 
-## 今天的分享议程 
-
-<div style="font-size: 0.8em;">
-
-- **第一章**：问候
-- **第二章**：AI 的误解
-- **第三章**：从基础聚类算法：直观理解 K-Means 开始
-- **第四章**：万物皆可向量：把文字变成数字
-- **第五章**：大模型的降维打击：从离散标签到连续向量空间
-- **第六章**：万物皆可向量：从视觉解析到意图推断
-- **第七章**：扫盲时间与算力引擎：AI的三大黑话与英伟达的护城河
-- **第八章**：工程的奇迹：向量数据库与高维空间的“高速公路网”
-- **第九章**：从聊天框到数字员工：人类驯服 AI 的工程进化史
-- **第十章**：能力的边界：为何当前AI不适用于高度复杂的金融预测？
-- **第十一章**：镜头拉远：2026 全球 AI 诸神之战与商业阳谋
-
-</div>
-
-::: notes
-这是我们今天的分享议程。我们将从最基础的误解和模型原理出发，通过直观的比喻和生动的代码演示，带大家一步步拆解 AI 是如何从早期的语言模型演化成今天能够干活的数字员工的。同时，我们还会共同探讨大语言模型所具备的能力边界，以及在 2026 年这波时代浪潮下，科技巨头们的战略布局和我们航空业该采取的终极护城河策略。内容紧凑硬核，那么我们就直接开始。
-:::
 
 # 第一章：问候
 
 ## 欢迎：遇见 Anduin {data-background-image="Pics/Anduin_Profile.jpg" data-background-size="45vw" data-background-position="right"}
 
-<div style="width: 50%; float: left; text-align: left; padding-top: 10%;">
-
+:::::::::::::: {.columns}
+::: {.column width="55%" style="background-color: rgba(255,255,255,0.85); padding: 20px; border-radius: 10px; margin-top: 5%;"}
 ::: {.incremental}
 - 🎓 东北大学毕业
 - 💻 微软中国 5年研发积淀
 - 🏢 深耕 数据中心基础设施
 - ✈️ 山河航空私照飞行学员 (40小时飞行经验)
 :::
-
-</div>
+:::
+::: {.column width="45%"}
+:::
+::::::::::::::
 
 ::: notes
 欢迎各位。
@@ -54,14 +35,20 @@ date: "2026-03-10"
 我是 Anduin ，我本科毕业于东北大学，我在微软中国研究了 5 年，主要研究方向是数据中心基础设施建设。我也是山河航空私照飞行学员 ，拥有 40 小时飞行经验。
 :::
 
-## AI 时代的新征程 {data-background-image="Pics/Flowise_AI_Agent_Workflow_Builder.webp" data-background-size="45vw" data-background-position="right"}
+## AI 时代的新征程 {data-background-image="Pics/aiursoft.png" data-background-size="45vw" data-background-position="right"}
 
+:::::::::::::: {.columns}
+::: {.column width="55%" style="background-color: rgba(255,255,255,0.85); padding: 20px; border-radius: 10px; margin-top: 5%;"}
 ::: {.incremental}
 - 🚀 AI 需求全面爆发
 - 🌐 万物皆可 AI 化
 - 🏢 创立 AIURSOFT LIMITED
 - 🎯 专注 AI 技术研发
 :::
+:::
+::: {.column width="45%"}
+:::
+::::::::::::::
 
 ::: notes
 现在，各个公司对 AI 的兴趣越来越大，几乎我们方方面面都离不开 AI。我最近刚刚从微软离职，并且自己创业了一家公司 AIURSOFT LIMITED，专注于 AI 相关的技术和产品开发。
@@ -128,8 +115,37 @@ date: "2026-03-10"
 ::::::::::::::
 
 ::: notes
-今天很荣幸能在这里和大家分享一些关于 AI 的有趣内容。我们将一起探索 AI 的本质，了解它是如何工作的，以及它为什么会让我们感觉它“懂我们”。当然最重要的事情是，在这个飞速变化的背景下，我们究竟如何让我们的业务和流程能够更好的适应这个时代？我们是否要做改变、如何做出哪些转变？这都是我们要讨论的话题。
+面对这股洪流，我们需要探索：我们究竟如何让业务和流程能够更好地适应这个时代？我们是否要做改变、做出哪些转变？今天我们就要深入拆解这些问题。
 :::
+
+---
+
+## 今天的分享议程 
+
+<div style="font-size: 0.8em;">
+
+- **第一章**：问候
+- **第二章**：AI 的误解
+- **第三章**：从基础聚类算法：直观理解 K-Means 开始
+- **第四章**：万物皆可向量：把文字变成数字
+- **第五章**：大模型的降维打击：从离散标签到连续向量空间
+- **第六章**：万物皆可向量：从视觉解析到意图推断
+- **第七章**：扫盲时间与算力引擎：AI的三大黑话与英伟达的护城河
+- **第八章**：工程的奇迹：向量数据库与高维空间的“高速公路网”
+- **第九章**：从聊天框到数字员工：人类驯服 AI 的工程进化史
+- **第十章**：能力的边界：为何当前AI不适用于高度复杂的金融预测？
+- **第十一章**：镜头拉远：2026 全球 AI 诸神之战与商业阳谋
+
+</div>
+
+::: notes
+为了解答这些问题，请看我们今天的分享议程。我们将从最基础的误解和模型原理出发，通过直观的比喻和生动的代码演示，带大家一步步拆解 AI 是如何从早期的语言模型演化成今天能够干活的数字员工的。同时，我们还会探讨其能力边界，以及在 2026 年这波时代浪潮下我们要采取的终极护城河策略。内容紧凑硬核，那么我们就直接开始。
+:::
+
+
+---
+
+
 
 # 第二章：AI 的误解
 
@@ -886,7 +902,7 @@ $$\mathbf{x} \cdot \mathbf{y} = 1 \times 0 + 1 \times 0 + 0 \times 0 + 0 \times 
 
 **绝对正交的编号状态**：
 
-$ \mathbf{x}_{\text{飞机}} \cdot \mathbf{x}_{\text{苹果}} = 0 \quad \text{与} \quad \mathbf{x}_{\text{飞机}} \cdot \mathbf{x}_{\text{航空器}} = 0 $
+$$ \mathbf{x}_{\text{飞机}} \cdot \mathbf{x}_{\text{苹果}} = 0 \quad \text{与} \quad \mathbf{x}_{\text{飞机}} \cdot \mathbf{x}_{\text{航空器}} = 0 $$
 
 :::
 
@@ -895,7 +911,7 @@ $ \mathbf{x}_{\text{飞机}} \cdot \mathbf{x}_{\text{苹果}} = 0 \quad \text{�
 
 **精密坐标映射 (Embedding Matrix)**：
 
-$ \mathbf{e}_i = E \cdot \mathbf{x}_i \quad (E \in \mathbb{R}^{1024 \times |V|}) $
+$$ \mathbf{e}_i = E \cdot \mathbf{x}_i \quad (E \in \mathbb{R}^{1024 \times |V|}) $$
 
 :::
 
@@ -993,7 +1009,7 @@ $$ Q = XW^Q, \quad K = XW^K, \quad V = XW^V $$
 
 **核心注意力分配矩阵：**
 
-$ \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V $
+$$ \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V $$
 
 :::
 
