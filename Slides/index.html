@@ -1070,13 +1070,11 @@ INT4
 <div>
 <ul>
 <li
-class="fragment"><strong>传统局限</strong>：人工标注成本过高，泛化能力极为薄弱</li>
-<li class="fragment"><strong>核心架构</strong>：基于 OpenAI
-发布的多模态网络 CLIP</li>
+class="fragment"><strong>传统局限</strong>：极其依赖人工标注（“人肉画框”）</li>
 <li
-class="fragment"><strong>多维对齐</strong>：突破文字与图像的物理隔离，实现跨维度特征映射融合</li>
+class="fragment"><strong>成本高昂</strong>：标注劳动密集，效率低下</li>
 <li
-class="fragment"><strong>几何表达</strong>：关联文本与图像在标量空间内实现坐标紧密贴合</li>
+class="fragment"><strong>泛化薄弱</strong>：遇未见特征组合即刻失效，误判率极高</li>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
@@ -1085,29 +1083,48 @@ class="fragment"><strong>几何表达</strong>：关联文本与图像在标量�
 </div>
 <aside class="notes">
 <p>我们将文字解析为了高维数字坐标，对于图像也是同理。</p>
-<p>传统计算机视觉识别需要投入巨大的人工成本，为每一张图片进行人工标注，例如：“这是一架飞机”、“这是一个零部件”。这种传统的特征匹配模型不仅成本高昂，且泛化能力薄弱。对于模型未曾见过的特征组合，面临着极高的误判率。</p>
-<p>而现代 AI 改变了研发范式。这里向各位介绍由 OpenAI
-发布的革命性架构——CLIP (Contrastive Language-Image Pre-training)。</p>
-<p>CLIP
-的技术突破在于，它将文字的特征空间与图片的特征空间，通过多模态对齐进行了跨维度的映射融合。在
-CLIP 的处理流中，“一架正在降落的 A320”这段文本的特征向量，与真实的 A320
-降落照片的图像向量，在数学空间里是紧密贴合的。</p>
+<p>传统计算机视觉识别需要投入巨大的人工成本，为每一张图片进行人工标注，例如：“这是一架飞机”、“这是一个零部件”。</p>
+<p>这种传统的特征匹配模型不仅成本高昂，且泛化能力极为薄弱。对于模型未曾见过的特征组合，立刻面临着极高的识别误判率。</p>
 </aside>
 </section>
-<section id="从实验室到生产线工程化逻辑" class="slide level2">
-<h2>6.2 从实验室到生产线：工程化逻辑</h2>
+<section id="跨维对齐多模态网络-clip" class="slide level2">
+<h2>跨维对齐：多模态网络 CLIP</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div>
 <ul>
-<li class="fragment"><strong>基础生态</strong>：Hugging Face 成为 AI
-工业的模型集散地</li>
-<li class="fragment"><strong>效率掣肘</strong>：Python
-强研究但弱工程，难以承载企业级高可用核心业务 (C#/Java)</li>
-<li class="fragment"><strong>破局标准</strong>：ONNX
-(开放神经网络交换格式)</li>
+<li class="fragment"><strong>核心架构</strong>：OpenAI 革命性多模态模型
+CLIP</li>
 <li
-class="fragment">从巨型实验代码向轻量化、高并发企业级服务平滑过渡</li>
+class="fragment"><strong>多维对齐</strong>：打通文字与图像的物理隔离壁垒</li>
+<li
+class="fragment"><strong>几何表达</strong>：语义特征与图像特征在多维坐标内实现紧密贴合</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="missing.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>而现代 AI 完全改变了研发路径。这里向各位介绍由 OpenAI
+发布的革命性多模态架构——CLIP (Contrastive Language-Image
+Pre-training)。</p>
+<p>CLIP
+的技术突破核心在于：它将文字的特征空间与图片的特征空间，通过多模态对齐，进行了跨维度的映射融合。</p>
+<p>在 CLIP 的处理流中，“一架正在降落的 A320”这段文本的特征标量，与真实的
+A320 降落照片的图像标量，在数学空间坐标里是紧密贴合的。</p>
+</aside>
+</section>
+<section id="从实验室到生产线" class="slide level2">
+<h2>6.2 从实验室到生产线</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li
+class="fragment"><strong>应用顾虑</strong>：前沿技术是否需要庞大的底座重构？</li>
+<li
+class="fragment"><strong>工业现状</strong>：已形成标准化、成熟部署流水线</li>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
@@ -1118,66 +1135,125 @@ class="fragment">从巨型实验代码向轻量化、高并发企业级服务平
 <p>各位可能会关注，引入此类前沿 AI
 技术的门槛是否过高，是否需要组建庞大的基础科学团队从零编写庞大的模型算法。</p>
 <p>事实上，现代 AI 工业已经构建了成熟的标准化流水线。</p>
-<p>作为基础，我们在何处获取例如 CLIP 这样的先进模型？</p>
-<p>在当前的 AI 工业界，存在一个高度活跃且汇聚顶尖成果的平台——Hugging
-Face。我们可以将其视为 AI 模型的集散中心。全球主流的科技巨头（包括
-OpenAI、微软、Meta
-等），都会将其投入数千万美元算力训练的基础模型，在这个平台上开源共享。</p>
-<p>前文提及的 CLIP 模型，我们只需极简的代码指令，即可从 Hugging Face
-的开源库中进行调用。这极大降低了基础研发成本。</p>
-<p>然而，原始模型在落地工程中面临一个实际障碍：它们通常基于 Python
-语言构建（例如使用 PyTorch 深度学习框架）。</p>
-<p>Python
-具有很强的实验与研究价值，但从工业级运行效率来看，存在一定的性能瓶颈。航空公司的核心生产线或商业软件平台，通常基于运行极快、高度稳定的
-C#、Java 或 C++ 语言开发。</p>
-<p>若直接将原始算法源文件强行接入核心业务系统，极易带来严重的性能损耗与系统拖拽。</p>
-<p>为解决这一跨语言、跨平台的工程部署难题，业界推出了通用工业标准——ONNX（Open
-Neural Network Exchange，开放神经网络交换格式）。</p>
 </aside>
 </section>
-<section id="模型深度裁剪与重构" class="slide level2">
-<h2>模型深度裁剪与重构</h2>
+<section id="模型集散开源基础设施" class="slide level2">
+<h2>模型集散：开源基础设施</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
+<div>
 <ul>
-<li><strong>核心剥离</strong>：精准切割并独立视觉解析计算图</li>
-<li><strong>格式固化</strong>：抽离冗重的深度学习框架，完全打包为独立易用的
-<code>.onnx</code> 运算核心</li>
-<li><strong>无缝加载</strong>：极简嵌入 C#
-企业运行流，消除主导权受控风险</li>
+<li class="fragment"><strong>社区力量</strong>：Hugging Face
+汇聚全球顶尖 AI 模型</li>
+<li class="fragment"><strong>巨头开源</strong>：OpenAI / 微软 / Meta
+等下放核心模型</li>
+<li
+class="fragment"><strong>平权效应</strong>：极简指令即可调用数千万美元的算力结晶</li>
 </ul>
+</div>
 </div><div class="column" style="width:50%;">
 <p><img data-src="missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
-<p>在本次演示前，我们通过简短的自动化转换程序，完成了一项高精度的工业重构：</p>
-<p>精准切割：我们将 CLIP 模型中负责“视觉解析”的核心参数网络，单独剥离。
-数学闭环（L2
-归一化）：为确保后续的相似度检索保持极高的效率与精度，我们在模型输出特征的底层即刻加入了一步标量除法（<code>image_features / image_features.norm</code>），将生成的全量图像特征直接投射并固化到多维的“单位超球面”上。
-固化导出：最终，我们将切片并完成归一化封装的神经网络，彻底剥离原有的
-Python 研究环境，固化为一个独立、轻便且运行极快的 .onnx
-标准运行文件。</p>
-<p>借助该 ONNX 文件，我们的商业运行系统（如核心 C#
-服务）即可彻底抛弃冗重的实验框架，以极低的系统延迟、极高的服务并发，在企业本地主导权完全可控的服务器上直接发起推理指令。</p>
-<p>这就是现代 AI
-快速部署的真实工业流：从开源社区获取顶尖基础模型，进行外科手术般的精细优化代码裁剪，最终导出为
-ONNX 标准格式部署进高可用企业内部架构。</p>
-<p>了解了这套工程逻辑，现在让我们观察这个经过手术级重构、并深度嵌入架构的
-ONNX 视觉引擎的实际业务表现。</p>
+<p>作为基础，我们在何处获取例如 CLIP 这样的先进模型？</p>
+<p>在当前的 AI 工业界，存在一个高度活跃且汇聚顶尖成果的平台——Hugging
+Face。我们可以将其视为 AI
+模型的集散中心。全球主流的科技巨头，都会将其投入数千万美元算力训练的基础模型，在这个平台上开源共享。</p>
+<p>前文提及的 CLIP 模型，我们只需极简的指令，即可从 Hugging Face
+的开源库中进行调用。这极大降低了基础研发成本。</p>
 </aside>
 </section>
-<section id="强制底层数学映射l2-归一化" class="slide level2">
-<h2>强制底层数学映射：L2 归一化</h2>
-<div style="text-align: center; margin-top: 15%; font-size: 200%;">
-<p><span class="math display">\[ \vec{\mathbf{v}}_{norm} =
-\frac{\vec{\mathbf{v}}}{\|\vec{\mathbf{v}}\|_2} \]</span></p>
+<section id="跨界鸿沟研究到生产的性能掣肘" class="slide level2">
+<h2>跨界鸿沟：研究到生产的性能掣肘</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><strong>研究语言</strong>：多数模型基于 Python（如
+PyTorch），重实验而轻效率</li>
+<li
+class="fragment"><strong>工业底座</strong>：企业核心系统多依赖高可用性强类型语言（C#
+/ Java）</li>
+<li
+class="fragment"><strong>集成隐患</strong>：语言壁垒与框架拖拽导致直接集成产生不可用级延迟</li>
+</ul>
 </div>
-<div style="text-align: center;">
-<p>强行<em>标定极限界</em>，将图像向“单位超球面”降维投射，以确保高维余弦检索达到企业级极致速度。</p>
+</div><div class="column" style="width:50%;">
+<p><img data-src="missing.jpg" /></p>
+</div>
 </div>
 <aside class="notes">
-<p>（此处为核心公式演示展示页，内容解析并入上一页介绍或随讲解一并点明，突出基于数学原型的强制降维手段如何直接服务于底层检索速度及精度的实质支撑。）</p>
+<p>然而，原始模型在落地工程中面临一个实际障碍：它们通常基于 Python
+语言构建。</p>
+<p>Python
+具有很强的实验与研究价值，但从工业级运行效率来看，存在一定的性能瓶颈。航空公司的核心生产线通常基于运行极快、高度稳定的
+C#、Java 或 C++ 语言开发。</p>
+<p>若直接将原始算法源文件强行接入核心业务系统，极易带来严重的性能损耗与系统拖拽。</p>
+</aside>
+</section>
+<section id="破局方案onnx-工业标准" class="slide level2">
+<h2>破局方案：ONNX 工业标准</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><strong>通用标准</strong>：开放神经网络交换格式
+(ONNX)</li>
+<li
+class="fragment"><strong>精准切割</strong>：彻底剥离“视觉解析”核心计算图</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="missing.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>为解决这一跨语言、跨平台的工程部署难题，业界推出了通用工业标准——ONNX（开放神经网络交换格式）。</p>
+<p>在此次演示前，我们完成了一项高精度的工业重构。第一步是精准切割：我们将
+CLIP 模型中负责“视觉解析”的核心网络单独剥离。</p>
+</aside>
+</section>
+<section id="数学重构底层强制归一化" class="slide level2">
+<h2>数学重构：底层强制归一化</h2>
+<div style="text-align: center; margin-top: 15%; font-size: 200%;">
+<p><span class="math display">\[ ec{\mathbf{v}}_{norm} =
+rac{ec{\mathbf{v}}}{\|ec{\mathbf{v}}\|_2} \]</span></p>
+</div>
+<div style="text-align: center;">
+<p>在模型输出特征的底层，引入标量除法建立数学闭环。将图像特征向“单位超球面”固化。</p>
+</div>
+<aside class="notes">
+<p>第二步是引入数学闭环。为确保后续的相似度检索保持极高效率与精度，我们在模型输出特征的底层即刻加入了一步标量除法（<code>image_features / image_features.norm</code>）。</p>
+<p>借此，我们将生成的全量图像特征直接投射并固化到多维的“单位超球面”上。</p>
+</aside>
+</section>
+<section id="从研究向高可用系统的跳跃" class="slide level2">
+<h2>从研究向高可用系统的跳跃</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><strong>固化导出</strong>：剥离 Python
+环境，落为独立极客的 <code>.onnx</code> 运算单元</li>
+<li class="fragment"><strong>极速拉起</strong>：C#
+等系统直接发起原生推理</li>
+<li
+class="fragment"><strong>架构主权</strong>：以极高并发及本地私有化，完成真实工业流落地</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="missing.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>最后一步是固化导出：我们将切片并完成归一化封装的网络，彻底剥离原有的
+Python 研究环境，固化为一个独立且运行极快的 .onnx 标准运行文件。</p>
+<p>借助该 ONNX 文件，我们的商业 C#
+系统即可彻底抛弃冗重的实验框架，以极低延迟、极高并发，在本地服务器直接发起推理。</p>
+<p>这就是现代 AI
+快速部署的真实工业流：从开源社区获取基础模型，进行精细优化代码裁剪，最终导出为标准格式部署。</p>
+<p>了解了这套工程逻辑，现在让我们观察这个经过手术级重构的视觉引擎的实际业务表现。</p>
 </aside>
 </section>
 <section id="demo-6图片相似度可视检索" class="slide level2">
@@ -1210,6 +1286,443 @@ class="fragment"><strong>顶层延展</strong>：具备距离计算与几何聚�
 <aside class="notes">
 <p>我们可以推演此类技术在航空业的典型场景。当机务工程人员将一张发动机叶片细微划痕的照片上传至技术台，系统便能瞬间在过去数十年的维修影像记录库中，精准匹配出所有视觉相似的微小损伤照片，甚至自动挂载历史维修与排故方案。这彻底消除了文字描述的主观误差，完全基于多维图像的几何运算距离说话。这就是视觉向量化的核心业务穿透力。</p>
 <p>至此，我们探讨了文本状态的向量解析、图片表征的向量解析，以及飞机运行状态的向量降维。大家应当能察觉到核心底层逻辑：任何业务实体（无论是工程记录，还是运行工单），只要能提取为多维特征向量，我们便能执行精确的距离计算、高维形态聚类、注意力机制设计，进而无缝延伸出趋势预测、方案推荐以及决策补全等一系列的顶层应用。</p>
+</aside>
+</section></section>
+<section>
+<section id="第七章扫描时间与算力引擎" class="title-slide slide level1">
+<h1>第七章：扫描时间与算力引擎</h1>
+
+</section>
+<section id="ai-核心术语解析模型生命周期" class="slide level2">
+<h2>AI 核心术语解析：模型生命周期</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><strong>训练 (Training)</strong>：
+<ul>
+<li class="fragment">核心：模型参数构建</li>
+<li class="fragment">特征：成本高、耗电大、不可中断</li>
+</ul></li>
+<li class="fragment"><strong>推理 (Inference)</strong>：
+<ul>
+<li class="fragment">核心：模型应用与预测</li>
+<li class="fragment">特征：算力消耗小、本地即可部署</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="missing.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>在进入极速检索的工程奇迹之前，我经常被非技术背景的管理者问及三个核心问题：“推理和训练到底有啥区别？”、“深度学习到底深在哪？”、“什么是强化学习？”</p>
+<p>为了不让大家在接下来的硬件和战略章节里迷路，我想用三分钟时间，用通俗易懂的语言帮大家把这三个核心的
+AI 术语进行通俗化解析。</p>
+<p>如果把 AI
+当作一个高考应届生，“训练”和“推理”就是它人生的两个阶段：</p>
+<p>“训练
+(Training)”：就是“模型参数构建”。你需要花几千万美元买几万张顶级显卡，耗时几个月，把全世界能找到的海量的互联网数据集输入到模型中。在这个过程中，它的大脑结构（那几十亿个参数）在剧烈地改变和成型。这个过程成本极高、耗电极大、且不能被打断。比如
+OpenAI 训练 GPT-4，就是在做这件事。</p>
+<p>“推理
+(Inference)”：就是“模型应用与预测”。模型已经训练好了，毕业了，大脑结构固定了。现在你把它部署到公司的服务器里，给它输入一个指令（比如问它：“今天北京天气如何？”），它动用已经学好的知识，瞬间算出一个答案给你。这个过程参数不会再改变，消耗的算力极小，普通的显卡或移动设备即可运行。</p>
+<p>高管避坑指南：如果有人建议：“我们要买1000张显卡在公司内部自己‘训练’一个大模型。”这种做法通常不符合成本效益；但如果是“我们买两台服务器在公司内部做大模型的‘部署和推理’，用来处理机务手册”，这是一笔具有较高投资回报率的方案。</p>
+</aside>
+</section>
+<section id="深度学习深在何处" class="slide level2">
+<h2>深度学习：“深”在何处？</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment">早期的数学网络：特征提取受限</li>
+<li class="fragment">深度学习网络：百层物理结构叠加
+<ul>
+<li class="fragment">1层：像素明暗</li>
+<li class="fragment">10层：金属反光与轮廓</li>
+<li class="fragment">50层：起落架与涡轮结构</li>
+<li class="fragment">100层：最终语义识别 (波音737)</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="missing.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>“机器学习”大家都能理解，就是让机器从数据里找规律。那为什么要加个“深度”呢？这里的“深”，指的是物理结构上的“层数多”（Layers）。</p>
+<p>在早期的 AI
+里（比如识别一架飞机），我们只能建一层或两层简单的数学网络，它只能认出“这是一块金属”或者“这有一根翅膀”，特征提取能力受限。
+而到了“深度学习时代”，科学家们将这种数学网络，叠了几十层、上百层！</p>
+<p>第一层：看懂了像素亮度的明暗；
+第十层：把明暗组合成了金属的反光和边缘的轮廓；
+第五十层：把轮廓组合成了起落架和涡轮扇叶；
+第一百层：网络高层最终完成了语义识别——哦，这是一架波音 737！</p>
+<p>这种一层一层叠加提取特征，结构极深的神经网络，就叫“深度学习”。它是用计算深度的规模，换取了强大的特征表示能力。</p>
+</aside>
+</section>
+<section id="强化学习多维试错与反馈优化" class="slide level2">
+<h2>强化学习：多维试错与反馈优化</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment">核心：奖惩反馈机制</li>
+<li class="fragment">场景：无现成监督数据的复杂任务</li>
+<li class="fragment">过程：虚拟环境中的亿万次迭代
+<ul>
+<li class="fragment">扣分项：坠毁、失速</li>
+<li class="fragment">加分项：安全降落</li>
+</ul></li>
+<li class="fragment">成果：自动推演最优策略</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="missing.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>我们刚才说训练就是给 AI
+数据让它学。但如果有些任务，根本没有现成的数据怎么学？比如，你想让 AI
+学会像王牌飞行员一样“在高空面对双发失效时迫降”。这不可能有足够的真实录像去教它。</p>
+<p>这时候就需要用到“强化学习”了。强化学习的本质，就是“奖惩反馈机制”。</p>
+<p>具体如何实现？你造一个一模一样的模拟飞行环境，把一个完全不懂飞行的 AI
+扔进去，给它设定一个简单的目标（Reward）：安全降落得 1000
+分，坠毁扣一万分。</p>
+<p>第1次试飞，它直接推杆俯冲，坠毁，扣分。
+第100次试飞，它学会了拉杆，但速度太慢失速，坠毁，扣分。
+第1亿次试飞，它在被雷劈了 9999 万次之后，突然发现：“只要我保持 220
+节的速度，放出 15 度襟翼，稳住下滑道，我就能得分！”</p>
+<p>它就是在这种虚拟环境里，通过上亿次的自我试错、被惩罚、被奖励，硬生生“自己摸索”出了一套最优策略。当年打败人类围棋冠军的
+AlphaGo，用的就是强化学习的技术。</p>
+<p>好，扫清了这三个最大的概念障碍，大家再回想一下：无论是几万张显卡几个月的“闭关训练”，还是上百层的“深度网络计算”，还是上亿次的“强化学习试错”，这一切都指向了一个十分残酷的物理现实——我们需要前所未有的极限算力！</p>
+<p>这就回到了这章最核心的问题：当我们的模型有 270
+亿个参数时，要执行这些动作，我们公司机房里那些昂贵的、装配着顶级 Intel
+或 AMD CPU
+的传统服务器，能干这个活吗？答案是：能干，但会慢到让你怀疑人生。</p>
+</aside>
+</section>
+<section id="算力三剑客架构特性的本质差异" class="slide level2">
+<h2>算力三剑客：架构特性的本质差异</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><strong>CPU</strong> (航空公司的“王牌机长”)
+<ul>
+<li class="fragment">极精密的单流逻辑处理</li>
+</ul></li>
+<li class="fragment"><strong>GPU</strong> (“十万地勤大军”)
+<ul>
+<li class="fragment">上万核心、极致的并发计算</li>
+</ul></li>
+<li class="fragment"><strong>NPU</strong> (“专用的行李传送带”)
+<ul>
+<li class="fragment">剔除冗余，绝对专注于单点矩阵、功耗极低</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="missing.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>在我们传统的认知里，中央处理器（CPU）是计算机的大脑，它无所不能。但最近几年，GPU（显卡）甚至
+NPU（神经网络处理器）这些词铺天盖地。很多高管在采购设备时一头雾水：它们到底有什么区别？</p>
+<p>如果用我们航空业来打比方，这三者的定位泾渭分明：</p>
+<p>第一算力：CPU（中央处理器）—— 航空公司的“王牌机长”。CPU
+极其精密、复杂，单线程速度极快（主频高达
+5GHz）。它能处理各种极其复杂的逻辑分支。但是机长只有一个（核心数少），让机长去搬运行李极低效。</p>
+<p>第二算力：GPU（图形处理器/显卡）—— 航空公司的“十万地勤大军”。AI
+算距离是繁重的并发任务。GPU
+里极其密集地塞进了上万个计算核心！它就像十万个只会算加减乘除的地勤大军同时干活。这就是大规模并行计算。</p>
+<p>第三算力：NPU（神经网络处理器）——
+专为搬行李定制的“全自动传送带”。既然 AI
+就是做矩阵乘法，我们就能造一个精简掉图形渲染功能，专为AI计算定制的芯片。NPU
+功耗极低（只要几瓦），能塞进行动设备且高效运转。</p>
+<p>总结：CPU 负责统筹全局，GPU 负责云端并发支撑，NPU 负责终端省电跑 AI。
+为了直观感受“十万地勤大军”的速度，我们直接来看一段代码。</p>
+</aside>
+</section>
+<section id="demo-7cuda-实时渲染与并发奇迹" class="slide level2">
+<h2>Demo 7：CUDA 实时渲染与并发奇迹</h2>
+<div style="text-align: center; margin-top: 20%;">
+<p><strong>系统应用</strong>：亿级像素同步解析与高维物理运算对比</p>
+</div>
+<aside class="notes">
+<p>我这里有一段 CUDA C++ 程序。它做的事情直观——在内存中渲染一个 3D
+球体。这个球体有光照、有阴影，是一个真正的三维图形渲染任务。</p>
+<p>关键数字：画布的分辨率是 10000 × 10000，也就是说，程序需要计算 1
+亿个像素，每个像素都要算球面方程、法向量、光照点积——就是我们前面讲的那些向量运算。</p>
+<p>同样的 1 亿次计算，CPU 用了好几秒，GPU
+瞬间便计算完毕。这就是大规模并行计算的威力。这还只是一张消费级显卡——如果换成数据中心里的
+A100 或 H100，差距还会更大。</p>
+<p>当然，注意，这里和游戏里的绘图还是不一样的。在打游戏的时候，主要调动的显卡的光栅化单元和纹理单元，而我们
+AI 计算的核心，是显卡里的Tensor
+Core，它是专门为矩阵乘法设计的物理电路。</p>
+<p>这就是为什么搞 AI 离不开 GPU。</p>
+</aside>
+</section>
+<section id="ai-的数据容器张量-tensor" class="slide level2">
+<h2>AI 的数据容器：张量 (Tensor)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><strong>标量 (0阶)</strong>：单一数值</li>
+<li class="fragment"><strong>向量 (1阶)</strong>：数值列表</li>
+<li class="fragment"><strong>矩阵 (2阶)</strong>：二维表结构</li>
+<li class="fragment"><strong>张量 (多阶)</strong>：超高维结构体
+<em>例：多张 RGB 影像构成的 4 维聚合</em></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="missing.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>在聊 GPU
+具体是怎么算之前，我要给大家引入张量（Tensor）这个词以清扫理解障碍。</p>
+<p>大家还记得我们前面讲过的概念吗？
+标量（Scalar）：就是一个数字，比如飞机的重量 40 吨。它是 0 维的。
+向量（Vector）：是一排数字，比如一篇博客变成的 1024 个特征值。它是 1
+维的。 矩阵（Matrix）：是由向量堆叠而成的表格，就像 Excel 表格。它是 2
+维的。</p>
+<p>那么，当数据的维度突破了变为了 3 维、4
+维甚至更高维度时，数学家们统一称之为：张量（Tensor）。</p>
+<p>一张 RGB 彩色图片，就是一个 3 维张量（宽度 × 高度 × 红绿蓝 3
+个颜色通道）。如果你一次性把 32 张彩色图片打包喂给
+AI，这个数据包就是一个 4 维张量。</p>
+<p>在大语言模型内部，数据在神经网络中流动时，正是以高维张量的形式存在。这也是谷歌框架名为
+TensorFlow，以及显卡的算力模块叫做 Tensor Core 的原因。</p>
+</aside>
+</section>
+<section id="硬件加速逻辑刻入底层物理的乘法表" class="slide level2">
+<h2>硬件加速逻辑：刻入底层物理的乘法表</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><strong>软件计算</strong>：序列指令、线性堆叠</li>
+<li class="fragment"><strong>硬件加速</strong>：固化电路、瞬时反射</li>
+<li class="fragment"><strong>Tensor Core
+的神来之笔</strong>：直接在硅片级内置矩阵核算</li>
+<li
+class="fragment"><strong>无须计算层级</strong>：如肌肉记忆般直出</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="missing.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>大家刚看到了算力演示，其实我们在打游戏时，AI
+计算根本不是在画图，而是在做海量的“矩阵乘加运算”。那为何不用专门芯片而非抢购英伟达？这就引出了核心词：硬件加速（Hardware
+Acceleration）。</p>
+<p>打个比方，假设你还没背过“九九乘法表”。遇到“7 乘 8”，只能在脑海中做 8
+次加法，这就像传统 CPU
+软解算矩阵。按部就班地进行顺序计算，速度缓慢。</p>
+<p>但背熟乘法表后，听到“七八”，你连一毫秒思考都没有，直接抛出“五十六”。大脑形成了物理级别的神经元连接。这种把特定计算固化成物理反射机制，就叫硬件加速。</p>
+<p>黄仁勋敏锐发现全天下 AI
+底层都在做张量乘法。于是决定：直接在硅片上，用纯粹物理电路，把矩阵的“乘法表”刻上去！这就是
+Tensor Core。当大模型数据流经它，根本不需要再像 CPU
+逐条读取去算，而是物理电路直接输出结果。没有任何中间过程，这就是纯粹的硬件加速美学！</p>
+</aside>
+</section>
+<section id="十五年布防cuda-的重卡垄断" class="slide level2">
+<h2>十五年布防：CUDA 的重卡垄断</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li
+class="fragment"><strong>2006年押注</strong>：在显卡中开放通用科学计算底层
+(CUDA)</li>
+<li class="fragment"><strong>2012年质变</strong>：AlexNet 在 GTX580
+证实路线</li>
+<li class="fragment"><strong>2016年联盟</strong>：超级算力进驻
+OpenAI</li>
+<li
+class="fragment"><strong>2022年收网</strong>：万卡并行矩阵底座完全固化</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="missing.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>如果说 Tensor Core 是英伟达的拳头，那 CUDA 就是它的神经系统。CUDA
+允许程序员用简单的代码，指挥 GPU 做极其复杂的运算。</p>
+<p>2006
+年黄仁勋提出此想法时，很多人认为市场太小。他顶着巨额亏损硬推。直到 2012
+年，天青学者 Ilya Sutskever 借两块游戏显卡加上 CUDA 完成了历史突破的
+AlexNet ，全世界意识到游戏卡的潜力。</p>
+<p>2016 年黄仁勋亲自将耗资两百万美元的超级计算机送交 OpenAI
+。这等于免费让他们尝到了极强算力的甜头。等他们庞杂的技术栈长满 CUDA
+生态时，就完成了深度的利益绑定。</p>
+<p>后来 ChatGPT 一万张 A100 的集群计算，无不仰懒于 CUDA
+及它的多卡通讯技术。由于长达 18 年的磨合打磨，当今全球 90%
+的算力被其垄断，这构成了无比之深的护城墙。</p>
+</aside>
+</section>
+<section id="算力重估突破参数量盲崇与架构迷思" class="slide level2">
+<h2>算力重估：突破参数量盲崇与架构迷思</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment">误解：执着顶流芯片 / 天价模型</li>
+<li class="fragment">纠正：业务更需专精“小参数”落地</li>
+<li class="fragment">指标 A：显存 (VRAM)
+<ul>
+<li class="fragment">容纳系统运行</li>
+</ul></li>
+<li class="fragment">指标 B：带宽 (Bandwidth)
+<ul>
+<li class="fragment">切中吞吐频次命脉</li>
+</ul></li>
+<li class="fragment">macOS 与 CUDA 架构鸿沟</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="missing.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>很多人还在用买普通电脑的思路去配置 AI（比如觉得买顶配 Mac Mini
+就行了，这可能源于对本地轻量级部署的误解）。还有“参数量盲崇”，觉得参数越大越好。像万亿参数的
+GPT-4
+相当于高价“全科院士”，但我们维修其实只需要一个百亿级别的“专精特新技工”，成本仅百分之一。</p>
+<p>评估 AI 硬件我们需要看重两个：显存和内存带宽。
+第一，显存决定了“你能装下多大的脑子”。
+第二，内存带宽决定了“数据吞吐与运算效率”，这是苹果最大的死穴。大模型生成文字，是逐字逐词生成的，每出字就要显存扫一遍模型。Mac
+犹如通道过窄的大库房，多线程下生成速度受限。英伟达则是如高铁般的超高带宽。</p>
+<p>同时，Mac 体系并没有 CUDA
+框架与生态，无法享用严苛企业级持续并发。这使得 Mac
+更偏向个人终端环境，而英伟达架构则是构建企业级算力底座的首选。长红的云商皆已大举全线压注。</p>
+<p>但仅有硬件远远不够，海量特征的急速检索，还要依赖软件数据结构的颠覆。</p>
+</aside>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="第八章工程的奇迹向量数据库"
+class="title-slide slide level1">
+<h1>第八章：工程的奇迹：向量数据库</h1>
+
+</section>
+<section id="维度诅咒一亿节点的-on-灾难" class="slide level2">
+<h2>维度诅咒：一亿节点的 <span class="math inline">\(O(N)\)</span>
+灾难</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment">核心困境：业务特征检索</li>
+<li class="fragment">传统手段：KNN 全穷举式比较</li>
+<li class="fragment">资源耗陷：4KB x 1亿 = 巨额带宽吞噬</li>
+<li class="fragment"><span class="math inline">\(O(N)\)</span>
+降维失效：标量索引在千维体系毫无用武之地</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="missing.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>在上一章我们见证了英伟达 GPU 带来的极致加速。但当系统内积累了 1
+亿条用户长距离向量，我们要用这 1024 维度的精装数据在 100
+毫秒内找出来对应需求，面临的困境极大。</p>
+<p>精确做法是 KNN 近邻算法穷举对比。这不仅极速推高显卡过载，且 400G
+带宽直接会瘫痪云服务器。这正是维度诅咒（Curse of Dimensionality）。</p>
+<p>有管理层问：为何不用 B
+树索引？答案是：在高维空间中，点与点之间的距离分布会变得十分均匀，空间变得十分空旷，传统的树状结构根本无法对进行切割，引发大规模全表扫描。面对物理级维度限制，我们亟需新的工程手段，也就是当今日益走火的向量数据库。</p>
+</aside>
+</section>
+<section id="hnsw重构多维立体网络" class="slide level2">
+<h2>HNSW：重构多维立体网络</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><strong>底层妥协</strong>：不谋求 100%
+精确，用极低舍耗博取万倍增速</li>
+<li
+class="fragment"><strong>可导航小世界</strong>：小步跃升与贪心路由探线</li>
+<li class="fragment"><strong>高阶层级架构</strong>：
+<ul>
+<li class="fragment">第 0 层：底层细密微网</li>
+<li class="fragment">中间层：关键枢纽互通</li>
+<li class="fragment">最顶层：宽域超大跃阶</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="missing.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>既然绝对精确走不通，工业界做了一个伟大的妥协：我们只要 99%
+精确，换取一万倍的速度！</p>
+<p>这个霸主算法叫做 HNSW。它有两个精髓：
+一是“小世界理论”，建立立体互通的人际网络，用贪心路由从核心熟人往微端找。
+二是“阶层系统”。将这层网变成立体的：最底层相当于连接所有细节的乡间小路，中间层是高速公路，最顶层是连接超级枢纽的国际航线。</p>
+<p>当用户请求介入，算法先降临到国际航线大面锁定，然后下钻高速公路进入局部地带，落地乡间小道精确定位。原先算
+1 亿次的点积计算，被压缩到极低的频次，在 1
+毫秒内完成比对！这就是把复杂的 <span class="math inline">\(O(N)\)</span>
+级下降到对数级的数学奇迹。</p>
+</aside>
+</section>
+<section id="以-umap-与-t-sne-洞见本源结构" class="slide level2">
+<h2>以 UMAP 与 t-SNE 洞见本源结构</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li
+class="fragment">算法核心：非表面切层，而是深度保留“拓扑结构分布”</li>
+<li class="fragment">二维挤压：强制高维数据投射屏幕内并严格拉扯</li>
+<li class="fragment">聚合现象：语意相依的模块化呈现聚拢海域</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="missing.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>为了确信高维世界运作正确，我们需要将 1000
+多维的几何宇宙拍一张能给人类看的二维码，这里用到 UMAP 或 t-SNE
+等降维可视算法。</p>
+<p>这远非简单投影，而是极难的物理拉扯。要求在二维上极度真实地模仿各个节点的关系，“近的维持绑定，远的竭力互斥”。</p>
+<p>当完成压扁降维，我们能震撼地在 2D
+屏幕上俯瞰“语义群岛”：关于起落架损伤的所有档案极度贴在一起，关于客舱投诉则形成深处另一聚集岛，一切业务实体在高维距离下显露全貌，展示物理结构本色。</p>
+</aside>
+</section>
+<section id="终态基于语境计算的星系" class="slide level2">
+<h2>终态：基于语境计算的星系</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment">传统的查询：“明确检索发生事件”</li>
+<li class="fragment">高维的向量引擎：“本质理解业务本源意义”</li>
+<li
+class="fragment">突破认知：在幽深、海量的坐标云中，仅仅只是数学上距离更近的结果</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="missing.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>传统的 IT
+数据库（比如经常面对的关系型表），使命是“精确记录”。泛化匮乏，一字错便瘫痪。
+而现今的各种拟人化工具，基于 Transformer 与 HNSW
+，最终使命只有一个“理解语意内源”。</p>
+<p>令人震撼的表现，只是它们在高维度的浩瀚空间里，做了一个找找最近点的加减法距离运算。这是计算极致之美，也是理解万物的核心基础。</p>
+<p>当我们搭建好了这种工程神经网和 GPU
+大肌肉，就真的拥有可以介入庞大系统的超级工具。既然有了大模型的脑，又有了工程学的地基，那么那些全球极优秀的建筑师，是如何一步步避雷演进，最终把聊天玩具化为业务上的“数字大军”的呢？</p>
 </aside>
 </section></section>
     </div>
