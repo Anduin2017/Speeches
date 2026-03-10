@@ -471,7 +471,7 @@ $$d = \| \mathbf{x} - \mathbf{y} \|$$
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/What_Are_Embeddings_Vector_Space.webp)
+![](Pics/vector.png)
 :::
 ::::::::::::::
 
