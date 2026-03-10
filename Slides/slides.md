@@ -58,7 +58,7 @@ date: "2026-03-10"
 我是 Anduin ，我本科毕业于东北大学，我在微软中国研究了 5 年，主要研究方向是数据中心基础设施建设。我也是山河航空私照飞行学员 ，拥有 40 小时飞行经验。
 :::
 
-## AI 时代的新征程 {data-background-image="Pics/missing.jpg" data-background-size="45vw" data-background-position="right"}
+## AI 时代的新征程 {data-background-image="Pics/Flowise_AI_Agent_Workflow_Builder.webp" data-background-size="45vw" data-background-position="right"}
 
 ::: {.incremental}
 - 🚀 AI 需求全面爆发
@@ -127,7 +127,7 @@ date: "2026-03-10"
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/missing.jpg)
+![](Pics/AI_Workflow_Automation_Zapier_Example.png)
 :::
 ::::::::::::::
 
@@ -189,7 +189,7 @@ date: "2026-03-10"
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/missing.jpg)
+![](Pics/Flowise_AI_Agent_Workflow_Builder.webp)
 :::
 ::::::::::::::
 
@@ -229,7 +229,7 @@ date: "2026-03-10"
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/missing.jpg)
+![](Pics/Neural_Network_Architecture_Layers_Diagram.webp)
 :::
 ::::::::::::::
 
@@ -270,7 +270,7 @@ date: "2026-03-10"
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/missing.jpg)
+![](Pics/K_Means_Clustering_Algorithm_Steps.png)
 :::
 ::::::::::::::
 
@@ -1532,7 +1532,7 @@ $$ ec{\mathbf{v}}_{norm} = rac{ec{\mathbf{v}}}{\|ec{\mathbf{v}}\|_2} $$
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/missing.jpg)
+![](Pics/NVIDIA_A100_Server_Hardware.webp)
 :::
 ::::::::::::::
 
@@ -1912,7 +1912,7 @@ HNSW 将每一个向量点视为一个节点，并让距离相近的向量建立
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/missing.jpg)
+![](Pics/prompt.png)
 :::
 ::::::::::::::
 
@@ -1975,7 +1975,7 @@ HNSW 将每一个向量点视为一个节点，并让距离相近的向量建立
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/missing.jpg)
+![](Pics/rag.jpeg)
 :::
 ::::::::::::::
 
@@ -2414,7 +2414,7 @@ Meta 采取了截然不同的路径。它投入巨资研发 Llama 大模型，�
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/missing.jpg)
+![](Pics/RAG_Embedding_Similarity_Search_Workflow.webp)
 :::
 ::::::::::::::
 
