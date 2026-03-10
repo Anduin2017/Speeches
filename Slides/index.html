@@ -674,7 +674,7 @@ class="math inline">\(\Rightarrow\)</span> [起飞、降落]</li>
 </tbody>
 </table>
 <p>看，文字消失了，取而代之的是纯粹的数字。计算机通过算距离会发现，第三篇博客和第一篇、第二篇都有交集（距离比较近），而第一篇
-and 第二篇可谓是完全不相关（距离最远）。</p>
+和 第二篇可谓是完全不相关（距离最远）。</p>
 <p>我们可以实际计算一下：第一篇（A320的起飞）和第二篇（737的降落）之间的直线距离（欧氏距离）是：</p>
 <p><span class="math display">\[d = \sqrt{(1-0)^2 + (1-0)^2 + (0-1)^2 +
 (0-1)^2} = \sqrt{4} = 2\]</span></p>
@@ -711,17 +711,16 @@ and 第二篇可谓是完全不相关（距离最远）。</p>
 <li><strong>第四篇 (炒方便面的做法)：</strong> <code>[0, 0, 0, 0]</code>
 （如果它一定有标签，可能是：餐饮，就算是 [0, 0, 0, 0, 1]）</li>
 </ul>
-<p>现在，我们让计算机算一下，第一篇（A320的起飞） and
+<p>现在，我们让计算机算一下，第一篇（A320的起飞） 和
 这篇（炒方便面的做法）之间的欧氏距离：</p>
 <p><span class="math display">\[d = \sqrt{(1-0)^2 + (1-0)^2 + (0-0)^2 +
 (0-0)^2} = \sqrt{2} \approx 1.41\]</span></p>
 <p>这里存在一个明显的逻辑漏洞。</p>
-<p>第一篇（A320起飞） and 第三篇（起降原理）的距离是
-<strong>1.41</strong>。 第一篇（A320起飞） and
-第四篇（炒方便面的做法）的距离竟然也是 <strong>1.41</strong>！</p>
-<p>如果计算机泛化能力不足地依靠欧氏距离，它会十分愚蠢地告诉你：“A320的起飞”
-and “炒方便面的做法”的相关性，跟它 and
-“起降原理”的相关性是一模一样的！如果你是研发总监，明天你的系统给搜索飞机的飞行员推荐了炒方便面的做法，系统将变得不可用？</p>
+<p>第一篇（A320起飞）和第三篇（起降原理）的距离是
+<strong>1.41</strong>。
+第一篇（A320起飞）和第四篇（炒方便面的做法）的距离竟然也是
+<strong>1.41</strong>！</p>
+<p>如果计算机泛化能力不足地依靠欧氏距离，它会十分愚蠢地告诉你：“A320的起飞”和“炒方便面的做法”的相关性，跟它和“起降原理”的相关性是一模一样的！如果你是研发总监，明天你的系统给搜索飞机的飞行员推荐了炒方便面的做法，系统将变得不可用？</p>
 <p>这显然是荒谬的。问题究竟出在哪里？</p>
 <p>问题在于：<strong>欧氏距离无法真正反映“相关性”。</strong>
 在欧氏距离的计算公式里，你因为“拥有一个不同的特征”所产生的距离，和你“缺失一个特征”所产生的距离，在数学上被等同对待了。这在处理高维稀疏特征时，是一场灾难。</p>
@@ -772,12 +771,12 @@ class="math inline">\(1\times0 + 1\times0 + 0\times0 + 0\times0 =
 </ul>
 <p>看！仅仅换了一种简单的数学运算，炒方便面的做法就被系统完美地筛选排除。</p>
 <p>在高中数学里，两个向量 <span
-class="math inline">\(\mathbf{x}\)</span> and <span
+class="math inline">\(\mathbf{x}\)</span> 和 <span
 class="math inline">\(\mathbf{y}\)</span>
 的点乘，在几何上有一个优美的公式：</p>
 <p><span class="math display">\[\mathbf{x} \cdot \mathbf{y} =
 \|\mathbf{x}\| \|\mathbf{y}\| \cos(\theta)\]</span></p>
-<p>这里的 <span class="math inline">\(\|\mathbf{x}\|\)</span> and <span
+<p>这里的 <span class="math inline">\(\|\mathbf{x}\|\)</span> 和 <span
 class="math inline">\(\|\mathbf{y}\|\)</span>
 是两个向量的模（也就是长度），而 <span
 class="math inline">\(\theta\)</span> 是它们在多维空间中的夹角。</p>
@@ -835,7 +834,7 @@ Normalization)</strong>。</p>
 <p>在数学上，就是用向量里的每一个数字，除以它自己的模长。在几何上，这意味着把多维空间里所有长短不一的向量，全部拉伸或压缩，统一投射到一个<strong>“单位超球面”</strong>的表面上。</p>
 <p>现在，接下来我们看看实际效果。</p>
 <p>假设所有的向量都从原点出发，且它们的模长全都被强制变成了 1，即 <span
-class="math inline">\(\|\mathbf{x}\| = 1\)</span> and <span
+class="math inline">\(\|\mathbf{x}\| = 1\)</span> 和 <span
 class="math inline">\(\|\mathbf{y}\| =
 1\)</span>。那么我们来看看最初的那三个概念会发生什么奇妙的化学反应：</p>
 <p><strong>第一，关于点乘。</strong> 根据刚才的公式：<span
@@ -857,7 +856,7 @@ class="math inline">\(d^2 = \|\mathbf{x} - \mathbf{y}\|^2\)</span>。
 <p>得出最终的完美公式：</p>
 <p><span class="math display">\[d = \sqrt{2 -
 2\cos(\theta)}\]</span></p>
-<p><strong>它把直线的距离（<span class="math inline">\(d\)</span>） and
+<p><strong>它把直线的距离（<span class="math inline">\(d\)</span>） 和
 旋转的角度（<span
 class="math inline">\(\cos(\theta)\)</span>），十分完美地绑定在了一起。</strong></p>
 <p>当两篇文章越来越相似时，夹角越来越小，<span
@@ -877,18 +876,18 @@ class="math inline">\(d\)</span> 也就无限趋近于 0。</p>
 <aside class="notes">
 <p>那炒方便面的做法的事情解决了吗？让我们用新武器重新验证一下。</p>
 <p>还记得那个让欧氏距离失效的例子吗？“A320的起飞”
-<code>[1, 1, 0, 0]</code> and “炒方便面的做法” <code>[0, 0, 0, 0]</code>
+<code>[1, 1, 0, 0]</code> 和 “炒方便面的做法” <code>[0, 0, 0, 0]</code>
 的欧氏距离是 1.41，跟”起降原理”一样。但现在，我们用点乘来审判它：</p>
 <p><span class="math display">\[\mathbf{x} \cdot \mathbf{y} = 1 \times 0
 + 1 \times 0 + 0 \times 0 + 0 \times 0 = 0\]</span></p>
 <p><strong>点乘直接等于 0！</strong>
 两个特征向量在多维空间里完全垂直，夹角 <span
 class="math inline">\(\theta = 90^\circ\)</span>，<span
-class="math inline">\(\cos(90^\circ) = 0\)</span>。在我们这个极简 of 4
+class="math inline">\(\cos(90^\circ) = 0\)</span>。在我们这个极简 的 4
 维手工模型里，它们没有任何维度上的交集，判定为<strong>完全不相关</strong>——干净利落。</p>
 <p>在我们手工打造的 4 维标签空间里，点乘为 0
 是完全精确的。但当我们用真正的大模型来处理同样这两篇文章时，你会发现炒方便面的做法
-and A320 起飞的余弦相似度并不是绝对的
+和 A320 起飞的余弦相似度并不是绝对的
 0。为什么？因为真实的大语言模型在处理文本时，会捕捉到标点符号、中文字符等通用语法结构，所以在
 1024 维的空间里，几乎永远不会出现绝对的正交。</p>
 </aside>
@@ -1081,7 +1080,8 @@ class="math inline">\(\Rightarrow\)</span> 空间距离无限缩短</li>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img
+data-src="Pics/Embedding_Model_Training_Process_Funnel.png" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1469,7 +1469,8 @@ class="fragment"><strong>工业现状</strong>：已形成标准化、成熟部�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img
+data-src="Pics/Neural_Network_Architecture_Layers_Diagram.webp" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1493,7 +1494,7 @@ class="fragment"><strong>平权效应</strong>：通过标准接口即可调用�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img data-src="Pics/Flowise_AI_Agent_Workflow_Builder.webp" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1521,7 +1522,8 @@ class="fragment"><strong>集成隐患</strong>：语言壁垒与框架拖拽导�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img
+data-src="Pics/Data_Center_Segment_Revenue_FY17_FY22.webp" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1546,7 +1548,7 @@ class="fragment"><strong>精准切割</strong>：彻底剥离“视觉解析”�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img data-src="Pics/NVIDIA_GPU_Chip_HBM_CloseUp.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1584,7 +1586,8 @@ class="fragment"><strong>架构主权</strong>：以极高并发及本地私有�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img
+data-src="Pics/Neural_Network_Handwritten_Digit_Recognition.webp" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1621,7 +1624,7 @@ class="fragment"><strong>顶层延展</strong>：具备距离计算与几何聚�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img data-src="Pics/vision_detect.png" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1647,7 +1650,7 @@ class="fragment"><strong>无损高危模拟</strong>：发动机吞鸟、客舱�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img data-src="Pics/avigame.png" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1697,7 +1700,7 @@ class="fragment"><strong>核心算法</strong>：毫秒级完成用户坐标与�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img data-src="Pics/What_Are_Embeddings_Vector_Space.webp" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1741,7 +1744,7 @@ class="fragment"><strong>跨界推荐</strong>：通过特征传染，实现对�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img data-src="Pics/HNSW_Vector_Search_Algorithm_Layers.png" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1780,7 +1783,8 @@ class="fragment"><strong>大一统理论</strong>：万物皆可映射至高维�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img
+data-src="Pics/How_Embeddings_Work_Multimodal_Vectors.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1819,19 +1823,20 @@ class="title-slide slide level1">
 <div class="column" style="width:50%;">
 <div>
 <ul>
-<li class="fragment">推理 and 训练到底有啥区别？</li>
+<li class="fragment">推理 和 训练到底有啥区别？</li>
 <li class="fragment">深度学习到底“深”在哪？</li>
 <li class="fragment">什么是强化学习？</li>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img
+data-src="Pics/Neural_Network_Architecture_Layers_Diagram.webp" /></p>
 </div>
 </div>
 <aside class="notes">
 <p>在进入极速检索的工程奇迹之前，我经常被非技术背景的管理者问及三个核心问题：“推理
-and 训练到底有啥区别？”、“深度学习到底深在哪？”、“什么是强化学习？”</p>
-<p>为了不让大家在接下来的硬件 and
+和 训练到底有啥区别？”、“深度学习到底深在哪？”、“什么是强化学习？”
+为了不让大家在接下来的硬件 和
 战略章节里迷路，我想用三分钟时间，用通俗易懂的语言帮大家把这三个核心的
 AI 术语进行通俗化解析。</p>
 </aside>
@@ -1855,23 +1860,22 @@ AI 术语进行通俗化解析。</p>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img data-src="Pics/model_training.png" /></p>
 </div>
 </div>
 <aside class="notes">
-<p>如果把 AI 当作一个高考应届生，“训练” and
+<p>如果把 AI 当作一个高考应届生，“训练” 和
 “推理”就是它人生的两个阶段：</p>
 <ul>
 <li><strong>训练
 (Training)</strong>：就是<strong>“模型参数构建”</strong>。你需要花几千万美元买几万张顶级显卡，耗时几个月，把全世界能找到的海量的互联网数据集输入到模型中。在这个过程中，它的大脑结构（那几十亿个参数）在剧烈地改变
-and
-成型。这个过程<strong>成本极高、耗电极大、且不能被打断</strong>。比如
+和 成型。这个过程<strong>成本极高、耗电极大、且不能被打断</strong>。比如
 OpenAI 训练 GPT-4，就是在做这件事。</li>
 <li><strong>推理
 (Inference)</strong>：就是<strong>“模型应用与预测”</strong>。模型已经训练好了，毕业了，大脑结构固定了。现在你把它部署到公司的服务器里，给它输入一个指令（比如问它：“今天北京天气如何？”），它动用已经学好的知识，瞬间算出一个答案给你。这个过程<strong>参数不会再改变，消耗的算力极小，普通的显卡或移动设备即可运行</strong>。</li>
 </ul>
 <p><strong>高管避坑指南</strong>：如果有人建议：“我们要买1000张显卡在公司内部自己‘训练’一个大模型。”这种做法通常不符合成本效益；但如果是“我们买两台服务器在公司内部做大模型的‘部署
-and 推理’，用来处理机务手册”，这是一笔具有较高投资回报率的方案。</p>
+和 推理’，用来处理机务手册”，这是一笔具有较高投资回报率的方案。</p>
 </aside>
 </section>
 <section id="深度学习深在何处" class="slide level2">
@@ -1923,7 +1927,7 @@ and 推理’，用来处理机务手册”，这是一笔具有较高投资回�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img data-src="Pics/avigame.png" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -2033,7 +2037,7 @@ Core，它是专门为矩阵乘法设计的物理电路。</p>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img data-src="Pics/What_Are_Embeddings_Vector_Space.webp" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -2068,7 +2072,7 @@ class="fragment"><strong>无须计算层级</strong>：如肌肉记忆般直出<
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img data-src="Pics/NVIDIA_GPU_Chip_HBM_CloseUp.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -2104,13 +2108,13 @@ Tensor Core。当大模型数据流经它，根本不需要再像 CPU
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img data-src="Pics/NVIDIA_A100_Server_Hardware.webp" /></p>
 </div>
 </div>
 <aside class="notes">
 <p>如果说 Tensor Core 是英伟达的”拳头”，那 <strong>CUDA</strong>
 就是它的”神经系统”——没有神经系统，拳头再硬也打不出去。</p>
-<p>而 CUDA 的诞生故事，本身就是一个关于远见 and
+<p>而 CUDA 的诞生故事，本身就是一个关于远见 和
 孤注一掷的史诗级商业案例。</p>
 <h4 id="年所有人都觉得黄仁勋疯了">1. 2006
 年：所有人都觉得黄仁勋疯了</h4>
@@ -2128,10 +2132,10 @@ is not optional. It’s our future.”（CUDA
 <p>转折发生在 2012 年。多伦多大学的 Ilya Sutskever 为了参加 ImageNet
 比赛，跑到电脑城买了两块英伟达的<strong>游戏显卡——GTX 580</strong>！</p>
 <p>然后，他用 CUDA 在这两块消费级显卡上成功实现了
-<strong>AlexNet</strong> 深度学习模型。全世界 of AI
+<strong>AlexNet</strong> 深度学习模型。全世界 的 AI
 科学家在一夜之间集体醒悟：<strong>原来，游戏显卡才是 AI
-的终极武器！而唯一能拿来做深度学习 of 显卡，只有英伟达 of ——因为只有 it
-有 CUDA。</strong></p>
+的终极武器！而唯一能拿来做深度学习的显卡，只有英伟达的——因为只有它有
+CUDA。</strong></p>
 </aside>
 </section>
 <section id="cuda-生态不可撼动的护城河" class="slide level2">
@@ -2164,7 +2168,7 @@ class="fragment"><strong>生态闭环</strong>：铁路、轨距与肌肉记忆<
 年：黄仁勋亲手把核武器送到了 OpenAI 门口</h4>
 <p>2016 年 8 月，黄仁勋亲自抱着人类历史上第一台专为深度学习打造的 AI
 超级计算机——<strong>DGX-1</strong>，送到了 OpenAI
-的办公室。他亲手把这台机器交给了马斯克 and
+的办公室。他亲手把这台机器交给了马斯克 和
 奥特曼，并在机箱上手写签下了一句话：<strong>“To the future of computing
 and humanity.”</strong></p>
 <p>请注意这个商业逻辑的精妙之处：这种策略极具前瞻性。当 OpenAI
@@ -2225,50 +2229,83 @@ A100，ChatGPT 背后的算力真相</h4>
 产业链的深度绑定，三重堆叠而成的无可撼动的护城河。</p>
 </aside>
 </section>
-<section id="算力重估突破参数量盲崇与架构迷思" class="slide level2">
-<h2>算力重估：突破参数量盲崇与架构迷思</h2>
+<section id="算力重估专精小参数落地" class="slide level2">
+<h2>算力重估：专精“小参数”落地</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div>
 <ul>
-<li class="fragment">误解：执着顶流芯片 / 天价模型</li>
-<li class="fragment">纠正：业务更需专精“小参数”落地</li>
-<li class="fragment">指标 A：显存 (VRAM)
-<ul>
-<li class="fragment">容纳系统运行</li>
-</ul></li>
-<li class="fragment">指标 B：带宽 (Bandwidth)
-<ul>
-<li class="fragment">切中吞吐频次命脉</li>
-</ul></li>
-<li class="fragment">macOS 与 CUDA 架构鸿沟</li>
+<li class="fragment"><strong>参数量 (Parameter
+Size)</strong>：脑容量与职场定位</li>
+<li class="fragment"><strong>基座大模型</strong>：全科院士
+(ChatGPT-4)</li>
+<li class="fragment"><strong>小参数模型</strong>：专精特新技工 (7B,
+14B)</li>
+<li
+class="fragment"><strong>投资策略</strong>：把廉价、高效的技工招进业务线</li>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img data-src="Pics/Model_Size_Growth_2018_2022.webp" /></p>
 </div>
 </div>
 <aside class="notes">
-<p>我身边很多人对深入 AI 的应用场景的第一印象还是 “买个 Mac Mini”
-（这可能源于对本地轻量级部署的误解）。在解答这个投资问题之前，需要先澄清一个常见的评估误区——<strong>“参数量盲崇”</strong>。</p>
-<p>用通俗易懂的语言说，参数量就是 AI 的“脑容量”和“职场定位”。像
-ChatGPT-4
-这种拥有上万亿参数的模型，相当于“全科院士”。而现在业界真正用于企业级落地的，是
-<strong>7B、14B
-的“小参数模型”</strong>。它们相当于“专精特新技工”。在特定任务上，干得比院士还快、更好，而且硬件成本只有前者的百分之一！</p>
-<p>正是由于这种对模型参数的迷信，导致了硬件盲目的选型。评估 AI
-硬件，本质上我们只看两个核心指标：<strong>显存（VRAM）和带宽（Bandwidth）</strong>。</p>
-<p><strong>第一，显存（VRAM）决定了“你能装下多大的脑子”。</strong> 一个
-AI 模型必须完整地塞进显存里才能工作。</p>
-<p><strong>第二，内存带宽（Bandwidth）决定了“数据吞吐与运算效率”——这是苹果的核心瓶颈。</strong>
-大模型生成文字需要极高的数据读取频率。苹果 Mac Studio
-虽然内存大，但带宽受限，无法应对高并发需求。而英伟达架构则能实现真正的”秒回”。</p>
-<p><strong>第三，也是最致命的：苹果没有 CUDA。</strong> 在英伟达的 Linux
-+ CUDA 生态里，可以轻松实现企业级的并发调度和底层优化。Mac
+<p>我身边很多人对深入 AI 的应用场景的第一印象还是 “买个 Mac
+Mini”。在解答这个投资问题之前，需要先澄清一个常见的评估误区——<strong>“参数量盲崇”</strong>。大家在新闻里天天听到“千亿参数”、“万亿参数”，这个<strong>参数量（Parameter
+Size）</strong>到底是什么？</p>
+<p>用通俗易懂的语言说，参数量就是 AI 的“脑容量” 和 “职场定位”。</p>
+<p>像 ChatGPT-4
+这种拥有上万亿参数的模型，相当于我们花天价年薪聘请的“全科院士”。它无所不知，但响应可能很慢。</p>
+<p>而现在业界真正用于企业级落地的，是 <strong>7B、14B
+的“小参数模型”</strong>。它们相当于高职高专毕业的“专精特新技工”。在特定的单一任务上，干得比院士还快、更好，而且硬件成本只有前者的百分之一！</p>
+<p>所以，今天我们讨论 的 AI 落地，不是去盲目投资那些烧钱 的
+万亿基座大模型，而是如何把这些廉价、高效 的 “小参数技工”招进我们 的
+业务线。</p>
+</aside>
+</section>
+<section id="硬件选型显存带宽与生态壁垒" class="slide level2">
+<h2>硬件选型：显存、带宽与生态壁垒</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><p><strong>显存
+(VRAM)</strong>：决定你能装下多大的脑子</p></li>
+<li class="fragment"><p><strong>带宽
+(Bandwidth)</strong>：决定数据吞吐与运算效率</p></li>
+<li class="fragment"><p><strong>Apple vs Nvidia</strong>：</p>
+<ul>
+<li class="fragment"><p>Mac：卸货门狭窄，带宽瓶颈</p></li>
+<li class="fragment"><p>Nvidia：高铁速度，企业级并发</p></li>
+</ul></li>
+<li class="fragment"><p><strong>CUDA 缺失</strong>：Mac
+不支持企业级推理引擎</p></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="Pics/NVIDIA_GPU_Chip_HBM_CloseUp.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>在咱们的 IT
+采购会议上，你们可能会面临这样一个灵魂考：为什么不买苹果做 AI
+服务器？</p>
+<p>评估 AI 硬件，本质上我们只看两个核心指标：<strong>显存（VRAM） 和
+带宽（Bandwidth）</strong>。</p>
+<p><strong>第一，显存（VRAM）决定了“你能装下多大的脑子”。</strong></p>
+<p>一个 AI 模型必须完整地塞进显存里才能工作。</p>
+<p><strong>第二，内存带宽（Bandwidth）决定了“数据吞吐 和
+运算效率”——这是苹果的核心瓶颈。</strong></p>
+<p>大模型生成文字，是逐字逐词生成的。每蹦出一个字，显卡都要把几十 GB
+的模型数据从头到尾重新读取一遍！苹果 Mac Studio
+的内存确实大，但它的卸货门狭窄。</p>
+<p><strong>第三，也是最致命的：苹果没有 CUDA。</strong></p>
+<p>在英伟达的 Linux + CUDA 生态里，可以轻松实现 <strong>Continuous
+Batching</strong> 和 企业级并发调度. Mac
 更适合单兵作战的个人终端，而不是融入公司真实业务流的”生产力服务器”。</p>
 <p><strong>硬件的物理隔离 + 长达 18 年构建的 CUDA 软件生态 +
-企业级的并发推理引擎，构成了目前 AI 时代最坚固的壁垒。</strong>
-这也确立了 Nvidia 公司无可撼动的护城河。</p>
+企业级的并发推理引擎，构成了目前 AI 时代最坚固的壁垒。</strong> 微软
+Azure GPU 实例 150% 的增长率，正是对英伟达的一场豪赌。</p>
 </aside>
 </section>
 <section class="slide level2">
@@ -2344,7 +2381,7 @@ class="fragment"><strong>可导航小世界</strong>：小步跃升与贪心路�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img data-src="Pics/HNSW_Vector_Search_Algorithm_Layers.png" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -2391,7 +2428,7 @@ class="fragment"><strong>上帝视角</strong>：洞察庞大资产在机器眼�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img data-src="Pics/K_Means_Clustering_Algorithm_Steps.png" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -2422,7 +2459,7 @@ class="fragment"><strong>战略武器</strong>：将核心资产向量化，构�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img data-src="Pics/HNSW_Vector_Search_Algorithm_Layers.png" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -2456,7 +2493,7 @@ class="title-slide slide level1">
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img data-src="Pics/AI_Agent_Orchestration_System_MCP.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -2624,7 +2661,7 @@ AI
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img data-src="Pics/AI_Agent_Orchestration_System_MCP.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -2670,32 +2707,46 @@ class="slide level2">
 稍后大家看到完整的在线题库服务部署结果。</p>
 </aside>
 </section>
-<section id="阶段八a2a-网络-agent-to-agent" class="slide level2">
-<h2>阶段八：A2A 网络 (Agent To Agent)</h2>
+<section id="阶段八终极形态-a2a-协作网络-agent-to-agent"
+class="slide level2">
+<h2>阶段八：终极形态 —— A2A 协作网络 (Agent-to-Agent)</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div>
 <ul>
-<li class="fragment">从个体走向：网络协同</li>
-<li class="fragment">前端分兵：各持专网（如航材代理与气象代理）</li>
-<li class="fragment">主控节点：总责拆解与分发</li>
-<li class="fragment">通信机制：以自然语言实现多节点自主谈判与纠偏</li>
-<li class="fragment">总结：从单纯部署工具，跨越至深度嵌入业务网</li>
+<li class="fragment"><strong>职场化网络</strong>：Agent 间协同</li>
+<li class="fragment"><strong>主控
+Agent</strong>：项目经理角色，任务拆解</li>
+<li
+class="fragment"><strong>协作机制</strong>：自然语言对话、纠错、谈判</li>
+<li class="fragment"><strong>A2A
+协作</strong>：组建数字团队处理跨部门任务</li>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img
+data-src="Pics/Agent_to_Agent_A2A_Protocol_MCP_Architecture.webp" /></p>
 </div>
 </div>
 <aside class="notes">
 <p>当你的公司里拥有了上百个这种能够独当一面、拥有真实能力的“数字员工
-Agent”后，面对庞大的跨部门任务，单兵作战就不够用了。最末端的终极形态随之降临：</p>
-<p>真正的职场化网络与 A2A (智能体间协作) 我们设立一个“航材专家
-Agent”（插上 MCP 查库存）、一个“气象 Agent”、一个“机组
-Agent”。再分配一个主大脑 Agent。
-收到指令后主控拆分节点任务。期间，子系统之间利用自然语言交叉确认沟通完成全流程操作。
-这不仅是技术的演化，更是人类对 AI 信任度的演化。</p>
-<p>今天真正的优势企业，不应仅局限于部署对聊模块，而是开始通过通用能力搭建这些多层级数字人集群协作管线，这也是极长工程验证里沉淀得到的稳健之法。</p>
+Agent”后，面对庞大的跨部门任务，单兵作战就不够用了。最末端的终极形态随之降临。</p>
+<ul>
+<li><strong>真正的职场化网络与 A2A (智能体间协作)：</strong>
+我们设立一个“航材专家 Agent”（插上 MCP 查库存的 U盘）、一个“气象
+Agent”（插上天气系统的 U盘）、一个“机组 Agent”（插上排班系统的
+U盘），最后任命一个最聪明的大模型作为“主控 Agent（项目经理）”。
+当主控收到老板的指令后，它会自动把任务拆解，分发给下面的子
+Agent。更可怕的是，<strong>各个 Agent
+之间会互相通过自然语言对话来交接工作、互相谈判，甚至互相纠错、开会定方案</strong>。这叫
+<strong>A2A（AI 之间互相聊天办事）</strong>。</li>
+</ul>
+<p>回顾这条演化之路：从让它自由问答（Chat），到给它书本（RAG），给它双手（Skills），把它关进流水线（Workflow），通过通用接口给它配一台电脑雇它当员工（MCP/Agent），直到最后让它们组建数字团队自己开会办事（A2A）。</p>
+<p>这不仅是技术的演化，更是<strong>“人类对 AI
+信任度的演化”</strong>。</p>
+<p>今天，真正有竞争力的企业，不应仅局限于部署基础的对话界面。而是利用
+MCP 和 A2A
+架构，把这群不用睡觉、永远在线的高智商机器，深度嵌入到公司的每一条业务链中。</p>
 </aside>
 </section>
 <section class="slide level2">
@@ -2705,24 +2756,32 @@ Agent”。再分配一个主大脑 Agent。
 <section id="第十章为何当前ai难预测极度复杂金融"
 class="title-slide slide level1">
 <h1>第十章：为何当前AI难预测极度复杂金融</h1>
-
+<aside class="notes">
+<p>各位高管，在上一章，我们见证了 AI
+从一个陪聊玩具，进化成了能够自主查数据、写代码、甚至互相开会协作的
+Agent（数字员工）。</p>
+<p>我们回顾在首章提及的应用盲区：例如期望利用 AI
+代理复杂的金融理财。</p>
+<p>近年来，许多人在见证自动生成系统的惊人效率后，会产生强烈的高难度预期，例如希望委托
+AI 抓取财经新闻、分析财报并实施高风险交易策略。</p>
+<p>然而，<strong>在面对混沌的金融市场时，完全依赖基础系统架构进行风险标的预测操作，将导致严重的资产损失。</strong></p>
+<p>各位可能会疑惑，为什么这么强大的技术，不能用来赚钱？今天，我也想借这个机会，帮大家彻底划清
+AI 的能力边界。</p>
+</aside>
 </section>
-<section id="不具备泛金融决断力的本源" class="slide level2">
-<h2>不具备泛金融决断力的本源</h2>
+<section id="幸存者偏差与真实世界的量化屠杀" class="slide level2">
+<h2>10.1 幸存者偏差与真实世界的量化屠杀</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div>
 <ul>
-<li class="fragment">前提：摒除网络幸存者偏差带来的高收益迷思</li>
-<li class="fragment">对比工业量化手段：
+<li class="fragment">摒除幸存者偏差带来的高收益迷思</li>
+<li class="fragment">对比：顶级量化团队的工业手段
 <ul>
-<li class="fragment">微毫厘计算：依靠高频极速传输捕捉瞬时差价</li>
-<li class="fragment">服务器极度毗邻交易所</li>
-</ul></li>
-<li class="fragment">混沌系统难点：
-<ul>
-<li class="fragment">股市交汇数亿规模复杂情感因素</li>
-<li class="fragment">并非基础语言规律模型所能模拟</li>
+<li class="fragment">数千张 A100 显卡算力集群</li>
+<li class="fragment">全球历史交易数据的高维张量化</li>
+<li class="fragment"><strong>Colocation 托管</strong>：物理级低延迟</li>
+<li class="fragment">捕捉 0.000001 秒的极速差价</li>
 </ul></li>
 </ul>
 </div>
@@ -2731,45 +2790,110 @@ class="title-slide slide level1">
 </div>
 </div>
 <aside class="notes">
-<p>在上一章，我们见证了 AI
-从陪聊进化为能跨部门协作的数字引擎。但我们回顾在首章提及的应用盲区：例如期望利用
-AI 代理复杂的金融理财。</p>
-<p>面对混沌的金融市场时，完全依赖基础系统架构进行风险标的预测操作，将导致严重的资产损失。网络上部分通过
-AI
+<p>网络上部分通过 AI
 获取收益的案例，本质是不具备数据支撑的幸存者偏差，而非底层的分析能力使然。</p>
-<p>那么，真正在复杂金融领域落地的量化 AI 引擎应具备何种特征？
-世界上顶级的投资机构依赖大规模算力集群和高维极速数据运算，以物理托管毗邻的低延迟捕捉市场瞬时差价。
-而金融市场是一个包含了数亿人情绪、资金博弈以及全球地缘政治的超级混沌系统。这远非基于文字概率接龙的大语言模型所能预测的系统。这种基础
-Agent 面对极度不确定的市场反应，往往表现为情绪化的“过度反应”。</p>
+<p>那么，真正在复杂金融领域落地的量化 AI 引擎应具备何种特征？</p>
+<p>金融界真正顶级的量化团队（比如文艺复兴、城堡投资），他们是极其专业的算法团队。他们根本不用这种靠“读新闻”的大语言模型。</p>
+<p>他们怎么玩？他们在机房里堆了几千颗顶级的 A100
+显卡，把全世界上百年的历史交易数据、订单簿、微观结构全部变成我们前面讲过的<strong>高维张量</strong>。他们在浩如烟海的噪音中，计算极其细微的数学相关性。
+最可怕的是，为了抢速度，他们会花天价把自己的服务器托管在<strong>距离证券交易所只有几百米甚至隔壁的机房里（这叫
+Colocation
+托管）</strong>。为什么？为了省下那零点几毫秒的光纤传输延迟！</p>
+<p>他们利用极致的算力、严密的数学模型和物理级别的低延迟，去捕捉市场上只出现
+0.000001 秒的差价。这叫高频微操。</p>
 </aside>
 </section>
-<section id="建立正确的企业-ai-预期" class="slide level2">
-<h2>建立正确的企业 AI 预期</h2>
+<section id="蝴蝶效应大模型无法预测混沌系统" class="slide level2">
+<h2>10.2 蝴蝶效应：大模型无法预测混沌系统</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div>
 <ul>
-<li class="fragment">远离误区：无力判断全局商业周期性与反向定力</li>
-<li class="fragment">理清界线：AI 的本质是“完美的效能机器”</li>
-<li class="fragment">业务适搭点：
-<ul>
-<li class="fragment">规则性文档与逻辑确认任务</li>
-<li class="fragment">海量资料合并</li>
-</ul></li>
-<li class="fragment">高管抉择：维持全局商业宏观的自主判断率</li>
+<li
+class="fragment"><strong>超级混沌系统</strong>：情绪、博弈、地缘政治</li>
+<li
+class="fragment"><strong>预测困境</strong>：远非文字概率接龙所能触及</li>
+<li class="fragment"><strong>情绪偏见</strong>：易被恐慌新闻带偏</li>
+<li class="fragment"><strong>市场反身性</strong>：Agent
+难以对抗系统波动</li>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/missing.jpg" /></p>
+<p><img
+data-src="Pics/Neural_Network_Architecture_Layers_Diagram.webp" /></p>
 </div>
 </div>
 <aside class="notes">
-<p>毫无战略定力的底层算法逻辑，本质上与投资所需的克制、分散以及反周期的商业原则相背道而驰。这正是为何我们需要明确
-AI 能力边界的原因。</p>
-<p>AI
-是一台完美的“效能机器”。它极其擅长梳理复杂日志并执行逻辑运算。它并非全知的精准预言机。它可以协助撰写详尽的运作分析报告，但无法替代您在重大并购或风险评估中的战略决策。</p>
-<p>让 AI
-承担繁重的执行任务；由管理者维持宏观的自主判断力。明确了应用边界后，让我们放眼更宏大的全球商业版图。</p>
+<p>股市是一个包含了数亿人情绪、资金博弈以及全球地缘政治的<strong>超级混沌系统</strong>。金融市场是一个包含了数亿人情绪、资金博弈以及全球地缘政治的超级混沌系统。这要求系统的底层算力
+和 维度必须极其庞大。</p>
+<p>这远非基于文字概率接龙的大语言模型所能预测的系统。</p>
+<p>大模型对文字的理解确实强，但它极容易被新闻里的情绪带偏。当大盘暴跌、满屏都是恐慌性新闻时，Agent
+的情绪判断也会极度恐慌，从而给出“割肉清仓”的指令。它根本无法对抗这种市场反身性。</p>
+</aside>
+</section>
+<section id="投资的真谛-vs-ai-的天性" class="slide level2">
+<h2>10.3 投资的真谛 vs AI 的天性</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li
+class="fragment"><strong>价值投资原则</strong>：低迷买入、分散投资、长期持有</li>
+<li class="fragment"><strong>人性克制</strong>：需要极强的战略定力</li>
+<li class="fragment"><strong>AI
+的弱点</strong>：高频监控导致的“过度反应”</li>
+<li
+class="fragment"><strong>资产侵蚀</strong>：频繁交易带来的摩擦与追涨杀跌</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img
+data-src="Pics/AI_Capability_vs_Usage_by_Occupation_Radar_Chart.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>各位高管都是资深决策者，一定清楚价值投资的核心原则：</p>
+<ol type="1">
+<li><strong>在市场低迷（无人问津时）买入。</strong></li>
+<li><strong>分散投资，避免过度集中于单一标的。</strong></li>
+<li><strong>保持长期持有策略，用战略定力穿越周期。</strong></li>
+</ol>
+<p>这需要的是极强的战略定力、耐力、以及反人性的克制。</p>
+<p>而如果我们部署一个 Agent
+天天进行高频监控呢？机器是不睡觉的。它每天会接收海量信息，处理数万次波动。这种极其密集的信息输入，会导致它产生“过度反应”，从而频繁地进行交易操作。在一次次的手续费摩擦
+和 追涨杀跌中，资产净值会被迅速侵蚀。</p>
+<p><strong>因此，面对混沌的金融市场，缺乏庞大算力底座支撑的直接金融预测是完全不可行的。</strong></p>
+</aside>
+</section>
+<section id="给企业管理者的启示建立边界感" class="slide level2">
+<h2>10.4 给企业管理者的启示：建立边界感</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li
+class="fragment"><strong>完美的效能机器</strong>：处理确定性任务</li>
+<li
+class="fragment"><strong>效率提升</strong>：手册整理、排班自动化、财务比对</li>
+<li
+class="fragment"><strong>非精准预言机</strong>：无法替代战略级风险决策</li>
+<li class="fragment"><strong>协同比例</strong>：执行归
+Agent，决策归人类</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="Pics/AI_Workflow_Automation_Zapier_Example.png" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>这正是为何我们需要明确 AI 能力边界的原因。</p>
+<p>因为这正是各位高管在公司内部推行 AI 时，必须建立的“边界感”。</p>
+<p><strong>AI 是一台完美的“效能机器”。</strong>
+它极其擅长处理有明确规则、有历史文档、或者基于逻辑推理的确定性任务。例如：整理庞大的机务手册、自动生成排班表、比对财务发票。它能显著降低运营成本。</p>
+<p><strong>因此，AI 并非能准确预测所有混沌结果的精准预言机。</strong>
+它可以协助您撰写高质量的航线客流分析报告，但它绝不能代替您做出具有战略影响力的终极商业决策。</p>
+<p>把重复的、逻辑的、繁琐的执行交给数字员工（Agent）；把洞察人性的、对抗周期的、战略级的风险决策，留给我们人类的常识
+和 胆识。这就是 AI 时代最完美的协同比例。</p>
 </aside>
 </section>
 <section class="slide level2">
@@ -2779,7 +2903,16 @@ AI 能力边界的原因。</p>
 <section id="第十一章2026-巨头商业阳谋与破局"
 class="title-slide slide level1">
 <h1>第十一章：2026 巨头商业阳谋与破局</h1>
-
+<aside class="notes">
+<p>在前面的章节里，我们拿着放大镜，看透了 AI
+黑盒里的每一个齿轮——从多维空间的向量距离，到英伟达 GPU 的硬件算力，再到
+HNSW 算法的极速检索网络。</p>
+<p>现在，技术课结束了。让我们把视线从微观的硅片上移开，跟着我把镜头拉远，俯瞰一下
+2026 年的全球商业版图。</p>
+<p>在这场被称为“新工业革命”的浪潮里，过去三年，全球涌入了超过 1700
+亿美元的真金白银。这笔投资深刻改变了技术格局。在这个由算法和算力构筑的新世界里，全球最顶级的科技巨头们，正在打一场怎样的超级战争？我们作为实体产业，又该如何在他们的炮火中寻找红利？</p>
+<p>我为大家提炼了当前全球 AI 棋局的三个核心真相。</p>
+</aside>
 </section>
 <section id="算力能源化不可替代的重工业化" class="slide level2">
 <h2>算力能源化：不可替代的重工业化</h2>
@@ -2800,18 +2933,18 @@ class="title-slide slide level1">
 <p><img data-src="Pics/NVIDIA_DGX_Data_Center_Racks.webp" /></p>
 </div>
 </div>
-<aside class="notes">
-<p>在这场被称为“新工业革命”的浪潮里，过去三年，全球涌入了超过 1700
-亿美元的资本投入。这笔投资深刻改变了技术格局。在这个由算法和算力构筑的新世界里，全球最顶级的科技巨头们，正在打一场怎样的超级战争？我们作为实体产业，又该如何在他们的博弈中寻找红利？</p>
-<p>我为大家提炼了当前全球 AI 棋局的三个核心真相。</p>
-<p>真相一：AI 已经不再是软件，而是“重工业”。 2026
-年初，美国白宫紧急召集了微软、谷歌、亚马逊、Meta
-的负责人开了一场闭门会议。会议的核心议题不是虚幻的机器觉醒，而是一个严峻的客观事实：<strong>能源供应面临极大挑战。</strong>
-随着模型参数的爆炸式增长，超大规模 GPU
-计算集群对电力的消耗达到了前所未有的量级，甚至开始挤占民用电网的峰值负载。美国政府甚至要求这些巨头必须自主建设发电厂、布局核能储备，才能继续扩建数据中心。这释放了一个明确的信号：<strong>AI
-的底层逻辑已经演变为极度依赖电力、冷却系统和芯片供应链的“重型基础设施产业”。</strong></p>
-<p>对航空公司的启示：自主构建底层基础大模型通常不符合实体企业的投资回报率。这是一场资金与资源密集的持久战。我们的战略应当是做最聪明的<strong>“技术应用者”</strong>——让硅谷和深圳的巨头们去承担高昂的能源与模型训练成本，我们专注于利用其成熟模型来优化自身的业务逻辑。</p>
-</aside>
+<section id="真相一ai-已经不再是软件而是重工业" class="notes">
+<h3>11.1 真相一：AI 已经不再是软件，而是“重工业”</h3>
+<p>过去的一种普遍误解是，训练 AI 就是几群极客坐在电脑前敲代码。</p>
+<p>事实并非如此。2026 年初，美国白宫紧急召集了微软、谷歌、亚马逊、Meta
+的负责人开了一场闭门会议。会议的核心议题不是虚幻的机器觉醒，而是一个严峻的客观事实：<strong>能源供应面临极大挑战。</strong></p>
+<p>随着模型参数的爆炸，超大规模 GPU
+计算集群对电力的消耗达到了前所未有的量级，甚至开始挤占民用电网的峰值负载。美国政府甚至要求这些巨头必须自主建设发电厂、布局核能储备，才能继续扩建数据中心。</p>
+<p>这释放了一个冷酷的信号：<strong>AI
+的底层逻辑已经变成了极度依赖电力、冷却系统和芯片供应链的“重型基础设施产业”。</strong></p>
+<p><strong>对我们航空公司的启示是什么？</strong>
+自主构建底层基础大模型通常不符合实体企业的投资回报率。这是一场资金与资源密集的持久战。我们的战略应当是做最聪明的<strong>“技术应用者”</strong>——让硅谷和深圳的巨头们去承担高昂的能源与模型训练成本，我们专注于利用其成熟模型来优化自身的业务逻辑。</p>
+</section>
 </section>
 <section id="微软与亚马逊基础设施的赋能者" class="slide level2">
 <h2>11.2.1 微软与亚马逊：基础设施的赋能者</h2>
@@ -2830,8 +2963,10 @@ class="title-slide slide level1">
 data-src="Pics/Data_Center_Segment_Revenue_FY17_FY22.webp" /></p>
 </div>
 </div>
-<section id="微软与亚马逊基础设施的赋能者-1" class="notes">
-<h4>11.2.1 微软与亚马逊：基础设施的赋能者</h4>
+<section id="真相二全球巨头的战略博弈" class="notes">
+<h3>11.2 真相二：全球巨头的战略博弈</h3>
+<h4 id="微软与亚马逊基础设施的赋能者-1">11.2.1
+微软与亚马逊：基础设施的赋能者</h4>
 <p>微软投入巨资深度绑定 OpenAI，其野心是实现 AI
 对操作系统与办公软件的全方位渗透。它致力于成为 AI
 时代的“水电煤”。而亚马逊（AWS）则利用强大的 AI
@@ -2904,38 +3039,79 @@ class="fragment"><strong>DeepSeek</strong>：算法级突破、极致压缩训�
 data-src="Pics/NVIDIA_Data_Center_GPU_Specs_Comparison.webp" /></p>
 </div>
 </div>
-<aside class="notes">
-<p>真相三：效率驱动的“成本革命”
-如果说北美巨头在进行算力与能源的规模战，那么中国科技企业则打出了一场“非对称战争”——<strong>不拼规模，拼效率。</strong>
-中国企业致力于将顶级 AI 的使用成本降至极低。这里有两个典型案例：</p>
-<p>一个是阿里巴巴（通义千问
-Qwen）。它不仅全面开源，而且独创了“双思维模式”，极具普惠性且支持全球多语言。它让全球企业意识到：中国开源模型同样能高效处理复杂业务，且无需承担高昂的
+<section id="真相三效率驱动的成本革命-1" class="notes">
+<h3>11.3 真相三：效率驱动的“成本革命”</h3>
+<p>如果说北美巨头在进行算力与能源的规模战，那么中国科技企业则打出了一场“非对称战争”——<strong>不拼规模，拼效率。</strong></p>
+<p>中国企业致力于将顶级 AI 的使用成本降至极低。这里有两个典型案例：</p>
+<p><strong>一个是刚才为大家做演示的阿里巴巴（通义千问 Qwen）。</strong>
+它不仅全面开源，而且独创了“双思维模式”，极具普惠性且支持全球多语言。它让全球企业意识到：中国开源模型同样能高效处理复杂业务，且无需承担高昂的
 Token 费用。</p>
-<p>另一个是实现算法突破的 DeepSeek。DeepSeek
-团队通过数学架构的创新，证明了“效率优于规模”。其旗舰模型在处理复杂推理任务时，实力足以匹敌顶尖闭源模型，但训练成本大幅降低。DeepSeek
-将强大的 AI 智力以极低的价格向全球释放，大幅降低了 AI
+<p><strong>另一个，是彻底震惊了硅谷的算法革命家——深度求索（DeepSeek）。</strong></p>
+<p>DeepSeek
+团队通过数学架构的创新，证明了“效率优于规模”。其旗舰模型在处理复杂推理任务时，实力足以匹敌顶尖闭源模型，但训练成本大幅降低。</p>
+<p>DeepSeek 将强大的 AI 智力以极低的价格向全球释放，大幅降低了 AI
 的准入门槛。这向企业传递了一个明确利好：<strong>高智商的 AI
 服务已变得极其普及且廉价。</strong></p>
-</aside>
+</section>
 </section>
 <section class="slide level2">
 
 </section>
-<section id="真相四脆弱的用户黏性与代际倒戈的风险" class="slide level2">
-<h2>11.4 真相四：脆弱的用户黏性与“代际倒戈”的风险</h2>
+<section id="a-真相四脆弱的用户黏性" class="slide level2">
+<h2>11.4a 真相四：脆弱的用户黏性</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div>
 <ul>
 <li
-class="fragment"><strong>品牌忠诚度匮乏</strong>：用户高度依赖智力基准，而非平台惯性</li>
+class="fragment"><strong>智力竞赛背后的焦虑</strong>：为什么巨头们不惜血本？</li>
 <li
-class="fragment"><strong>测评榜单导向</strong>：能力超越即引发千万级用户的瞬时流失</li>
+class="fragment"><strong>脆弱的用户黏性</strong>：软件史上前所未有的现象</li>
+<li class="fragment"><strong>品牌忠诚度匮乏</strong>：无脑追随“最聪明”的
+AI</li>
 <li
-class="fragment"><strong>行业颠覆加速</strong>：不再需要长周期积累，AI
-交互重塑核心门槛</li>
-<li class="fragment"><strong>先发制人</strong>：抢先利用 AI
-武装业务线，应对随时而至的竞争</li>
+class="fragment"><strong>流量瞬时迁徙</strong>：测评榜单决定千万级订阅去留</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img
+data-src="Pics/AI_Capability_vs_Usage_by_Occupation_Radar_Chart.jpg" /></p>
+</div>
+</div>
+<section id="真相四极低的用户黏性与传统行业一夜被颠覆的恐惧"
+class="notes">
+<h3>11.4 真相四：极低的用户黏性与传统行业“一夜被颠覆”的恐惧</h3>
+<p>当我们看到巨头们不惜血本地投入算力、激烈竞争大模型时，我们会问一个问题：他们为什么这么焦虑？</p>
+<p>因为在这场 AI
+狂欢的背后，隐藏着一个在软件商业历史上前所未有的现象——<strong>脆弱的用户黏性（User
+Stickiness）</strong>。</p>
+<p>在过去，如果我们习惯了某个航空公司的常客系统、或者是用惯了 iOS
+等生态闭环，我们极难被竞争对手挖走，因为迁移成本太高。但在今天面向用户的
+AI
+产品上，<strong>大多数人根本没有任何所谓的“品牌忠诚度”可言</strong>。</p>
+<p>今天的用户每天都紧盯着科技媒体的“AI
+智力测评榜单（Leaderboard）”。大家都是“无脑追随最聪明的那个
+AI”。今天如果 OpenAI 宣布自己是最强的，所有人就充值买 GPT
+的会员；但只要明天凌晨，谷歌或 Anthropic 突然宣布他们的 Gemini 或 Claude
+在推理基准得分上超越了前者，那么千万级的用户就会在一夜之间取消对 ChatGPT
+的订阅，瞬间转投新的平台。</p>
+</section>
+</section>
+<section id="b-传统行业一夜被颠覆的恐惧" class="slide level2">
+<h2>11.4b 传统行业“一夜被颠覆”的恐惧</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><strong>颠覆不再需要数十年积累</strong></li>
+<li class="fragment"><strong>AI 能力“白菜价”</strong>：DeepSeek
+带来的平权</li>
+<li
+class="fragment"><strong>降维打击</strong>：新竞争对手叠加聪明交互体验</li>
+<li
+class="fragment"><strong>防线溃败</strong>：原本忠诚的高净值用户瞬间流失</li>
+<li class="fragment"><strong>实体行业的警钟</strong>：抢先利用 AI
+武装自己</li>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
@@ -2943,16 +3119,15 @@ class="fragment"><strong>行业颠覆加速</strong>：不再需要长周期积�
 </div>
 </div>
 <aside class="notes">
-<p>真相四：脆弱的用户黏性与“代际倒戈”的风险</p>
-<p>当我们审视巨头间的算力竞赛时，必须注意到一个前所未有的现象——<strong>脆弱的用户黏性（User
-Stickiness）</strong>。</p>
-<p>过去，常旅客系统或生态闭环能产生极高的迁移成本。但在 AI
-时代，用户表现出<strong>高度依赖智力基准</strong>的特征。一旦竞争对手的模型在逻辑推理或响应质量上实现超越，千万级用户可能在短时间内完成平台转投。</p>
-<p>这种低黏性不仅困扰着巨头，也给传统行业敲响了警钟。既然强大的 AI
-能力已变得唾手可得，行业颠覆不再需要长周期的积累。一旦新的竞争对手整合了更智能的
+<p>这种仅仅因为某个 AI
+在某个任务上“表现得更聪明一点”就能引发超级流量迁徙的低黏性，不仅让身处硅谷的巨头们坐立难安，更给所有原本安枕无忧的传统行业敲响了警钟。</p>
+<p>试想一下：既然“高智商的 AI 能力”现在已经如我们前文所说，被 DeepSeek
+们打成了白菜价，随时可以被轻易获取，这就意味着行业的颠覆不再需要几十年的积累。</p>
+<p>一旦你们引以为傲的航空服务流程或在线产品，被新的竞争对手（或者甚至是没有航线的科技公司）盯上，对方<strong>只要拿过来模仿一下，并在其上叠加了一些基于最新一代大模型的、更聪明的
 AI
-交互体验（例如一个能实时感知旅客情绪并秒级规划中转方案的数字管家），原本忠诚于你们的高净值用户可能会迅速流失。因此，抢先利用
-AI 武装业务线，已成为实体产业维护竞争门槛的当务之急。</p>
+交互体验</strong>（比如：一个能一边听懂旅客退改签的焦躁情绪，一边一分钟内用自然语言帮旅客从全球联盟所有航班中规划出最具性价比中转方案的专属私人数字管家），<strong>原本忠诚于你们的高净值用户，可能一夜之间就大量流失了</strong>。</p>
+<p>在过去靠拼机队规模、拼飞机燃油经济性这种“重资产”的时代，一场软件体验上的落后引发的“一夜被颠覆”，几乎是不可能发生的。但在以“绝佳体验和极致聪明的反馈”为王的今天，这种事情在各行各业已经司空见惯。这也正是为什么我们绝不能因为自己身处“传统实体行业”就掉以轻心，必须在这个“AI
+随时能被集成”的节点，抢先武装我们自己的核心原因。</p>
 </aside>
 </section>
 <section id="终局从工具操控到数字员工管理" class="slide level2">
@@ -2975,19 +3150,21 @@ class="fragment"><p><strong>生产力质变</strong>：协作模式从“操控�
 <p><img data-src="Pics/Workflow_MCP_vs_A2A_Protocol_Diagram.webp" /></p>
 </div>
 </div>
-<aside class="notes">
-<p>终局：从“工具操控”到“数字员工管理”</p>
-<p>综上所述，2026
-年最深刻的生产力质变在于：我们正式进入了<strong>“智能代理时代（Agentic
-Era）”</strong>。</p>
+<section id="终局从对话聊天到雇佣数字员工-agentic-ai" class="notes">
+<h3>11.5 终局：从“对话聊天”到“雇佣数字员工 (Agentic AI)”</h3>
+<p>综上所述，了解了算力、了解了巨头、了解了成本，最后，我必须向大家揭示
+2026 年此刻正在发生的，最深刻的生产力突变。</p>
+<p>你们可能觉得 AI 就是个对话框，像个高级百科全书。但今年，以 Cognition
+公司的 Devin 为代表的技术，彻底重塑了人机交互。</p>
+<p>我们正式进入了<strong>“智能代理时代（Agentic Era）”</strong>。</p>
 <p>以前，你需要极其细致地“指导”AI
-怎么做；现在，工作流变成了“异步（Asynchronous）”的。您可以像对下属布置任务一样，对
-AI
+怎么做；现在，工作流变成了“异步（Asynchronous）”的。</p>
+<p>你可以像对下属布置任务一样，对 AI
 说：“去帮我排查一下今天所有延误航班的共性原因，比对天气数据，写一份报告发给运行总监。”</p>
-<p>然后，您可以专注于更高价值的决策工作。这个 AI
+<p>然后，你可以去喝咖啡了。这个 AI
 代理会<strong>自己</strong>去查数据库，<strong>自己</strong>去网络上抓取气象记录，<strong>自己</strong>分析逻辑，遇到报错<strong>自己</strong>修复，直到把任务完成。</p>
-<p><strong>人类与机器的协作模式，已从“操控一件工具”，进化为“管理一个员工”。</strong></p>
-</aside>
+<p><strong>人类与机器的协作模式，正式从“操控一件工具”，变成了“管理一个员工”。</strong></p>
+</section>
 </section>
 <section class="slide level2">
 
@@ -3014,7 +3191,8 @@ data-src="Pics/RAG_Embedding_Similarity_Search_Workflow.webp" /></p>
 </div>
 </div>
 <aside class="notes">
-<p>各位航空公司的高管，今天我们共同审视了 AI 的技术本质与商业版图。</p>
+<p>各位航空公司的高管，今天我们走过了很长的旅程。</p>
+<p>纵观全球，巨头们在砸钱修铁路、建电站，极客们在疯狂优化引擎、粉碎成本。这是一个最好的时代。</p>
 <p>在这个最好的时代，我们航空公司的核心资产并非算力设备，而是<strong>独有的、沉淀了数十年的海量飞行
 QAR 数据、维修记录以及旅客行为画像。</strong></p>
 <p>这些高质量的行业数据，才是真正的战略石油。</p>
