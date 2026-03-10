@@ -479,9 +479,6 @@ y_i)^2}\]</span></p>
 \|\]</span></p>
 <p>可以看出，两个向量的距离，就是它们的差的模（长度）。这就是计算机理解“相似性”的方式。</p>
 </aside>
-</section>
-<section class="slide level2">
-
 </section></section>
 <section>
 <section id="第四章万物皆可向量" class="title-slide slide level1">
@@ -578,6 +575,47 @@ y_i)^2}\]</span></p>
 <p>问题究竟出在哪里？</p>
 <p>问题在于：<strong>欧氏距离无法真正反映“相关性”。</strong>
 在欧氏距离的计算公式里，你因为“拥有一个不同的特征”所产生的距离，和你“缺失一个特征”所产生的距离，在数学上被等同对待了。这在处理高维稀疏特征时，是一场灾难。</p>
+</aside>
+</section>
+<section id="换个角度看世界点乘与余弦" class="slide level2">
+<h2>4.3 换个角度看世界：点乘与余弦</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>向量点乘 (内积)</strong> <br>
+把它俩相同维度上的数字两两相乘，然后再全部加起来。 <br><br>
+<strong>A320起飞</strong> <span class="math inline">\(\cdot\)</span>
+<strong>起降原理</strong> <span class="math inline">\(1\times0 +
+1\times1 + 0\times1 + 0\times0 = 1\)</span> <span
+style="color: green;">有交集！</span> <br><br> <strong>A320起飞</strong>
+<span class="math inline">\(\cdot\)</span> <strong>炒方便面</strong>
+<span class="math inline">\(1\times0 + 1\times0 + 0\times0 + 0\times0 =
+0\)</span> <span style="color: red;">毫不相干！</span></p>
+</div><div class="column" style="width:50%;">
+<p><strong>余弦相似度 (Cosine Similarity)</strong></p>
+<p><span class="math display">\[ \mathbf{x} \cdot \mathbf{y} =
+\|\mathbf{x}\| \|\mathbf{y}\| \cos(\theta) \]</span></p>
+<p><span class="math display">\[ \cos(\theta) = \frac{\mathbf{x} \cdot
+\mathbf{y}}{\|\mathbf{x}\| \|\mathbf{y}\|} \]</span></p>
+<ul>
+<li><span class="math inline">\(\theta = 0^\circ \Rightarrow
+\cos(0^\circ) = 1\)</span> (绝对契合)</li>
+<li><span class="math inline">\(\theta = 90^\circ \Rightarrow
+\cos(90^\circ) = 0\)</span> (风马牛不相及)</li>
+</ul>
+</div>
+</div>
+<aside class="notes">
+<p>为了解决欧氏距离的致命漏洞，我们要回忆一下高中数学里的另一个核心概念：<strong>向量的点乘（内积）</strong>。</p>
+<p>什么是点乘？最直白的理解，点乘就是把两个向量在相同维度上的数字两两相乘，然后再全加起来。</p>
+<p>我们用点乘来重新审视一下刚才的三篇文章： A320起飞 [1, 1, 0, 0] 与
+起降原理 [0, 1, 1, 0] 的点乘结果是 1（结果大于
+0，说明它们在某个维度上有共鸣，产生了交集！） A320起飞 [1, 1, 0, 0] 与
+炒方便面 [0, 0, 0, 0] 的点乘结果是 0（结果是
+0，说明它们无论怎么乘，都激不起任何水花，毫不相干！）
+看！仅仅换了一种简单的数学运算，炒方便面就被系统完美地踢出了局。</p>
+<p>在高中数学里，两个向量的点乘，在几何上有一个优美的公式。把长度除过去，我们就得到了现代人工智能评估相似度最核心的公式——<strong>余弦相似度
+(Cosine Similarity)</strong>。
+只要我们抛弃绝对的直线距离，转而去计算<strong>夹角余弦</strong>，“炒方便面”的闹剧就永远不会发生了。</p>
 </aside>
 </section></section>
     </div>

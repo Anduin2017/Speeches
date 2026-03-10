@@ -456,6 +456,7 @@ $$ d_{1,4} = \sqrt{(1-0)^2 + (1-0)^2 + (0-0)^2 + (0-0)^2} \approx 1.41 $$
 
 ## 4.3 换个角度看世界：点乘与余弦
 
+:::::::::::::: {.columns}
 ::: {.column width="50%"}
 **向量点乘 (内积)**
 <br>
@@ -480,6 +481,7 @@ $$ \cos(\theta) = \frac{\mathbf{x} \cdot \mathbf{y}}{\|\mathbf{x}\| \|\mathbf{y}
 * $\theta = 0^\circ \Rightarrow \cos(0^\circ) = 1$ (绝对契合)
 * $\theta = 90^\circ \Rightarrow \cos(90^\circ) = 0$ (风马牛不相及)
 :::
+::::::::::::::
 
 ::: notes
 为了解决欧氏距离的致命漏洞，我们要回忆一下高中数学里的另一个核心概念：**向量的点乘（内积）**。
