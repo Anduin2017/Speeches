@@ -26,6 +26,7 @@ date: "2026-03-10"
 :::
 :::
 ::: {.column width="45%"}
+![](Pics/microsoft_suzhou_office.jpeg)
 :::
 ::::::::::::::
 
@@ -1283,6 +1284,8 @@ RAG 的本质，其实就是我们刚才讲的 Embedding 向量技术的一次�
 :::
 ::: {.column width="50%"}
 ![](Pics/quantization-performance-of-small-vs-big-models-v0-kywzrfdwzvoe1.webp)
+
+![](Pics/quantization.png)
 :::
 ::::::::::::::
 
@@ -1846,6 +1849,8 @@ AI关键术语与硬件发展
 :::
 ::: {.column width="50%"}
 ![](Pics/NVIDIA_A100_Server_Hardware.webp)
+
+![](Pics/NVIDIA_Data_Center_GPU_Specs_Comparison.webp)
 :::
 ::::::::::::::
 
@@ -2451,6 +2456,8 @@ HNSW 将每一个向量点视为一个节点，并让距离相近的向量建立
 :::
 ::: {.column width="50%"}
 ![](Pics/autogpt_workflow.png)
+
+![](Pics/Flowise_AI_Agent_Workflow_Builder.webp)
 :::
 ::::::::::::::
 
@@ -2927,6 +2934,8 @@ Meta 采取了截然不同的路径。它投入巨资研发 Llama 大模型，�
 :::
 :::
 ::: {.column width="50%"}
+![](Pics/deepseek_overview.webp)
+
 ![](Pics/deepseek_ai_innovation.jpg)
 :::
 ::::::::::::::
