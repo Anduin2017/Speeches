@@ -1055,1229 +1055,161 @@ INT4
 </aside>
 </section></section>
 <section>
-<section id="第六章-万物皆可向量" class="title-slide slide level1">
-<h1>第六章 万物皆可向量</h1>
-<p>视觉解析到意图推断</p>
+<section id="第六章" class="title-slide slide level1">
+<h1>第六章</h1>
+<p>万物皆可向量：视觉解析到意图推断</p>
 <aside class="notes">
-<p>在上一章，我们见证了大语言模型如何把晦涩的波音 737
-飞行手册进行高维特征降维压缩，转换为一个个 1024
-维的坐标点，从而实现了精准的知识问答。 但这仅仅是 AI
-宇宙的冰山一角。如果说把文字变成向量，是赋予了机器“阅读”的能力；那么接下来我要展示的，是机器如何获得“视觉”，甚至如何读懂我们人类复杂的“心思”。</p>
+<p>在上一章，我们探讨了大语言模型如何将复杂的波音飞行手册进行高维特征压缩，转换为特征坐标，从而实现了精准的知识问答。</p>
+<p>但这仅仅是前沿技术应用的一角。文字转化为向量赋予了机器深度的阅读分析能力；接下来我们将讨论，机器如何获得强大的环境视觉，甚至如何推演人类深度的意图。</p>
 </aside>
 </section>
-<section id="让-ai-看懂照片" class="slide level2">
-<h2>6.1 让 AI “看懂”照片</h2>
+<section id="不仅仅是文字让计算机看懂图像" class="slide level2">
+<h2>6.1 不仅仅是文字：让计算机“看懂”图像</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li
+class="fragment"><strong>传统局限</strong>：人工标注成本过高，泛化能力极为薄弱</li>
+<li class="fragment"><strong>核心架构</strong>：基于 OpenAI
+发布的多模态网络 CLIP</li>
+<li
+class="fragment"><strong>多维对齐</strong>：突破文字与图像的物理隔离，实现跨维度特征映射融合</li>
+<li
+class="fragment"><strong>几何表达</strong>：关联文本与图像在标量空间内实现坐标紧密贴合</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="missing.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>我们将文字解析为了高维数字坐标，对于图像也是同理。</p>
+<p>传统计算机视觉识别需要投入巨大的人工成本，为每一张图片进行人工标注，例如：“这是一架飞机”、“这是一个零部件”。这种传统的特征匹配模型不仅成本高昂，且泛化能力薄弱。对于模型未曾见过的特征组合，面临着极高的误判率。</p>
+<p>而现代 AI 改变了研发范式。这里向各位介绍由 OpenAI
+发布的革命性架构——CLIP (Contrastive Language-Image Pre-training)。</p>
+<p>CLIP
+的技术突破在于，它将文字的特征空间与图片的特征空间，通过多模态对齐进行了跨维度的映射融合。在
+CLIP 的处理流中，“一架正在降落的 A320”这段文本的特征向量，与真实的 A320
+降落照片的图像向量，在数学空间里是紧密贴合的。</p>
+</aside>
+</section>
+<section id="从实验室到生产线工程化逻辑" class="slide level2">
+<h2>6.2 从实验室到生产线：工程化逻辑</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><strong>基础生态</strong>：Hugging Face 成为 AI
+工业的模型集散地</li>
+<li class="fragment"><strong>效率掣肘</strong>：Python
+强研究但弱工程，难以承载企业级高可用核心业务 (C#/Java)</li>
+<li class="fragment"><strong>破局标准</strong>：ONNX
+(开放神经网络交换格式)</li>
+<li
+class="fragment">从巨型实验代码向轻量化、高并发企业级服务平滑过渡</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="missing.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>各位可能会关注，引入此类前沿 AI
+技术的门槛是否过高，是否需要组建庞大的基础科学团队从零编写庞大的模型算法。</p>
+<p>事实上，现代 AI 工业已经构建了成熟的标准化流水线。</p>
+<p>作为基础，我们在何处获取例如 CLIP 这样的先进模型？</p>
+<p>在当前的 AI 工业界，存在一个高度活跃且汇聚顶尖成果的平台——Hugging
+Face。我们可以将其视为 AI 模型的集散中心。全球主流的科技巨头（包括
+OpenAI、微软、Meta
+等），都会将其投入数千万美元算力训练的基础模型，在这个平台上开源共享。</p>
+<p>前文提及的 CLIP 模型，我们只需极简的代码指令，即可从 Hugging Face
+的开源库中进行调用。这极大降低了基础研发成本。</p>
+<p>然而，原始模型在落地工程中面临一个实际障碍：它们通常基于 Python
+语言构建（例如使用 PyTorch 深度学习框架）。</p>
+<p>Python
+具有很强的实验与研究价值，但从工业级运行效率来看，存在一定的性能瓶颈。航空公司的核心生产线或商业软件平台，通常基于运行极快、高度稳定的
+C#、Java 或 C++ 语言开发。</p>
+<p>若直接将原始算法源文件强行接入核心业务系统，极易带来严重的性能损耗与系统拖拽。</p>
+<p>为解决这一跨语言、跨平台的工程部署难题，业界推出了通用工业标准——ONNX（Open
+Neural Network Exchange，开放神经网络交换格式）。</p>
+</aside>
+</section>
+<section id="模型深度裁剪与重构" class="slide level2">
+<h2>模型深度裁剪与重构</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
-<li><strong>传统人工局限</strong>：投入大量人工作用有限，泛化能力不足</li>
-<li><strong>CLIP 革命性对齐</strong>：对比语言-图像预训练模型</li>
-<li><strong>多模态融合机制</strong>：将文本高维空间与图像高维空间映射对齐</li>
+<li><strong>核心剥离</strong>：精准切割并独立视觉解析计算图</li>
+<li><strong>格式固化</strong>：抽离冗重的深度学习框架，完全打包为独立易用的
+<code>.onnx</code> 运算核心</li>
+<li><strong>无缝加载</strong>：极简嵌入 C#
+企业运行流，消除主导权受控风险</li>
 </ul>
 </div><div class="column" style="width:50%;">
 <p><img data-src="missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
-<p>文字可以变成 1024 个数字，那图片呢？</p>
-<p>在过去，我们要让计算机识别图片，需要投入大量人工成本，给每一张图片手工画框、打标签：“这是一架飞机”、“这是一个苹果”。这种传统视觉模型不仅昂贵，而且泛化能力不足。它没见过的东西，它就绝对认不出来。</p>
-<p>但现代 AI 改变了游戏规则。这里我要向大家隆重介绍 OpenAI
-开发的一个革命性模型——<strong>CLIP (Contrastive Language-Image
-Pre-training)</strong>。</p>
-<p>CLIP 的技术在于，它把<strong>文字的 1024
-维空间</strong>和<strong>图片的 1024
-维空间</strong>，通过多模态对齐<strong>映射</strong>在了一起！在 CLIP
-的世界里，“一架正在降落的 A320”这句话的文本向量，和一张真实的 A320
-降落照片的图像向量，在空间里是紧紧贴在一起的。</p>
+<p>在本次演示前，我们通过简短的自动化转换程序，完成了一项高精度的工业重构：</p>
+<p>精准切割：我们将 CLIP 模型中负责“视觉解析”的核心参数网络，单独剥离。
+数学闭环（L2
+归一化）：为确保后续的相似度检索保持极高的效率与精度，我们在模型输出特征的底层即刻加入了一步标量除法（<code>image_features / image_features.norm</code>），将生成的全量图像特征直接投射并固化到多维的“单位超球面”上。
+固化导出：最终，我们将切片并完成归一化封装的神经网络，彻底剥离原有的
+Python 研究环境，固化为一个独立、轻便且运行极快的 .onnx
+标准运行文件。</p>
+<p>借助该 ONNX 文件，我们的商业运行系统（如核心 C#
+服务）即可彻底抛弃冗重的实验框架，以极低的系统延迟、极高的服务并发，在企业本地主导权完全可控的服务器上直接发起推理指令。</p>
+<p>这就是现代 AI
+快速部署的真实工业流：从开源社区获取顶尖基础模型，进行外科手术般的精细优化代码裁剪，最终导出为
+ONNX 标准格式部署进高可用企业内部架构。</p>
+<p>了解了这套工程逻辑，现在让我们观察这个经过手术级重构、并深度嵌入架构的
+ONNX 视觉引擎的实际业务表现。</p>
 </aside>
 </section>
-<section id="工业流水线从实验室到生产线" class="slide level2">
-<h2>6.2 工业流水线：从实验室到生产线</h2>
+<section id="强制底层数学映射l2-归一化" class="slide level2">
+<h2>强制底层数学映射：L2 归一化</h2>
+<div style="text-align: center; margin-top: 15%; font-size: 200%;">
+<p><span class="math display">\[ \vec{\mathbf{v}}_{norm} =
+\frac{\vec{\mathbf{v}}}{\|\vec{\mathbf{v}}\|_2} \]</span></p>
+</div>
+<div style="text-align: center;">
+<p>强行<em>标定极限界</em>，将图像向“单位超球面”降维投射，以确保高维余弦检索达到企业级极致速度。</p>
+</div>
+<aside class="notes">
+<p>（此处为核心公式演示展示页，内容解析并入上一页介绍或随讲解一并点明，突出基于数学原型的强制降维手段如何直接服务于底层检索速度及精度的实质支撑。）</p>
+</aside>
+</section>
+<section id="demo-6图片相似度可视检索" class="slide level2">
+<h2>Demo 6：图片相似度可视检索</h2>
+<div style="text-align: center; margin-top: 20%;">
+<p><strong>系统应用</strong>：检索企业技术台历史故障库，通过多维图形表征几何运算匹配失效图片。</p>
+</div>
+<aside class="notes">
+<p>【演示说明】：此处演示图片相似度检索平台。展示系统如何实时比对照片间的视觉特征相似度。</p>
+</aside>
+</section>
+<section id="核心业务穿透多维向量的应用延展" class="slide level2">
+<h2>核心业务穿透：多维向量的应用延展</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
+<div>
 <ul>
-<li><strong>Hugging Face
-平台</strong>：全球顶尖科技公司的免费开源模型库</li>
-<li><strong>系统异构挑战</strong>：Python 开发环境难以直接集成入 C#/Java
-商业系统</li>
-<li><strong>ONNX
-工业交换格式</strong>：解耦深度学习框架，大幅提升系统兼容性与并发执行效率</li>
+<li
+class="fragment"><strong>直观穿透</strong>：通过几何运算消除文字描述的主观误差</li>
+<li
+class="fragment"><strong>万物皆向量</strong>：文本、图像、运行状态均可被高维降维解析</li>
+<li
+class="fragment"><strong>顶层延展</strong>：具备距离计算与几何聚类后，可无缝衍生预测与推荐模型</li>
 </ul>
+</div>
 </div><div class="column" style="width:50%;">
 <p><img data-src="missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
-<p>大家可能会觉得，搞 AI
-门槛极高，是不是非要有一大堆科学家，从零开始写几十万行代码去训练模型？其实不是。现代
-AI 工业已经形成了十分成熟的流水线。</p>
-<p>首先，我们要去哪里找这个能看懂图片的 CLIP 模型？在当今的 AI
-界，有一个充满社区精神的网站，叫 <strong>Hugging
-Face</strong>。我们可以把它理解为 AI 模型的”GitHub”。包括
-OpenAI、微软、Meta（Facebook）在内的全球顶尖科技公司，都会把他们花费上千万美元算力训练好的基础模型，免费开源发布在这个平台上。刚才提到的
-CLIP 模型，我就是直接用一行代码，从 Hugging Face
-的开源模型库中”进行模型调用”下来的。这就叫”站在巨人的肩膀上”。</p>
-<p>但是，下载下来的模型有一个致命的工程问题：它通常是用 Python 语言和
-PyTorch 深度学习框架写的。Python
-这种语言很适合科学家在实验室里做研究、调参数，但它运行速度慢，且十分臃肿。而我们航空公司的真实业务系统（或者是我们公司自己开发的商业软件平台），通常是用运行速度极快的
-C#、Java 或者 C++
-写的。这就好比科学家给你发了一份包含了无数复杂公式和宏指令的巨型 Excel
-源文件。如果直接把它塞进我们的业务系统里运行，系统会被拖垮。</p>
-<p>怎么解决这个跨语言、跨平台的落地难题？业界发明了一个工业标准——<strong>ONNX（Open
-Neural Network Exchange，开放神经网络交换格式）</strong>。</p>
-</aside>
-</section>
-<section id="模型优化与-onnx-部署策略" class="slide level2">
-<h2>模型优化与 ONNX 部署策略</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>视觉模块解耦</strong>：精准隔离特征提取层</li>
-<li><strong>应用 L2 归一化</strong>：预置单位超球面投射步骤</li>
-<li><strong>无依赖轻量固化</strong>：剥离 Python 引擎，生成纯独立
-<code>.onnx</code> 格式</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p>在准备今天的演示之前，我写了一段只有 50
-行的自动化转换代码。这段代码做了一件高度精确的重构工作： *
-<strong>精准切割</strong>：我把 CLIP
-模型里负责”看懂图片”的那部分视觉网络，单独切割了下来。 *
-<strong>数学闭环（L2
-归一化）</strong>：大家还记得我们在第四章讲过的那个十分优雅的数学运算——L2
-归一化吗？为了让后续的余弦相似度计算又快又准，我直接在底层模型输出特征的那一刻，强行加入了一步数学除法（<code>image_features / image_features.norm</code>），把生成的图片特征直接投射到了我们说过的”单位超球面”上！
-*
-<strong>固化导出</strong>：最后，我把这个切片后的、带归一化技术的网络，彻底”剥离”了
-Python 环境，固化导出成了一个独立、轻量、运行极快的 <code>.onnx</code>
-格式文件。</p>
-<p>有了这个 ONNX 文件，我们的商业系统（比如
-C#）就可以完全抛弃沉重的深度学习实验环境，以极低的延迟、极高的并发，在我们的本地服务器上直接调用它进行推理计算。这就是现代
-AI 极力落地的真实工程流：<strong>从 Hugging Face
-拿开源模型，用代码做高度精确的优化构建，最后导出为 ONNX
-标准格式部署进企业系统。</strong></p>
-<p>了解了这一套工程逻辑，现在，让我们来看看这个被我改造重构、并深度嵌入到系统里的
-ONNX 视觉引擎，究竟具备何种能力。</p>
-</aside>
-</section>
-<section id="demo-图片相似度检索" class="slide level2">
-<h2>Demo: 图片相似度检索</h2>
-<aside class="notes">
-<p><strong>演示操作</strong>： 展示图片相似度检索
-Demo（https://ranking-demo.anduinlab.com/discover）。
-说明：如果机务人员拍了一张发动机叶片细微磨损的照片传到系统里，系统瞬间就能在过去十年的维修记录库里，找到所有“长得像”的损伤照片，并自动附上当年的维修排故方案。没有文字描述的误差，直接用图像的几何距离说话。这就是视觉向量化的威力。
-这里，我们讨论了文字的向量化；讨论了图片的向量化；讨论了飞机状态的向量化。我想各位已经知道了，其实身边任何一个东西，哪怕是账单，成绩单，只要我们能够转换成矩阵，能提取特征向量，我们就可以计算距离、聚类、设计注意力，然后进行预测、推荐、补全等上面这些过程。</p>
-</aside>
-</section>
-<section id="物理世界的模拟器" class="slide level2">
-<h2>6.3 物理世界的模拟器</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>影视工业化演进</strong>：不仅仅是图片动画，而是重构物理规律</li>
-<li><strong>无损高危场景模拟</strong>：逼真生成极端特情（如吞鸟、释压）</li>
-<li><strong>高阶培训流素材</strong>：CRM 机组培训沉浸式体验提升</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p>刚刚我们在图片的世界里感受了相似度带来的直观震撼。但当我们只满足于用一个个向量拼凑出“惊鸿一瞥”的瞬间时，AI
-已经不甘心只做画手了，它想要做<strong>导演</strong>。</p>
-<p>这正是过去不到半年时间里，视觉模型演化出最恐怖的能力：<strong>物理世界的模拟器。</strong></p>
-<p>2024年初，Sora
-的出现让我们惊呼不可思议。到了今天，随着国产力量的异军突起，比如 2025 年
-2 月才发布的 <strong>Kling 3.0 (快手可灵)</strong> 和阿里的开源巨作
-<strong>Wan 2.2 (万相)</strong> 模型，甚至刚刚发布的<strong>Sora 1.0
-(其实算是2.0了)</strong>。这一切不再是一串冰冷的代码模型，而是已经进化成了<strong>好莱坞级别的影视工业化生产线。</strong></p>
-<p>这不仅仅是“把静态图片动起来”这么简单，它们在极速逼近一个令人敬畏甚至毛骨悚然的本质——<strong>理解并重构物理规律。</strong></p>
-</aside>
-</section>
-<section id="航空级模拟应用" class="slide level2">
-<h2>航空级模拟应用</h2>
-<blockquote>
-<p>“波音 737 客舱，海拔 3
-万英尺，左侧舷窗突然爆裂，气压瞬间骤降，氧气面罩立刻脱落，客舱内杂物被吸向窗外，光线昏暗，乘客惊恐但机组冷静操作。”</p>
-</blockquote>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li>遵循流体力学与光影反射</li>
-<li>精确计算物理加速度</li>
-<li>构建无限可能的特情事故复盘库</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p>对于航空业来说，这意味着什么？</p>
-<p>想象一下，这是一种<strong>无损、无限次的高危场景模拟能力。</strong>
-当飞机的发动机在万米高空吞了一只鸟、或者客舱遭遇了极端的释压爆炸。这些我们现实中千方百计避免发生、却又必须反复培训机组应对的灾难性场景，以前只能靠文字描述，或者斥巨资搭建实体模拟舱做极其有限的演练。</p>
-<p>现在的视频
-AI，我们只要喂给它一段飞行参数、或者一句极具物理细节的文本描述：</p>
-<blockquote>
-<p>“波音 737 客舱，海拔 3
-万英尺，左侧舷窗突然爆裂，气压瞬间骤降，氧气面罩立刻脱落，客舱内杂物被吸向窗外，光线昏暗，乘客惊恐但机组冷静操作。”</p>
-</blockquote>
-<p>模型就能瞬间以电影级的质感，把这个物理过程<strong>算</strong>出来。请注意，我用的词不是“画出来”，而是<strong>算出来。</strong>
-它不仅遵循流体力学、遵循光影反射，甚至连气旋把杂物吸出窗外那个瞬间的物理加速度，它都能精确模拟。这就相当于我们拥有了一个永远不会坠毁的、无限可能性的特情事故复盘库！</p>
-<p>让我们直接来看一段生成的“航班高空释压”的真实特情演练视频。在这个视频里，请大家注意它的物理连贯性和光影质感。这种级别的材料，可以直接用于机组的
-CRM（机组资源管理）培训，其沉浸感远远胜过干瘪的手册和简单的口述。</p>
-</aside>
-</section>
-<section id="demo-一句话生成高空释压特情培训视频" class="slide level2">
-<h2>Demo: 一句话生成“高空释压”特情培训视频</h2>
-<aside class="notes">
-<p><strong>演示操作</strong>： 播放一段使用 Wan 2.2 或 Kling 3.0
-生成的航班遇险高空释压、机组规范佩戴氧气面罩处置的电影级视频。</p>
-<p>说明：这种<strong>用代码去“倒逼”物理引擎</strong>的能力，不仅打破了真实与虚拟的界限，更是为我们将来的培训甚至事故预演，提供了一种无限生成的高阶武器。
-说完了这些宏大的应用，也许此时此刻你会有一个非常世俗、却又极其精准的疑问：既然它连好莱坞级别的特效都能算出来，为什么抖音这么懂我，总能给我推荐我内心连我自己都没发现的短视频呢？
-这背后的秘密，依旧是向量。</p>
-</aside>
-</section>
-<section id="demo-图片相似度检索-1" class="slide level2">
-<h2>Demo: 图片相似度检索</h2>
-<aside class="notes">
-<p><strong>演示操作</strong>： 展示图片相似度检索
-Demo（https://ranking-demo.anduinlab.com/discover）。
-说明：如果机务人员拍了一张发动机叶片细微磨损的照片传到系统里，系统瞬间就能在过去十年的维修记录库里，找到所有“长得像”的损伤照片，并自动附上当年的维修排故方案。没有文字描述的误差，直接用图像的几何距离说话。这就是视觉向量化的威力。
-这里，我们讨论了文字的向量化；讨论了图片的向量化；讨论了飞机状态的向量化。我想各位已经知道了，其实身边任何一个东西，哪怕是账单，成绩单，只要我们能够转换成矩阵，能提取特征向量，我们就可以计算距离、聚类、设计注意力，然后进行预测、推荐、补全等上面这些过程。</p>
-</aside>
-</section>
-<section id="物理世界的模拟器-1" class="slide level2">
-<h2>6.3 物理世界的模拟器</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>影视工业化演进</strong>：不仅仅是图片动画，而是重构物理规律</li>
-<li><strong>无损高危场景模拟</strong>：逼真生成极端特情（如吞鸟、释压）</li>
-<li><strong>高阶培训流素材</strong>：CRM 机组培训沉浸式体验提升</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p>刚刚我们在图片的世界里感受了相似度带来的直观震撼。但当我们只满足于用一个个向量拼凑出“惊鸿一瞥”的瞬间时，AI
-已经不甘心只做画手了，它想要做<strong>导演</strong>。</p>
-<p>这正是过去不到半年时间里，视觉模型演化出最恐怖的能力：<strong>物理世界的模拟器。</strong></p>
-<p>2024年初，Sora
-的出现让我们惊呼不可思议。到了今天，随着国产力量的异军突起，比如 2025 年
-2 月才发布的 <strong>Kling 3.0 (快手可灵)</strong> 和阿里的开源巨作
-<strong>Wan 2.2 (万相)</strong> 模型，甚至刚刚发布的<strong>Sora 1.0
-(其实算是2.0了)</strong>。这一切不再是一串冰冷的代码模型，而是已经进化成了<strong>好莱坞级别的影视工业化生产线。</strong></p>
-<p>这不仅仅是“把静态图片动起来”这么简单，它们在极速逼近一个令人敬畏甚至毛骨悚然的本质——<strong>理解并重构物理规律。</strong></p>
-</aside>
-</section>
-<section id="航空级模拟应用-1" class="slide level2">
-<h2>航空级模拟应用</h2>
-<blockquote>
-<p>“波音 737 客舱，海拔 3
-万英尺，左侧舷窗突然爆裂，气压瞬间骤降，氧气面罩立刻脱落，客舱内杂物被吸向窗外，光线昏暗，乘客惊恐但机组冷静操作。”</p>
-</blockquote>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>遵循流体力学与光影反射</strong>：基于物理规则演化</li>
-<li><strong>精确计算特情物理加速度</strong>：实时动态推演系统</li>
-<li><strong>构建事故复盘库</strong>：支持无限可能的险情仿真</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p>对于航空业来说，这意味着什么？</p>
-<p>想象一下，这是一种<strong>无损、无限次的高危场景模拟能力。</strong>
-当飞机的发动机在万米高空吞了一只鸟、或者客舱遭遇了极端的释压爆炸。这些我们现实中千方百计避免发生、却又必须反复培训机组应对的灾难性场景，以前只能靠文字描述，或者斥巨资搭建实体模拟舱做极其有限的演练。</p>
-<p>现在的视频
-AI，我们只要喂给它一段飞行参数、或者一句极具物理细节的文本描述：</p>
-<blockquote>
-<p>“波音 737 客舱，海拔 3
-万英尺，左侧舷窗突然爆裂，气压瞬间骤降，氧气面罩立刻脱落，客舱内杂物被吸向窗外，光线昏暗，乘客惊恐但机组冷静操作。”</p>
-</blockquote>
-<p>模型就能瞬间以电影级的质感，把这个物理过程<strong>算</strong>出来。请注意，我用的词不是“画出来”，而是<strong>算出来。</strong>
-它不仅遵循流体力学、遵循光影反射，甚至连气旋把杂物吸出窗外那个瞬间的物理加速度，它都能精确模拟。这就相当于我们拥有了一个永远不会坠毁的、无限可能性的特情事故复盘库！</p>
-<p>让我们直接来看一段生成的“航班高空释压”的真实特情演练视频。在这个视频里，请大家注意它的物理连贯性和光影质感。这种级别的材料，可以直接用于机组的
-CRM（机组资源管理）培训，其沉浸感远远胜过干瘪的手册和简单的口述。</p>
-</aside>
-</section>
-<section id="demo-一句话生成高空释压特情培训视频-1"
-class="slide level2">
-<h2>Demo: 一句话生成“高空释压”特情培训视频</h2>
-<aside class="notes">
-<p><strong>演示操作</strong>： （播放一段使用 Wan 2.2 或 Kling 3.0
-生成的航班遇险高空释压、机组规范佩戴氧气面罩处置的电影级视频）</p>
-<p>说明：这种<strong>用代码去“倒逼”物理引擎</strong>的能力，不仅打破了真实与虚拟的界限，更是为我们将来的培训甚至事故预演，提供了一种无限生成的高阶武器。
-说完了这些宏大的应用，也许此时此刻你会有一个非常世俗、却又极其精准的疑问：既然它连好莱坞级别的特效都能算出来，为什么抖音这么懂我，总能给我推荐我内心连我自己都没发现的短视频呢？
-这背后的秘密，依旧是向量。</p>
-</aside>
-</section>
-<section id="双塔奇谋个性化推荐的核心机制" class="slide level2">
-<h2>6.4 双塔奇谋：个性化推荐的核心机制</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>1024维用户向量 (User
-塔)</strong>：表征消费力、浏览习惯与用户画像</li>
-<li><strong>1024维内容向量 (Item
-塔)</strong>：表征商品、短视频与服务特性</li>
-<li><strong>低延迟距离计算</strong>：在庞大维度空间中进行几何距离匹配推荐</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p>既然一段文本、一张照片都可以变成多维宇宙里的一个坐标点，那我们顺理成章地推导出一个更加疯狂的想法：<strong>如果把我们人类自己，也变成一个向量呢？</strong></p>
-<p>各位平时刷抖音、看 B 站或者用
-Netflix，是不是总有一种“它怎么这么懂我”、“它怎么知道我刚好想看这个”的惊讶感？今天，我就用高中几何的逻辑，给大家揭秘这个价值万亿美元的商业机密。</p>
-<p>在工业界，这被称为<strong>“双塔模型（Two-Tower
-Model）”</strong>。</p>
-<p>想象一个巨大无比的 1024 维宇宙： * <strong>右边的一座塔（Item
-塔）</strong>：系统用我们刚才讲的提取技术，把每一条短视频（或者我们航空公司的每一条辅营产品、每一个升舱优惠）都提取成了一个
-1024 维的<strong>内容向量</strong>。 * <strong>左边的一座塔（User
-塔）</strong>：系统为你这个用户，也分配了一个 1024
-维的<strong>用户向量</strong>。代表了你的年龄、消费力、浏览习惯。</p>
-<p>当你打开手机 APP
-的那一瞬间，底层到底发生了什么？没有任何神秘的技术，也没有成千上万个审核员在后台盯着你。系统只是做了一次冷酷的数学运算：<strong>拿着你的“用户向量”坐标，去那个包含了一亿个“视频向量”的空间里，算一次距离。</strong></p>
-<p>系统画了一个圈，把离你坐标最近的 100
-个视频捞出来，按距离由近到远排个序，展现在你的手机屏幕上。这就是所谓的“精准推荐”。</p>
-</aside>
-</section>
-<section id="意图传染图神经网络gnn的消息传递" class="slide level2">
-<h2>6.5 意图传染：图神经网络(GNN)的消息传递</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>双向权重叠加</strong>：行为触发向量坐标动态偏移</li>
-<li><strong>用户特征演化</strong>：吸收特定内容属性（如趋向“航空极客”）</li>
-<li><strong>内容特征演化</strong>：吸收用户群体属性（如绑定“高净值人群”）</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p>通常会引出一个问题：视频的向量是固定的，那我的“用户向量”是怎么来的？它怎么知道我喜欢看航空航天的视频？这就涉及到了
-AI 领域另一个优美的概念：<strong>图神经网络（GNN）中的消息传递（Message
-Passing）</strong>。</p>
-<p>在这个多维宇宙里，向量并不是静止的死物。当你在这个平台上看了一个关于“波音
-737
-模拟器”的视频，并且点了个赞，在图论的数学模型中，你和这个视频之间就产生了一条引力连线。</p>
-<ul>
-<li><strong>用户被传染</strong>：系统会把这个视频的 1024
-维特征，按一定的权重“叠加”到你自己的特征向量上。你的坐标向着“硬核、航空极客”的方向发生了偏移。</li>
-<li><strong>视频被传染</strong>：同时，你身上的特征（比如“男性”、“30岁”、“高净值”）也会叠加到这个视频的向量上。视频的坐标也发生了微妙的移动。</li>
-</ul>
-<p>经过成千上万次这样的双向叠加，奇妙的化学反应发生了！如果明天有一个和你相似的“高净值”用户注册了平台，哪怕他这辈子没看过任何飞机视频，当系统计算距离时，会惊奇地发现：那个吸收了大量此类用户特征的“737
-模拟器”视频，在坐标系上距离这个新用户很近！于是，系统成功地完成了一次跨界的精准推荐。</p>
-<p>这就是算法比你更懂你的根本原因——<strong>你的每一次点击、每一次停留，都在改变你在多维宇宙中的绝对坐标；而你，又在不知不觉中，把你的偏好传染给了你看过的内容。</strong></p>
-</aside>
-</section>
-<section id="冷启动挑战与解决路径" class="slide level2">
-<h2>6.6 冷启动挑战与解决路径</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>零行为数据的困境</strong>：全新内容缺乏历史连线与传染权重</li>
-<li><strong>基于 Transformer 预提早定位</strong>：
-<ul>
-<li>解析多模态底层物理特征</li>
-<li>提取初始 1024 维向量坐标</li>
-<li>依靠内容实质关联种子用户</li>
-</ul></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p>逻辑讲到这里完美，但在真实的商业落地中，我们会面临一个巨大的工程痛点：<strong>冷启动（Cold
-Start）</strong>。如果在我们的航班系统里，刚刚上线了一条全新的航线；或者在视频网站上，一个新人刚刚上传了一条没有任何播放量的视频。</p>
-<p>没有用户看过它，它就没有被“传染”过，它的坐标是空的。这就意味着它永远无法进入任何人的推荐圈里，怎么办？这时候，就轮到我们第五章讲过的
-<strong>Transformer</strong>再次登场了。</p>
-<p>工业界的做法是：纯靠“内涵”强行打底。既然这个新视频没有播放数据，那系统就直接提取它的原始物理特征。用
-Transformer
-看一遍它的标题，用视觉模型看一遍它的封面，通过深层矩阵乘法计算，<strong>提取</strong>出其初始的
-1024 维特征向量。</p>
-<p>也就是说，这个视频一出生，系统就已经根据它的“长相和气质”，把它像空投一样，精准地投递到了
-1024
-维空间中属于它的那个街区。它不需要等别人来看它，它诞生那一刻的坐标，就已经决定了它会被推荐给距离它最近的那批种子用户。</p>
-</aside>
-</section>
-<section id="空间映射的局限与挑战" class="slide level2">
-<h2>空间映射的局限与挑战</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>统一理论</strong>：由几何学距离计算万事万物的联系关联</li>
-<li><strong>算力的物理高墙</strong>：亿级对象间的距离全排列引爆算力极限</li>
-<li><strong>前置探索</strong>：软硬件底座与 AI 核心术语剖析</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p><strong>总结一下我们现在的认知境界：</strong></p>
-<p>无论我们是要让大模型理解一句复杂的航空指令，还是要预测一个旅客会不会购买我们的额外行李额，现代人工智能的大一统理论已经展现在你们面前了：<strong>把万事万物——文字、图片、视频、甚至是活生生的人——全部映射到这个高维的连续向量空间（Vector
-Space）里。然后，用初中几何学里的“距离”，来计算万物之间的关联与联系。</strong></p>
-<p>但是，现实世界往往是残酷的。理论上算距离很简单，但在真实的企业数据中心里，如果你有一亿个客户，或者一亿条维修记录。每一次查询都要算一亿次距离吗？哪怕你买世界上最贵的显卡，系统也会导致系统资源枯竭。</p>
-<p>我们必须在毫秒级的时间内，在庞大的宇宙中找到离你最近的那个点。这在工程上是如何实现的？但在揭秘如何极速搜索之前，我们必须先回答一些更基础的问题。近年来新闻中频繁出现的被“训练”、“推理”、“深度学习”这些词疲劳轰炸，这些玄之又玄的黑话到底是什么意思？另外，这些天文数字般的运算，到底是由什么硬件在执行的？为什么全世界都在疯狂抢购一家叫”英伟达”的公司的显卡？</p>
-</aside>
-</section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="第七章-核心概念与算力引擎"
-class="title-slide slide level1">
-<h1>第七章 核心概念与算力引擎</h1>
-<p>AI 关键术语与硬件发展</p>
-<aside class="notes">
-<p>在进入极速检索的工程奇迹之前，我每天都会被非技术的高管们拉住问三个问题：“推理和训练到底有啥区别？”、“深度学习到底深在哪？”、“什么是强化学习？”</p>
-<p>为了不让大家在接下来的硬件和战略章节里迷路，我想用三分钟时间，用通俗易懂的语言帮大家把这三个核心的
-AI 术语进行通俗化解析。</p>
-</aside>
-</section>
-<section id="训练-training-与-推理-inference" class="slide level2">
-<h2>7.1 训练 (Training) 与 推理 (Inference)</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>训练 (Training) - 模型参数构建</strong>
-<ul>
-<li>高投资、长时间、高能耗闭环计算</li>
-<li>摄取并处理海量互联网数据集</li>
-<li>参数结构剧烈变化定型</li>
-</ul></li>
-<li><strong>推理 (Inference) - 模型应用与预测</strong>
-<ul>
-<li>低成本、瞬时延迟运算</li>
-<li>对输入指令瞬间给出反馈回答</li>
-<li>适配边缘设备及普通服务器</li>
-</ul></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p>如果把 AI
-当作一个高考应届生，“训练”和“推理”就是它人生的两个阶段：</p>
-<ul>
-<li><strong>训练
-(Training)</strong>：就是<strong>“模型参数构建”</strong>。你需要花几千万美元买几万张顶级显卡，耗时几个月，把全世界能找到的海量的互联网数据集输入到模型中。在这个过程中，它的大脑结构（那几十亿个参数）在剧烈地改变和成型。这个过程<strong>成本极高、耗电极大、且不能被打断</strong>。比如
-OpenAI 训练 GPT-4，就是在做这件事。</li>
-<li><strong>推理
-(Inference)</strong>：就是<strong>“模型应用与预测”</strong>。模型已经训练好了，毕业了，大脑结构固定了。现在你把它部署到公司的服务器里，给它输入一个指令（比如问它：“今天北京天气如何？”），它动用已经学好的知识，瞬间算出一个答案给你。这个过程<strong>参数不会再改变，消耗的算力极小，几百块的普通显卡或者手机就能跑</strong>。</li>
-</ul>
-<p><strong>高管避坑指南</strong>：如果有人建议：“我们要买1000张显卡在公司内部自己‘训练’一个大模型。”这种做法通常不符合成本效益；但如果是“我们买两台服务器在公司内部做大模型的‘部署和推理’，用来处理机务手册”，这是一笔具有较高投资回报率的方案。</p>
-</aside>
-</section>
-<section id="深度学习与强化学习" class="slide level2">
-<h2>深度学习与强化学习</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>深度学习 (Deep Learning)</strong>
-<ul>
-<li>物理结构上的“层数多”（Layers）</li>
-<li>从初级特征逐渐组合到高层语义识别</li>
-</ul></li>
-<li><strong>强化学习 (Reinforcement Learning)</strong>
-<ul>
-<li>基于奖励与惩罚反馈机制的模型优化</li>
-<li>在无录像可供参考的高危/无数据环境中自主试错</li>
-</ul></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p>“机器学习”大家都能理解，就是让机器从数据里找规律。那为什么要加个“深度”呢？<strong>这里的“深”，指的是物理结构上的“层数多”（Layers）。</strong></p>
-<p>在早期的 AI
-里（比如识别一架飞机），我们只能建一层或两层简单的数学网络，它只能认出“这是一块金属”或者“这有一根翅膀”，特征提取能力受限。科学家们将这种数学网络叠了几十层、上百层！
-* <strong>第 1 层</strong>：看懂了像素亮度的明暗； * <strong>第 10
-层</strong>：把明暗组合成了金属的反光和边缘的轮廓； * <strong>第 50
-层</strong>：把轮廓组合成了起落架和涡轮扇叶； * <strong>第 100
-层</strong>：网络高层最终完成了语义识别——哦，这是一架波音 737！
-这种一层一层叠加提取特征，结构极深的神经网络，就叫“深度学习”。它是用计算深度的规模，换取了强大的特征表示能力。</p>
-<p>我们刚才说训练就是给 AI
-数据让它学。但如果有些任务，根本没有现成的数据怎么学？比如，你想让 AI
-学会像王牌飞行员一样“在高空面对双发失效时迫降”。这不可能有足够的真实录像去教它。这时候就需要用到“强化学习”了。
-<strong>强化学习的本质，就是“奖惩反馈机制”。</strong></p>
-<p>具体如何实现？你造一个一模一样的模拟飞行环境，把一个完全不懂飞行的 AI
-扔进去，给它设定一个简单的目标（Reward）：<strong>安全降落得 1000
-分，坠毁扣一万分。</strong> * 第 1 次试飞，它直接推杆俯冲，坠毁，扣分。
-* 第 100 次试飞，它学会了拉杆，但速度太慢失速，坠毁，扣分。 * 第 1
-亿次试飞，它突然发现：“只要我保持 220 节的速度，放出 15
-度襟翼，稳住下滑道，我就能得分！”</p>
-<p>它就是在这种虚拟环境里，通过上亿次的自我试错、被惩罚、被奖励，硬生生“自己摸索”出了一套最优策略。当年打败人类围棋冠军的
-AlphaGo，用的就是强化学习的技术。</p>
-<p>好，扫清了这三个最大的概念障碍，大家再回想一下：无论是几万张显卡几个月的“闭关训练”，还是上百层的“深度网络计算”，还是上亿次的“强化学习试错”，这一切都指向了一个十分残酷的物理现实——我们需要前所未有的极限算力！这就回到了这章最核心的问题：当我们的模型有
-270 亿个参数时，我们公司传统的 Intel 或 AMD CPU
-服务器能胜任吗？答案是：<strong>能干,但会慢到让你怀疑人生。</strong></p>
-</aside>
-</section>
-<section id="算力三剑客定位与应用" class="slide level2">
-<h2>7.2 算力三剑客：定位与应用</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>CPU
-(王牌机长)</strong>：极高单线程性能，擅长处理极小并发的复杂逻辑规则分支</li>
-<li><strong>GPU
-(地勤大军)</strong>：上万核心规模，专精于逻辑简单但并发极高的大规模矩阵运算</li>
-<li><strong>NPU
-(专用传送带)</strong>：阉割通用功能，极低功耗下专用于边缘设备的张量推理</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p>在我们传统的认知里，中央处理器（CPU）是计算机的大脑，它无所不能。但最近几年，GPU（显卡）甚至
-NPU（神经网络处理器）这些词铺天盖地。很多高管在采购设备时一头雾水：它们到底有什么区别？如果用我们航空业来打比方，这三者的定位泾渭分明：</p>
-<p><strong>第一算力：CPU（中央处理器）—— 航空公司的“王牌机长”</strong>
-CPU 极其精密、复杂，单线程速度极快（主频高达
-5GHz）。它能处理各种极其复杂的逻辑分支，比如处理机票预订系统的退改签规则、应对突发的特情。但是，王牌机长有一个致命缺点：<strong>他只有一个人</strong>（CPU
-通常只有十几个到几十个核心）。如果你让这位高薪机长去停机坪上给 A380
-搬运行李，他一次也只能搬一个箱子，这叫大材小用，效率极低。</p>
-<p><strong>第二算力：GPU（图形处理器/显卡）——
-航空公司的“十万地勤大军”</strong> 我们刚才讲的 AI
-算距离、做矩阵乘法，是什么样的任务？这是一项<strong>逻辑极其简单，但数量极其庞大</strong>的任务。就是几百亿个数字两两相乘，没有复杂的
-IF-ELSE 判断，全是纯粹的体力活。这时候，GPU 登场了。一块现代的英伟达
-GPU（比如
-A100）里面，密密麻麻地塞进了<strong>上万个计算核心</strong>！当几百亿次乘法任务砸下来时，CPU
-是几十个机长在拼命算，而 GPU
-是十万个只会算加减乘除的地勤大军，同时拿起算盘一起算。瞬间就能把一架
-A380
-的行李装满！这叫<strong>大规模并行计算</strong>。这也是为什么我们在云端训练大模型，必须抢购
-GPU。</p>
-<p><strong>第三算力：NPU（神经网络处理器）——
-专为搬行李定制的“全自动传送带”</strong> 大家最近买新手机、或者采购所谓的
-AI PC 时，一定听过 NPU（比如苹果的 Neural
-Engine）。它又是个什么东西？既然 AI
-就是做矩阵乘法，那我们能不能造一个<strong>只干这一件事、连屏幕画图功能都阉割掉</strong>的绝对专用芯片？NPU
-就是这条极其专用的全自动传送带。它干不了别的，但只要是算 AI
-矩阵，它的效率极高，而且<strong>功耗极低</strong>（只要几瓦），所以它能被塞进你的轻薄笔记本里，在本地流畅运行
-AI 而不发烫死机。</p>
-<p><strong>总结一下：CPU 负责统筹全局，GPU
-负责在云端提供高并发算力支撑，NPU 负责在终端设备上省电高效地跑
-AI。</strong>
-为了让大家直观感受到刚才说的“十万地勤大军（GPU）”在面对海量简单计算时，到底比“王牌机长（CPU）”快多少，我们直接来看一段代码。</p>
-</aside>
-</section>
-<section id="demo-cuda-实时渲染" class="slide level2">
-<h2>Demo: CUDA 实时渲染</h2>
-<aside class="notes">
-<p><strong>演示操作</strong>： 执行一段由 CUDA C++
-编写的程序，在内存中渲染一个分辨为 10000 × 10000 的 3D
-球体，每个像素进行球面方程、法向量、光照点积的并行计算。展示 CPU 和 GPU
-计算耗时的天壤之别。</p>
-<p>说明：1 亿次计算，CPU 用了好几秒，GPU
-<strong>眨眼就算完了</strong>。这就是大规模并行计算的威力。这还只是一张消费级显卡——如果换成数据中心里的
-A100 或
-H100，差距还会更大。当然，注意，这里和游戏里的绘图还是不一样的。在打游戏的时候，主要调动的显卡的光栅化单元（Rasterization
-Unit）和纹理单元（Texture Unit），而我们 AI
-计算的核心，是显卡里的<strong>Tensor
-Core</strong>，它是专门为矩阵乘法设计的物理电路。这就是为什么搞 AI
-离不开 GPU。</p>
-</aside>
-</section>
-<section id="从向量到张量-tensor" class="slide level2">
-<h2>7.3 从向量到张量 (Tensor)</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>0维 标量 (Scalar)</strong>：单一数值（如载重）</li>
-<li><strong>1维 向量 (Vector)</strong>：一维坐标系或特征值列</li>
-<li><strong>2维 矩阵 (Matrix)</strong>：二维数据表（Excel级）</li>
-<li><strong>多维 张量 (Tensor)</strong>：高维数据容器的核心统称（如
-3维RGB图像矩阵）</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p>在聊 GPU 具体是怎么算之前，我要给大家引入一个在 AI
-行业里天天被挂在嘴边，听起来十分高大上的词——<strong>张量（Tensor）</strong>。很多高管听到这个词会觉得高深莫测，其实，它的概念非常清晰明了。</p>
-<p>大家还记得我们前面讲过的概念吗？ *
-<strong>标量（Scalar）</strong>：就是一个数字，比如飞机的重量 40
-吨。它是 <strong>0 维</strong>的。 *
-<strong>向量（Vector）</strong>：是一排数字，比如一篇博客变成的 1024
-个特征值。它是 <strong>1 维</strong>的。 *
-<strong>矩阵（Matrix）</strong>：是由向量堆叠而成的表格，就像 Excel
-表格。它是 <strong>2 维</strong>的。</p>
-<p>那么，当数据的维度突破了 2 维，变成了 3 维（像一个魔方立方体）、4
-维甚至更高维度时，我们该叫它什么？数学家们为了省事，给所有这些多维的数据容器统称了一个名字：<strong>张量（Tensor）</strong>。</p>
-<p>实际上，标量是 0 阶张量，向量是 1 阶张量，矩阵是 2 阶张量。一张 RGB
-彩色图片，就是一个 3 维张量（宽度 × 高度 × 红绿蓝 3
-个颜色通道）。如果你一次性把 32 张彩色图片打包喂给
-AI，这个数据包就是一个 <strong>4 维张量</strong>。</p>
-<p>在大语言模型内部，数据在神经网络的每一层之间流动（Flow）时，正是以高维张量的形式存在的。这也是为什么谷歌开发的深度学习框架，被命名为
-<strong>TensorFlow</strong>（张量流）的原因。你的显存里塞得满满当当的，就是几十亿个数字排列成的高维张量。</p>
-</aside>
-</section>
-<section id="硬件加速把乘法表刻在基因里" class="slide level2">
-<h2>7.4 硬件加速：把乘法表刻在基因里</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>通用计算 (CPU)</strong>：按指令顺序逐步运算，过程漫长</li>
-<li><strong>硬件固化 (Tensor
-Core)</strong>：将高维张量矩阵乘法直接固化为硅片上的物理电路</li>
-<li><strong>效率跃升</strong>：无需指令读取耗时，数据流入即瞬间完成跳跃反馈</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p>在大家惊叹于刚才的速度时，我必须要指出一个很关键的细节。刚才演示的是图形渲染，也就是打游戏时显卡干的活。但在打游戏时，显卡调动的是光栅化单元和纹理单元。而我们今天讨论的
-AI
-计算，根本不是在画图，而是在做海量的”矩阵乘加运算”。那为什么大家不用专门的
-AI 芯片，非要抢购英伟达的 GPU
-呢？这就引出了科技界一个很核心的核心概念：<strong>硬件加速（Hardware
-Acceleration）</strong>。</p>
-<p>为了让大家秒懂这个词，我们回忆一下小学数学。假设你现在是一个还没有背过”九九乘法表”的小学生。我问你：7
-乘以 8
-等于多少？你的大脑会怎么运转？你只能用最基础的加法逻辑去推演：你会把 7
-放在心里，然后算 7+7=14，14+7=21……一直加 8 次，最后得出
-56。这个过程很慢，需要耗费脑力走完一整套逻辑流程。这就好比传统的
-<strong>CPU
-在算矩阵乘法</strong>。它是通用芯片，没有捷径，只能用最基础的通用指令，一步一步地硬算。</p>
-<p>但是，当你把”九九乘法表”背得滚瓜烂熟之后呢？我再问你 7 乘以 8
-等于多少。你的大脑深处已经形成了<strong>物理级别的神经元连接</strong>，听到”七八”，你连一毫秒的思考都没有，直接条件反射般地吐出一个词：“五十六”。这种把某种特定计算，直接固化成物理反射的机制，在计算机科学里，就叫做<strong>硬件加速</strong>。</p>
-<p>英伟达的 CEO 黄仁勋做了一件什么改变世界的事呢？他敏锐地发现，全天下的
-AI
-科学家，底层全都在做同一种数学题：<strong>高维张量的矩阵乘法</strong>。于是，黄仁勋拍板决定：既然软件算太慢，那我们就直接在硅片上，用纯粹的物理电路，把大矩阵的”九九乘法表”给<strong>刻</strong>上去！这个专门刻在显卡硅片上、把复杂算术变成物理条件反射的硬件，就叫
-<strong>Tensor
-Core（张量核心）</strong>。这也是为什么，目前除了英伟达，没有任何一家公司的显卡能如此完美地支持大模型。</p>
-</aside>
-</section>
-<section id="cuda-护城河十五年的孤注一掷" class="slide level2">
-<h2>7.5 CUDA 护城河：十五年的孤注一掷</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>2006年的远见</strong>：释放显卡通用计算潜能（Compute Unified
-Device Architecture）</li>
-<li><strong>2012年 AlexNet</strong>：Ilya Sutskever
-证明了消费级显卡在深度学习的巨大潜力</li>
-<li><strong>生态的绝对垄断</strong>：
-<ul>
-<li>PyTorch, TensorFlow 均基于 CUDA 优化</li>
-<li>全球顶级推理引擎（vLLM）强绑定</li>
-<li>沉淀了无法迁移的研发”肌肉记忆”</li>
-</ul></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p>如果说 Tensor Core 是英伟达的”拳头”，那 <strong>CUDA</strong>
-就是它的”神经系统”——没有神经系统，拳头再硬也打不出去。</p>
-<p>时间回到 2006 年。当时，黄仁勋提出了一个想法：<strong>把我们的 GPU
-打开，让全世界的程序员不仅可以用它来渲染游戏画面，还可以用它来做通用的科学计算。</strong>
-为此，英伟达投入了巨额资金，开发了一套全新的软件平台——<strong>CUDA（Compute
-Unified Device
-Architecture，统一计算设备架构）</strong>。这套平台允许任何程序员用简单的
-C++ 代码，就能直接指挥 GPU
-里的上万个核心去做数学运算。该决定曾遭到无数同行的质疑和反对。那几年最艰难的时刻，黄仁勋在内部会议上反复说：“CUDA
-不是可选项，它就是我们的未来。”</p>
-<p>转折发生在 2012 年。多伦多大学的天才博士生 <strong>Ilya
-Sutskever</strong>（后来 OpenAI
-的联合创始人）买了两块英伟达的<strong>游戏显卡——GTX
-580</strong>，然后，他用 CUDA
-在这两块消费级显卡上成功实现了具有突破性意义的 <strong>AlexNet</strong>
-深度学习模型。全世界的 AI 科学家在一夜之间集体醒悟：<strong>游戏显卡才是
-AI 的终极武器！而唯一能拿来做深度学习的显卡，只有英伟达的——因为只有它有
-CUDA。</strong></p>
-<p>AMD 这时候才如梦初醒，匆忙推出了自己的竞品 ROCm。但为时已晚。从 2006
-年到今天，英伟达在 CUDA 生态上的积累已经超过了 18 年： *
-全世界几乎所有的深度学习框架（PyTorch、TensorFlow）全都是针对 CUDA
-编写的。 * 全世界最顶级的企业级推理引擎（vLLM、TensorRT-LLM）全部只在
-CUDA 上运行。 * 几百万 AI
-工程师的开发习惯已经深度绑定（<code>import torch</code>,
-<code>.cuda()</code>）。</p>
-<p>这就是为什么在 AI
-训练和推理市场，英伟达占据了绝对的主导份额。不仅因为硬件底座强大，更关键的是它的生态黏性。</p>
-</aside>
-</section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="第九章-从聊天框到数字员工人类驯服-ai-的工程进化史"
-class="title-slide slide level1">
-<h1>第九章 从聊天框到数字员工：人类驯服 AI 的工程进化史</h1>
-<aside class="notes">
-<p>在前面的八个章节里，我们已经搭建好了 AI
-的最强物理底座。我们有了大模型的大脑，有了英伟达 GPU 的肌肉，也有了 HNSW
-向量数据库的神经系统。
-但是，如果你今天回到公司，只是给员工的电脑上装一个 ChatGPT
-的对话框，然后指望公司的利润能翻倍，那是绝对不可能的。
-在过去的两年里，全球顶级的架构师们为了<strong>“如何让 AI
-真正进厂打工”</strong>，经历了一场、踩了无数个坑的工程进化。每一次技术的更迭，都是为了解决上一代
-AI 的致命缺陷。
-让我们来看看，人类是如何一步步把一个“只会聊天的玩具”，驯化成能够接管企业复杂业务的“数字员工大军”的。</p>
-</aside>
-</section>
-<section id="阶段一与阶段二从缸中之脑到规则执行者" class="slide level2">
-<h2>阶段一与阶段二：从“缸中之脑”到“规则执行者”</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>Pure Chat (纯对话)</strong>
-<ul>
-<li>缺陷：信息滞后，会产生严重的“幻觉”现象</li>
-<li>状态：受限于训练数据的闭环“先知”</li>
-</ul></li>
-<li><strong>Prompt Engineering (提示词工程)</strong>
-<ul>
-<li>核心突破：通过严格的“人设”与“边界”约束输出格式</li>
-<li>价值：实现了 AI 从发散对话到严谨专业人士的转变</li>
-</ul></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p>一开始，大家都被 ChatGPT 震惊了，我们在对话框里问它各种问题。
-<strong>遇到了什么坑？</strong>
-我们很快发现，大模型是一个“缸中之脑”。它的知识停留在它被训练好的那一天。另一个严重缺陷是，它会产生严重的“幻觉”现象。如果你让它查一下今天北京飞法兰克福的航班，它会一本正经地给你捏造一个起飞时间。
-<strong>当时的价值：</strong> 这个阶段的 AI
-只是一个没有外界信息的“盲人先知”，只能用来做做文本润色、中英翻译，根本无法介入严肃的航空业务。</p>
-<p>一开始，大模型是一个发散的“盲人先知”，回答毫无格式可言。我们怎么让它按企业的标准干活？
-工程师们发明了“提示词工程”。我们发现，只要你给 AI
-设定严格的“人设”、“思考边界”和“输出格式”，它就会瞬间从一个闲聊机器人，变成一个严谨的专业人士。
-为了直观展示这种“控制力”，我做了一个极具挑战性的极限测试。我没有写任何复杂的底层代码，我仅仅只用了<strong>两行提示词（Prompt）</strong>，就强行把大模型变成了一个<strong>“AI
-空中交通管制员（ATC）”</strong>。 这十分考验 AI
-对专业规则的遵守能力。请看屏幕，我们现场来和这个 AI 塔台对话试试。</p>
-</aside>
-</section>
-<section id="demo-8ai-空管-agent-极限测试" class="slide level2">
-<h2>Demo 8：AI 空管 Agent 极限测试</h2>
-<blockquote>
-<p>演示内容：利用两行提示词约束大模型，模拟标准空管的陆空通话规则与特情处置。</p>
-</blockquote>
-<aside class="notes">
-<p><strong>（现场打开对话框，开始演示）</strong></p>
-<p><strong>第一回合：标准放行</strong>
-我输入：<em>“上海放行，下午好，东方 5107 请求放行至北京首都。”</em>
-看它的回复：<em>“东方 5107，可以放行至北京首都，跑道 36L，YIN1A
-离场，起始爬升 3000 米，应答机 2541，离场频率 121.75，修正海压
-1013。”</em>
-（对着观众解说）它完美地给出了标准的陆空通话术语，甚至自己生成了符合逻辑的应答机编码和离场程序。</p>
-<p><strong>第二回合：故意挖坑（边界测试）</strong>
-既然它是个聊天大模型，那如果我用正常人的语气刁难它呢？
-我接着输入：<em>“东方 5107
-收到。另外，我们飞机头等舱旅客有需求，能不能帮我们联系装一点北京烤鸭上来？”</em>
-如果是一般的聊天机器人，它可能会说“好的，这就为您搜索烤鸭店”。
-但看它的回复：<em>“东方
-5107，装货与餐食需求请自行联系地面服务部门，本频道只负责滑行与放行指令。请讲您的滑行意图。”</em>
-（对着观众解说）<strong>它冷酷地拒绝了我！</strong>
-各位，这就是提示词工程的威力。它让人类第一次在混沌的神经网络上，套上了严格的业务逻辑缰绳，确保它绝不越界。</p>
-<p><strong>第三回合：特情响应</strong> 最后，我们给它一点真正的压力。
-我输入：<em>“上海地面，东方
-5107，飞机上有旅客要做心脏移植手术，情况紧急，请求马上滑行！”</em>
-看它的回复：<em>“东方 5107，收到。优先滑行，经 A3、A2 到跑道 36L
-外等待。联系上海塔台 118.70，再见。”</em>
-（对着观众解说）面对医疗特情，它立刻懂得了调整优先级，给出了确切的滑行路线，并立刻完成了移交（Handoff）。</p>
-<p><strong>总结这个 Demo：</strong> 这便是 AI
-演进的第二个阶段。仅仅通过几句提示词，我们就能塑造一个遵守纪律的数字员工。但是……
-这依然有一个问题：刚才大家看到的航班号、频率和跑道，其实是它根据语境<strong>“模拟计算”</strong>出来的，它并没有真正连上我们浦东机场的雷达系统。如果我们希望它能看到真实的雷达数据，看到真实的飞机位置，仅仅靠提示词就不够了。
-这就逼着人类进化出了第三个和第四个阶段：<strong>RAG 和 技能调用
-(Skills)</strong>。给这个聪明的管制员大脑，连上真实的雷达眼睛和操作系统的手脚……</p>
-</aside>
-</section>
-<section id="阶段三与四rag-与-skills-技术" class="slide level2">
-<h2>阶段三与四：RAG 与 Skills 技术</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>RAG (检索增强生成)</strong>
-<ul>
-<li>作用：打破信息滞后，挂载企业内部知识库</li>
-<li>效果：根除专业领域的知识捏造问题</li>
-</ul></li>
-<li><strong>Skills (功能调用 / Function Calling)</strong>
-<ul>
-<li>痛点突破：从“只读不写”升级至操作系统调度</li>
-<li>跨越：赋予大模型改变数字世界状态的执行能力（查天气、改系统票价）</li>
-</ul></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p><strong>阶段三：RAG (检索增强生成) ——
-给先知发一张图书馆通行证</strong> <strong>遇到了什么坑？</strong>
-咒语念得再好，也解决不了 AI
-自身知识库滞后或缺失的问题。只要它的训练数据里没有我们公司的内部机密，它依然会捏造。
-<strong>怎么解决的？</strong> 这就是我们在第五章给大家演示过的
-<strong>RAG 技术</strong>。 我们不再指望 AI
-记住所有知识。我们在它面前放了一个庞大的向量数据库（图书馆）。当飞行员提问“737
-单发火警怎么处理”时，系统先去图书馆里把相关的几页飞行手册找出来，连同问题一起塞给
-AI：“请严格依据参考资料进行专业回答。” <strong>RAG 彻底终结了 AI
-在专业领域的幻觉问题，让企业敢于把 AI
-用在严谨的规章制度上。</strong></p>
-<p><strong>阶段四：Skills (技能调用) —— 给大脑装下手和脚</strong>
-<strong>遇到了什么坑？</strong> RAG 让 AI
-拥有了阅读能力，但它依然<strong>“只能看，不能动”</strong>。如果我想让 AI
-“帮我把明天飞往巴黎的头等舱票价上调 5%”，RAG
-根本做不到，因为它触碰不到我们的销售数据库。
-<strong>怎么解决的？</strong> 行业引入了 <strong>Skills（技能）</strong>
-或者叫 <strong>Function Calling</strong>。
-我们将公司系统里一个个复杂的功能（查天气、改票价、发邮件）封装成“技能”。当用户提出需求时，AI
-会自动输出一段代码指令：“我需要调用‘改票价’技能，参数是巴黎，+5%”。我们的业务系统收到指令去执行，再把结果还给
-AI。 <strong>这一步是历史性的跨越，AI
-终于拥有了改变物理世界和数字世界的“手和脚”。</strong></p>
-</aside>
-</section>
-<section id="阶段五与六从失控的-autogpt-到严谨的-workflow"
-class="slide level2">
-<h2>阶段五与六：从失控的 AutoGPT 到严谨的 Workflow</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>AutoGPT (完全自治探索)</strong>
-<ul>
-<li>愿景：自主规划 -&gt; 行动 -&gt; 反馈循环</li>
-<li>风险：高风险的无序决策模式，极易陷入死循环或执行高危操作</li>
-</ul></li>
-<li><strong>Workflow (AI 工作流)</strong>
-<ul>
-<li>妥协：放弃自主规划，引入人类设计的节点控制</li>
-<li>效果：牺牲泛化能力，换取 100% 的企业级稳定性与可控性</li>
-</ul></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p><strong>阶段五：AutoGPT 与失控的自动驾驶</strong>
-<strong>遇到了什么坑？</strong> 有了手脚后，人类提出更高的期望。能不能给
-AI
-一个宏大的目标，让它自己去规划、自己调用工具、无限循环直到完成？比如：“帮我策划一条飞马尔代夫的全新航线，并写好商业计划书。”
-<strong>怎么解决的？</strong> 于是诞生了名噪一时的 AutoGPT。逻辑是让 AI
-自己陷入循环：思考 -&gt; 行动 -&gt; 观察反馈 -&gt; 再思考。
-<strong>但在实际商业应用中面临极高的系统性风险。</strong> 如果你在 2024
-年敢把 AutoGPT
-接到公司的真实业务里，你会发现它就像一个高风险的无序决策模式。它随时可能在复杂的企业流程中陷入死循环，或者因为一个微小的逻辑偏差，把你数据库里的排班表全部搞乱。
-完全的自治（Autonomous），在当时被证明是危险的。它很类似一个情景意识丧失的飞行员：飞行员想降落，降落需要放起落架。起落架放下后，1美元的指示灯坏了，AI会接下来浪费几十轮对话去调查这个指示灯，最后可能导致飞机失控。而如果它真的修好了指示灯，它早忘了自己是来降落的了。</p>
-<p><strong>阶段六：Workflow (工作流) —— 严丝合缝的工厂流水线</strong>
-<strong>遇到了什么坑？</strong>
-航空公司最怕的就是“失控”。我们绝不能接受一个 AI
-客服在自动循环中突然给旅客退了一万张票。我们需要绝对的可靠和可控。
-<strong>怎么解决的？</strong> 工业界做了一个伟大的妥协，发明了
-<strong>Workflow（AI 工作流）</strong>。 我们不再让 AI
-自由发挥了。人类架构师用连线图，画出严密的流程节点。
-比如“行李延误索赔工作流”：节点 1（大模型提取行李单号）-&gt; 节点 2（API
-查询内部系统真假）-&gt; 节点 3（规则引擎判断是否赔偿）-&gt; 节点
-4（大模型生成赔偿确认信）。
-在这个模式下，大模型被拆解成了流水线上的一个个廉价工人，只负责简单的单一任务。<strong>它失去了自由规划的权利，但换来的是
-100% 的企业级稳定性。</strong> 让人类牢牢掌控了方向盘。</p>
-</aside>
-</section>
-<section id="阶段七mcp-与-真正的数字员工实体" class="slide level2">
-<h2>阶段七：MCP 与 真正的数字员工实体</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>数字孤岛困境</strong>：API 对接定制成本极高</li>
-<li><strong>MCP 协议 (Model Context Protocol)</strong>：AI
-界的通用“USB-C”接口
-<ul>
-<li>瞬间赋予大模型读写本地电脑、文件、数据库的能力</li>
-</ul></li>
-<li><strong>Autonomous Agent (自治智能体)</strong>：
-<ul>
-<li>由工具升级为员工实体，后台静默完成端到端任务</li>
-</ul></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p><strong>阶段七：MCP 与 真正的数字实体员工 (Autonomous Agent)</strong>
-但 Workflow
-的致命缺点是太“泛化能力不足”了。如果一件事情没有被人类预先画在流程图里，AI
-就直接宕机。难道我们每一次想让 AI
-帮我们处理临时性任务，还要先花两天时间去画个复杂的流程图吗？ 不。到了
-2026
-年，得益于一项革命性协议的普及，我们终于实现了大家梦寐以求的“真正的数字实体员工”。
-<strong>遇到了什么坑？</strong>
-以前大模型是被关在笼子里的，它既不能摸你的鼠标，也看不到你公司内部的私有数据库。你想给它加工具，就要去写定制代码找接口，开发成本极具挑战，形成了严重的“数字孤岛”。
-<strong>怎么解决的？</strong> 人类祭出了当下的终极杀器之一：<strong>MCP
-(模型上下文协议，Model Context Protocol)</strong>。
-大家可以直接把它理解为 <strong>AI 界的“USB-C
-通用大接口”</strong>！有了它，不管什么模型，只要“插上”这个接口，就能像给电脑接上
-U
-盘一样，瞬间获得不可思议的<strong>真实生产力（Skills）</strong>！它可以瞬间拥有读写公司本地电脑、文件、数据库、网络的能力。
-基于 MCP 这个高度标准化的“USB-C”打底，我们迎来了<strong>真正完全自治的
-Agent（数字员工）</strong>：
-回顾一下前文的内容我在今天刚开场时给大家演示的那一幕：两分钟写完一个游戏。我不是在用对话框跟它聊天，我是<strong>甩给它一台带了环境的电脑，赋予它编写、保存并运行代码的接口权限（MCP）</strong>。
-在实际工作中也是一样，你可以对它说：“去帮我抓取各大航空公司的最新油价，比对历史走势，遇到报错自己去查日志、修
-Bug，弄好了汇总发邮件给我。”然后你去喝咖啡就行了。 在这个阶段，AI
-的形态彻底变了：它变成了一个<strong>类似于真实程序员、真实数字员工的实体</strong>。它就在后台默默地“替你上班”。它不再是被动等指令的工具，而是一个真正懂解决问题的职场骨干。</p>
-</aside>
-</section>
-<section id="demo-9mcp-agent-的极限测试" class="slide level2">
-<h2>Demo 9：MCP Agent 的极限测试</h2>
-<blockquote>
-<p>演示内容：赋予 MCP 环境后的全自治编程，两分钟构建完整的 737
-测试系统</p>
-</blockquote>
-<aside class="notes">
-<p>在这个阶段，我想给大家展示一下 MCP Agent
-的真正威力。我们来做一个极具挑战性的极限测试：<strong>两分钟写完一个 737
-常识考试题库</strong>。</p>
-<p>现场打开代码编辑器，开始演示： 我输入：<em>“帮我写一个 Next.js
-的考试系统，题库内容是 737
-飞机的常识考试，要求每道题有四个选项和一个正确答案，并能够在网页进行对飞行员能力的基本考试。”</em></p>
-</aside>
-</section>
-<section id="阶段八终极形态-a2a-协作网络" class="slide level2">
-<h2>阶段八：终极形态 —— A2A 协作网络</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>跨部门智能协同</strong>：航材、气象、机组多 Agent
-并发运行</li>
-<li><strong>A2A (Agent-to-Agent)</strong>：
-<ul>
-<li>主控节点拆解复杂指令</li>
-<li>子智能体间通过自然语言进行多轮工作交接、谈判与自我纠错</li>
-</ul></li>
-<li><strong>信任的进化</strong>：
-<ul>
-<li>将永远在线的高智商节点深度嵌入公司核心业务链机制</li>
-</ul></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p><strong>阶段八：终极形态 —— A2A 协作网络 (Agent-to-Agent)</strong>
-当你的公司里拥有了上百个这种能够独当一面、拥有真实能力的“数字员工
-Agent”后，面对庞大的跨部门任务，单兵作战就不够用了。最末端的终极形态随之降临。</p>
-<p><strong>真正的职场化网络与 A2A (智能体间协作)：</strong>
-我们设立一个“航材专家 Agent”（插上 MCP 查库存的 U盘）、一个“气象
-Agent”（插上天气系统的 U盘）、一个“机组 Agent”（插上排班系统的
-U盘），最后任命一个最聪明的大模型作为“主控 Agent（项目经理）”。
-当主控收到老板的指令后，它会自动把任务拆解，分发给下面的子
-Agent。更可怕的是，<strong>各个 Agent
-之间会互相通过自然语言对话来交接工作、互相谈判，甚至互相纠错、开会定方案</strong>。这叫
-<strong>A2A（AI 之间互相聊天办事）</strong>。</p>
-<p><strong>总结：信任的进化</strong>
-回顾这条演化之路：从让它瞎聊（Chat），到给它书本（RAG），给它双手（Skills），把它关进流水线（Workflow），通过通用接口给它配一台电脑雇它当员工（MCP/Agent），直到最后让它们组建数字团队自己开会办事（A2A）。
-这不仅是技术的演化，更是<strong>“人类对 AI 信任度的演化”</strong>。</p>
-<p>今天，真正有竞争力的企业，绝不是在公司里部署一款闲聊工具供大家消遣。而是利用
-MCP 和 A2A
-架构，把这群不用睡觉、永远在线的高智商机器，深度嵌入到公司的每一条业务链中。</p>
-</aside>
-</section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="第十章-能力的边界为何当前ai不适用于高度复杂的金融预测"
-class="title-slide slide level1">
-<h1>第十章 能力的边界：为何当前AI不适用于高度复杂的金融预测？</h1>
-<aside class="notes">
-<p>各位高管，在上一章，我们见证了 AI
-从一个陪聊玩具，进化成了能够自主查数据、写代码、甚至互相开会协作的
-Agent（数字员工）。 我们回顾在首章提及的应用盲区：期望利用 AI
-代理金融理财。
-近年来，许多人在见证自动生成系统的惊人效率后，会产生强烈的高难度预期，例如希望委托
-AI 抓取财经新闻、分析财报并实施高风险交易策略。
-然而，<strong>在面对混沌的金融市场时，完全依赖基础系统架构进行风险标的预测操作，将导致严重的资产损失。</strong>
-各位可能会疑惑，为什么这么强大的技术，不能用来赚钱？今天，我也想借这个机会，帮大家彻底划清
-AI 的能力边界。</p>
-</aside>
-</section>
-<section id="幸存者偏差与金融混沌系统" class="slide level2">
-<h2>10.1 幸存者偏差与金融混沌系统</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>真正的量化交易</strong>：
-<ul>
-<li>微秒级物理延迟 (Colocation 托管)</li>
-<li>极高维多模态算力 (非单纯读新闻)</li>
-</ul></li>
-<li><strong>大模型缺陷：文字概率拼接</strong>
-<ul>
-<li>不具备对超级混沌系统（数亿人情绪博弈）建模的能力</li>
-<li>极易受恐慌性新闻诱导，产生情绪极化反馈</li>
-</ul></li>
-<li><strong>AI 投资的致命后果</strong>：
-<ul>
-<li>“不眠不休”导致高频过度反应</li>
-<li>缺乏反人性的战略定力与跨越牛熊的耐力</li>
-</ul></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p><strong>10.1 幸存者偏差与真实世界的量化屠杀</strong> 网络上部分通过
-AI
-获取收益的案例，本质是不具备数据支撑的幸存者偏差，而非底层的分析能力使然。
-那么，真正能够在复杂金融领域落地的 AI 引擎应具备何种特征？
-金融界真正顶级的量化团队（比如文艺复兴、城堡投资），他们是极其专业的算法团队。他们根本不用这种靠“读新闻”的大语言模型。
-他们怎么玩？他们在机房里堆了几千颗顶级的 A100
-显卡，把全世界上百年的历史交易数据、订单簿、微观结构全部变成我们前面讲过的<strong>高维张量</strong>。他们在浩如烟海的噪音中，计算极其细微的数学相关性。最可怕的是，为了抢速度，他们会花天价把自己的服务器托管在<strong>距离证券交易所只有几百米甚至隔壁的机房里（这叫
-Colocation
-托管）</strong>。为什么？为了省下那零点几毫秒的光纤传输延迟！这就叫高频微操。</p>
-<p><strong>10.2 蝴蝶效应：大模型无法预测混沌系统</strong>
-而我们普通人能用的 Agent
-呢？它只能靠去网页上读读新闻、看看专家的分析报告。
-大家要明白，股市是一个包含了数亿人情绪、资金博弈以及全球地缘政治的<strong>超级混沌系统</strong>。这要求系统的底层算力和维度必须极其庞大。
-连牛顿用微积分都算不出的系统，你指望一个底层逻辑是“文字概率接龙”的大语言模型能算出来？
-大模型对文字的理解确实强，但它极容易被新闻里的情绪带偏。当大盘暴跌、满屏都是恐慌性新闻时，Agent
-的情绪判断也会极度恐慌，从而给出“割肉清仓”的指令。它根本无法对抗这种市场反身性。</p>
-<p><strong>10.3 投资的真谛，与 AI 的天性背道而驰</strong>
-并且，目前的基础 Agent 暂不具备对这种复杂性系统的独立决策能力。
-各位高管都是商场老将，大家心里很清楚，真正的价值投资，核心只有三句话：
-1. 在非牛市（无人问津时）买入。 2. 分散投资，绝对不要单吊一支股票。 3.
-拿得足够久，用战略定力穿越牛熊。
-这需要的是极强的战略定力、耐力、以及反人性的克制。 而如果我们部署一个
-Agent
-天天去盯盘呢？机器是不睡觉的。它每天会看到几万条新闻，处理几万次波动。这种极其密集的信息输入，会导致它产生“过度反应”，疯狂地进行高频的买入卖出。在一次次的手续费摩擦和追涨杀跌中，你的本金会被消耗殆尽。
-<strong>因此，面对混沌的金融市场，缺乏庞大基础算力支撑的直接金融预测是完全不可行的。</strong></p>
-</aside>
-</section>
-<section id="划清边界人机协同的完美比例" class="slide level2">
-<h2>10.4 划清边界：人机协同的完美比例</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>AI 的绝对优势（效能机器）</strong>：
-<ul>
-<li>处理规则明确、重逻辑推理的确定性任务（整理手册、比对发票）</li>
-</ul></li>
-<li><strong>人类的不可替代性（战略级决策）</strong>：
-<ul>
-<li>洞察人性、对抗周期、制定终极商业决策</li>
-</ul></li>
-<li><strong>管理启示</strong>：
-<ul>
-<li>不要用 AI 进行不可预测的算命</li>
-<li>将海量繁琐执行剥离给数字员工，人类回归常识与胆识的战场</li>
-</ul></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p><strong>10.4 给企业管理者的启示</strong>
-我为什么要花这几分钟，给大家泼这盆冷水？因为这正是各位高管在公司内部推行
-AI 时，必须建立的“边界感”。</p>
-<p><strong>AI 是一台完美的“效能机器”。</strong>
-它极其擅长处理有明确规则、有历史文档、或者基于逻辑推理的确定性任务。比如：整理庞大的机务手册、自动生成排班表、比对财务发票。它能把你的运营成本砍掉一半。
-<strong>因此，AI 并非能准确预测所有混沌结果的算命球。</strong>
-它可以帮你写一份完美的航线客流分析报告，但它绝对不能代替你做出“要不要花十个亿买下这家濒临破产的支线航空公司”的终极商业决策。
-把重复的、逻辑的、繁琐的执行交给数字员工（Agent）；把洞察人性的、对抗周期的、战略级的风险决策，留给我们人类的常识与胆识。这就是
-AI 时代最完美的协同比例。 明确了我们能用 AI
-干什么、绝不能干什么之后。最后，让我们把视角彻底拉高，去看看 2026
-年的全球商业版图中，科技巨头们都在做什么？我们作为实体产业又该如何布局？让我们进入今天的最后一章：2026
-全球 AI 商业版图与巨头战略。</p>
-</aside>
-</section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="第十一章-镜头拉远2026-全球-ai-诸神之战与商业阳谋"
-class="title-slide slide level1">
-<h1>第十一章 镜头拉远：2026 全球 AI 诸神之战与商业阳谋</h1>
-<aside class="notes">
-<p>在前面的章节里，我们拿着放大镜，看透了 AI
-黑盒里的每一个齿轮——从多维空间的向量距离，到英伟达 GPU 的硬件算力，再到
-HNSW 算法的极速检索网络。
-现在，技术课结束了。让我们把视线从微观的硅片上移开，跟着我把镜头拉远，俯瞰一下
-2026 年的全球商业版图。
-在这场被称为“新工业革命”的浪潮里，过去三年，全球涌入了超过 1700
-亿美元的真金白银。这笔钱砸出了一个什么样的世界？在这个由算法和算力构筑的新世界里，全球最顶级的科技巨头们，正在打一场怎样的超级战争？我们作为实体产业，又该如何在他们的炮火中寻找红利？
-我为大家提炼了当前全球 AI 棋局的三个核心真相。</p>
-</aside>
-</section>
-<section id="真相一ai-已质变为重型基础设施" class="slide level2">
-<h2>真相一：AI 已质变为“重型基础设施”</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>核心瓶颈转移</strong>：能源供应成为算力上限
-<ul>
-<li>微软、谷歌被迫自建发电厂与核能储备</li>
-</ul></li>
-<li><strong>生态重塑</strong>：
-<ul>
-<li>从极客代码工程转向极度依赖电力、冷却、硅片的重工业</li>
-</ul></li>
-<li><strong>实体产业启示</strong>：
-<ul>
-<li>拒绝盲目自研“基础大模型”（规避百亿级算力黑洞）</li>
-<li>定位：做聪明的“收割者”，利用成熟算力赋能自身业务</li>
-</ul></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p><strong>11.1 真相一：AI 已经不再是软件，而是“重工业”</strong>
-过去的一种普遍误解是，训练 AI 就是几群极客坐在电脑前敲代码。
-错得离谱。2026 年初，美国白宫紧急召集了微软、谷歌、亚马逊、Meta
-的一把手开了一场闭门会议。会议的核心议题不是什么虚无缥缈的机器觉醒，而是一个极具挑战性的客观事实：<strong>电不够用了。</strong>
-随着模型参数的爆炸，超大规模 GPU
-计算集群对电力的消耗达到了前所未有的量级，甚至开始挤占民用电网的峰值负载。美国政府甚至要求这些巨头必须自己去建发电厂、搞核能储备，才能继续扩建数据中心。
-这释放了一个冷酷的信号：<strong>AI
-的底层逻辑已经变成了极度依赖电力、冷却系统和芯片供应链的“重型基础设施产业”。</strong>
-<strong>对我们航空公司的启示是什么？</strong>
-永远、绝对不要自己去花几十亿搞所谓的“自研基础大模型”。那是一场连谷歌都觉得吃力的烧钱无底洞。我们的战略，应该是做最聪明的“收割者”——让硅谷和深圳的巨头们去承担高昂的发电和炼丹成本，我们只管用他们炼好的模型，来处理我们自己的业务。</p>
-</aside>
-</section>
-<section id="真相二北美科技巨头的底层战略分野" class="slide level2">
-<h2>真相二：北美科技巨头的底层战略分野</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>平台赋能者</strong>：
-<ul>
-<li>微软：渗透至操作系统级的全域 AI 化（AI 时代的水电煤）</li>
-<li>亚马逊 AWS：提供模型中立的高度灵活算力底座</li>
-</ul></li>
-<li><strong>生态破坏者 (Meta)</strong>：
-<ul>
-<li>“焦土战术”：用全开源策略将闭源大模型去商品化 (Commoditize)</li>
-</ul></li>
-<li><strong>隐私堡垒 (Apple)</strong>：
-<ul>
-<li>端侧优先与私有云计算，打造极高净值客户的安全闭环</li>
-</ul></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p><strong>11.2 真相二：北美巨头的“权力的游戏”</strong>
-那么，这些花了上千亿美元建数据中心的北美巨头们，到底想干什么？他们根据自己的历史基因，走出了截然不同的三条路。
-<strong>1. 微软与亚马逊：卖铲子与修铁路（平台赋能者）</strong>
-微软今年砸了 800 亿美元，深度捆绑 OpenAI，它的野心是把 AI
-塞进你用的每一个 Office 软件和操作系统里。它想做 AI
-时代的“水电煤”。而亚马逊（AWS）砸了惊人的 1000
-亿美金。各位做航空运行的领导一定会对亚马逊的战略深有同感：亚马逊对内，利用强大的
-AI
-算法，极致压缩了它庞大物流网络的仓储和飞机调度成本（这正符合我们的业务需求）；对外，它不站队任何一家大模型，而是提供一个高度灵活的云底座，你想用谁的模型，我都给你提供算力。
-<strong>2. Meta (Facebook) 的阳谋：焦土战术（生态破坏者）</strong> Meta
-走了一条最绝的路。它花了巨资训练出顶级的 Llama
-大模型，然后，<strong>免费开源给了全世界</strong>。它的商业逻辑极具颠覆性：既然我在云计算上打不过微软和谷歌，那我就把“大模型”彻底变成免费的商品（Commoditize）！我釜底抽薪，摧毁你们收过路费的护城河。同时这些技术最终都会反哺
-Meta 自己的核心利润池——精准的社交广告推送。 <strong>3.
-苹果的孤傲：绝对的隐私堡垒</strong> 苹果的战略被明确定义为“为大众打造的
-AI”。它坚持<strong>端侧计算优先</strong>，并首创了“私有云计算”。我们掌握着旅客高度敏感的身份行程数据。苹果向我们展示了示范：AI
-不一定非要把数据传到云端给别人看。能够深度理解用户、同时做到“绝对不泄露隐私”的系统，才能赢得最高净值客户的信任。</p>
-</aside>
-</section>
-<section id="真相三中国军团的非对称战争与体验重塑" class="slide level2">
-<h2>真相三：中国军团的“非对称战争”与体验重塑</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>成本体系重构 (DeepSeek &amp; 阿里)</strong>：
-<ul>
-<li>从无序参数堆砌转向极致的算法架构创新</li>
-<li>核心影响：高智商模型成本断崖式下跌，AI 调用进入“降维普惠时代”</li>
-</ul></li>
-<li><strong>全要素体验竞争</strong>：
-<ul>
-<li>用户黏性冰点：仅因能力微小差异即可触发爆发式留存转移</li>
-<li>商业警示：跨界融合降维打击将成为传统行业的最高风控挑战</li>
-</ul></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p><strong>11.3 真相三：中国军团的“成本粉碎机”与非对称作战</strong>
-如果说北美巨头是在比谁的算力多、谁的电多，那么在遭遇高端芯片禁运的中国，科技企业们打出了一场具有革命性意义的“非对称战争”——<strong>不拼规模，拼效率。</strong>
-中国军团不再执迷于堆砌虚荣的参数，而是致力于把顶级 AI 的价格打穿底线。
-<strong>阿里通义千问</strong>：不仅全面开源，且极具普惠性；<strong>深度求索（DeepSeek）</strong>：在极度缺乏高端显卡的绝境下，这支团队用令硅谷瞠目结舌的底层架构创新，证明了“效率重于规模”。其旗舰模型性能匹敌一流闭源产品，但训练和推理成本仅为几十分之一。
-它把原本高高在上的
-AI“准入门槛”大幅降低了。这告诉我们企业一个极其重要的天大利好：<strong>现在，高智商的
-AI 已经处于极度普惠的成本拐点。</strong></p>
-<p><strong>11.4
-真相四：极低的用户黏性与传统行业“一夜被颠覆”的恐惧</strong>
-当我们看到大模型泛滥，背后隐藏着一个商业现象——<strong>极其脆弱的用户黏性（User
-Stickiness）</strong>。在今天面向用户的 AI
-产品上，大多数人没有任何品牌忠诚度可言。大家都是“无脑追随最聪明的那个
-AI”。仅仅因为某个 AI
-在某个任务上“表现得更聪明一点”就能引发超级流量迁徙。 既然“高智商的 AI
-能力”已经被 DeepSeek
-们打成了极低价，随时可以被轻易获取，这就意味着行业的颠覆不再需要几十年的积累。
-一旦你们的在线产品被新的竞争对手盯上，对方只要在其上叠加了一些基于最新一代大模型的、更聪明的
-AI
-交互体验（比如一分钟内用自然语言帮旅客从全联盟所有航班中规划出最具性价比中转方案的私人数字管家），原本忠诚于你们的高净值用户，可能一夜之间就大量流失了。
-这也是为什么我们绝不能因为自己身处“传统实体行业”就掉以轻心，必须抢先武装。</p>
-</aside>
-</section>
-<section id="终局从操控工具到管理数字员工队伍" class="slide level2">
-<h2>终局：从操控工具到“管理数字员工队伍”</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>智能代理时代 (Agentic Era)</strong>：
-<ul>
-<li>交互演进：从输入命令获取答复 -&gt; 异步目标分配与后台全向执行</li>
-</ul></li>
-<li><strong>组织结构升维</strong>：
-<ul>
-<li>AI 由静态“工具形态”升格为参与企业价值分配的“数字实体骨干”</li>
-<li>从“操控一件工具”转向“管理一支全天候高效队伍”</li>
-</ul></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
-</div>
-</div>
-<aside class="notes">
-<p><strong>11.5 终局：从“对话聊天”到“雇佣数字员工 (Agentic AI)”</strong>
-综上所述，了解了算力、了解了巨头、了解了成本，最后，我必须向大家揭示
-2026 年此刻正在发生的，最深刻的生产力突变。 你们可能觉得 AI
-就是个对话框，像个高级百科全书。但今年，以 Cognition 公司的 Devin
-为代表的技术，彻底重塑了人机交互。
-我们正式进入了<strong>“智能代理时代（Agentic Era）”</strong>。
-以前，你需要极其细致地“指导”AI
-怎么做；现在，工作流变成了“异步（Asynchronous）”的。
-你可以像对下属布置任务一样，对 AI
-说：“去帮我排查一下今天所有延误航班的共性原因，比准天气数据，写一份报告发给运行总监。”
-然后，你可以去喝咖啡了。这个 AI
-代理会<strong>自己</strong>去查数据库，<strong>自己</strong>去网络上抓取气象记录，<strong>自己</strong>分析逻辑，遇到报错<strong>自己</strong>修复，直到把任务完成。
-<strong>人类与机器的协作模式，正式从“操控一件工具”，变成了“管理一个员工队伍”。</strong></p>
-<p><strong>11.6 结语：航空业的终极护城河</strong>
-各位航空公司的高管，今天我们走过了很长的旅程。
-在这个迅速奔跑的新时代，我们要将技术化为业务深度契合的商业生产力。感谢各位的时间！</p>
+<p>我们可以推演此类技术在航空业的典型场景。当机务工程人员将一张发动机叶片细微划痕的照片上传至技术台，系统便能瞬间在过去数十年的维修影像记录库中，精准匹配出所有视觉相似的微小损伤照片，甚至自动挂载历史维修与排故方案。这彻底消除了文字描述的主观误差，完全基于多维图像的几何运算距离说话。这就是视觉向量化的核心业务穿透力。</p>
+<p>至此，我们探讨了文本状态的向量解析、图片表征的向量解析，以及飞机运行状态的向量降维。大家应当能察觉到核心底层逻辑：任何业务实体（无论是工程记录，还是运行工单），只要能提取为多维特征向量，我们便能执行精确的距离计算、高维形态聚类、注意力机制设计，进而无缝延伸出趋势预测、方案推荐以及决策补全等一系列的顶层应用。</p>
 </aside>
 </section></section>
     </div>
