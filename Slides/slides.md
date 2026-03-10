@@ -2828,7 +2828,7 @@ HNSW 将每一个向量点视为一个节点，并让距离相近的向量建立
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/Data_Center_Segment_Revenue_FY17_FY22.webp)
+![](Pics/ms_datacenter.jpg)
 :::
 ::::::::::::::
 
@@ -2853,7 +2853,7 @@ HNSW 将每一个向量点视为一个节点，并让距离相近的向量建立
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/hugging-face-image27.webp)
+![](Pics/meta_ai_infra.webp)
 :::
 ::::::::::::::
 
@@ -2899,7 +2899,7 @@ Meta 采取了截然不同的路径。它投入巨资研发 Llama 大模型，�
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/aiursoft.png)
+![](Pics/china_ai_competitions.jpeg)
 :::
 ::::::::::::::
 
@@ -2927,7 +2927,7 @@ Meta 采取了截然不同的路径。它投入巨资研发 Llama 大模型，�
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/quantization.png)
+![](Pics/deepseek_ai_innovation.jpg)
 :::
 ::::::::::::::
 
@@ -2952,7 +2952,7 @@ DeepSeek 将强大的 AI 智力以极低的价格向全球释放，大幅降低�
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/AI_Capability_vs_Usage_by_Occupation_Radar_Chart.jpg)
+![](Pics/rise_and_change_ai_models.png)
 :::
 ::::::::::::::
 
@@ -3007,7 +3007,7 @@ DeepSeek 将强大的 AI 智力以极低的价格向全球释放，大幅降低�
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/vision_detect.png)
+![](Pics/software-developing-team.avif)
 :::
 ::::::::::::::
 
