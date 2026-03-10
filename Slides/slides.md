@@ -149,7 +149,7 @@ date: "2026-03-10"
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/missing.jpg)
+![](Pics/hero-robot.png)
 :::
 ::::::::::::::
 
@@ -209,7 +209,7 @@ date: "2026-03-10"
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/missing.jpg)
+![](Pics/avigame.png)
 :::
 ::::::::::::::
 
@@ -1743,7 +1743,7 @@ GPU 虽然性能强劲，但能耗较高，通常部署在具备重型冷却系�
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/missing.jpg)
+![](Pics/datacenter.jpg)
 :::
 ::::::::::::::
 
