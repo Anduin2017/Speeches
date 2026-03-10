@@ -609,12 +609,12 @@ style="color: green;">有交集！</span> <br><br> <strong>A320起飞</strong>
 什么是点乘？最直白的理解，点乘就是把两个向量在相同维度上的数字两两相乘，然后再全加起来。我们用点乘来重新审视一下刚才的三篇文章：
 A320起飞 [1, 1, 0, 0] 与 起降原理 [0, 1, 1, 0] 的点乘结果是 1（结果大于
 0，说明它们在某个维度上有共鸣，产生了交集！） A320起飞 [1, 1, 0, 0] 与
-日常菜谱 [0, 0, 0, 0] 的点乘结果是 0（结果是
-0，说明它们无论怎么乘，都不会产生实质相关性，判定为毫不相干！）
-由此可见，仅通过转换数学运算方式，日常菜谱就被系统完美地筛选排除。</p>
+炒方便面的做法 [0, 0, 0, 0] 的点乘结果是 0（结果是
+0，说明它们无论如何运算，都不会产生实质相关性，判定为毫不相干！）
+由此可见，仅通过转换数学运算方式，炒方便面的做法就被系统完美地筛选排除。</p>
 <p>在高中数学里，两个向量的点乘，在几何上有一个优美的公式。把长度除过去，我们就得到了现代人工智能评估相似度最核心的公式——<strong>余弦相似度
 (Cosine
-Similarity)</strong>。只要我们抛弃绝对的直线距离，转而去计算<strong>夹角余弦</strong>，“日常菜谱”的误判就永远不会发生了。</p>
+Similarity)</strong>。只要我们抛弃绝对的直线距离，转而去计算<strong>夹角余弦</strong>，“炒方便面的做法”的误判就永远不会发生了。</p>
 </aside>
 </section>
 <section id="终极技术l2-归一化" class="slide level2">
@@ -653,15 +653,48 @@ style="color: blue;">单位超球面上：点乘直接等于余弦！</span></p>
 </div>
 </div>
 <aside class="notes">
-<p>讲到这里，大家可能会问：欧氏距离，夹角余弦，点乘。这三个东西在写代码时要切来切去吗？这不符合计算机的美学。于是，AI
-工程师们施展了最巧妙的一招：L2 归一化 (L2 Normalization)。
-既然向量的“长度”会干扰计算，那我们就强行把所有向量长度变成
-1。这相当于把它们全拉伸投射到一个“单位超球面”的表面上。
-我们看看实际效果：模长全是 1
-后，点乘由于长度全为1，所以点乘直接等于夹角余弦！而欧氏距离展开后也变成了
-<span class="math inline">\(d = \sqrt{2 - 2\cos(\theta)}\)</span>。
-殊途同归！在完成了 L2
-归一化之后，无论你是算点乘、算余弦相似度、还是算欧氏距离，在数学本质上已经是完全等价的了！这就是大一统。这就叫架构的工程美学，底层全统一。</p>
+<p>讲到这里，有高中数学常识的各位可能会问出一个十分本质的问题：</p>
+<p><strong>欧氏距离，夹角余弦，点乘。这三个东西，到底是什么关系？难道我们在写
+AI 代码的时候，要根据不同的场景进行切换吗？</strong></p>
+<p>这不符合计算机科学中“大道至简”的美学。于是，AI
+工程师们引入了一个关键的数学概念——<strong>L2 归一化 (L2
+Normalization)</strong>。</p>
+<p>既然各个向量的“长度”不一会干扰我们的计算，那我们在把向量存入数据库之前，做一个标准化的预处理：<strong>统一把所有向量的长度变成
+1。</strong></p>
+<p>在数学上，就是用向量里的每一个数字，除以它自己的模长。在几何上，这意味着把多维空间里所有长短不一的向量，全部拉伸或压缩，统一投射到一个<strong>“单位超球面”</strong>的表面上。</p>
+<p>现在，接下来我们看看实际效果。</p>
+<p>假设所有的向量都从原点出发，且它们的模长全都被强制变成了 1，即 <span
+class="math inline">\(\|\mathbf{x}\| = 1\)</span> 且 <span
+class="math inline">\(\|\mathbf{y}\| =
+1\)</span>。那么我们来看看最初的那三个概念会发生什么奇妙的化学反应：</p>
+<p><strong>第一，关于点乘。</strong> 根据刚才的公式：<span
+class="math inline">\(\mathbf{x} \cdot \mathbf{y} = \|\mathbf{x}\|
+\|\mathbf{y}\| \cos(\theta)\)</span> 代入长度为 1：<span
+class="math inline">\(\mathbf{x} \cdot \mathbf{y} = 1 \times 1 \times
+\cos(\theta) = \cos(\theta)\)</span>
+结论：<strong>在单位超球面上，两个向量的点乘，直接等于它们的夹角余弦！</strong></p>
+<p><strong>第二，关于欧氏距离。</strong>
+我们来算一下这两个终点之间的直线距离的平方 <span
+class="math inline">\(d^2 = \|\mathbf{x} - \mathbf{y}\|^2\)</span>。
+大家还记得初中的完全平方公式吗？在向量世界里，它叫余弦定理展开：</p>
+<p><span class="math display">\[\|\mathbf{x} - \mathbf{y}\|^2 =
+\|\mathbf{x}\|^2 + \|\mathbf{y}\|^2 - 2(\mathbf{x} \cdot
+\mathbf{y})\]</span></p>
+<p>把长度为 1 代进去：</p>
+<p><span class="math display">\[d^2 = 1^2 + 1^2 - 2\cos(\theta) = 2 -
+2\cos(\theta)\]</span></p>
+<p>得出最终的完美公式：</p>
+<p><span class="math display">\[d = \sqrt{2 -
+2\cos(\theta)}\]</span></p>
+<p><strong>它把直线的距离（<span
+class="math inline">\(d\)</span>）和旋转的角度（<span
+class="math inline">\(\cos(\theta)\)</span>），十分完美地绑定在了一起。</strong></p>
+<p>当两篇文章越来越相似时，夹角越来越小，<span
+class="math inline">\(\cos(\theta)\)</span> 越来越接近 1。此时，公式里的
+<span class="math inline">\(2 - 2 \times 1 = 0\)</span>，欧氏距离 <span
+class="math inline">\(d\)</span>也就无限趋近于 0。</p>
+<p>殊途同归！在完成了 L2
+归一化之后，无论你是算点乘、算余弦相似度、还是算欧氏距离，在数学本质上已经是<strong>完全等价</strong>的了！</p>
 </aside>
 </section>
 <section id="重新审视日常菜谱的被严谨隔离" class="slide level2">
@@ -721,25 +754,25 @@ style="color: red; font-weight: bold;">它们没有任何交集，判定为完�
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">第1篇 A320起飞</td>
-<td style="text-align: left;">第2篇 737降落</td>
+<td style="text-align: left;">第一篇 (A320 的起飞)</td>
+<td style="text-align: left;">第二篇 (737 的降落)</td>
 <td style="text-align: center;"><strong>0.6108</strong></td>
 <td style="text-align: center;">0.8823</td>
 <td style="text-align: left;">弱相关 (存在部分交集)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">第1篇 A320起飞</td>
-<td style="text-align: left;">第3篇 起降原理</td>
+<td style="text-align: left;">第一篇 (A320 的起飞)</td>
+<td style="text-align: left;">第三篇 (飞机的起降原理)</td>
 <td style="text-align: center;"><strong>0.6541</strong></td>
 <td style="text-align: center;">0.8317</td>
 <td style="text-align: left;">同领域 (有交集)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">第1篇 A320起飞</td>
-<td style="text-align: left;">第4篇 日常菜谱</td>
+<td style="text-align: left;">第一篇 (A320 的起飞)</td>
+<td style="text-align: left;">第四篇 (日常菜谱制作)</td>
 <td style="text-align: center;"><strong>0.3252</strong></td>
 <td style="text-align: center;">1.1618</td>
-<td style="text-align: left;">完全不相关</td>
+<td style="text-align: left;">毫不相干 (完全不相关)</td>
 </tr>
 </tbody>
 </table>
@@ -747,11 +780,11 @@ style="color: red; font-weight: bold;">它们没有任何交集，判定为完�
 <aside class="notes">
 <p>刚才我们只手工贴了4个标签，但如果维度扩大呢？如果我们的系统可以容纳
 1024
-个维度的词库画像，搜索起落架故障时就不是找关键字，而是找距离最近的手册内容坐标。这就是早期搜索系统的原理。
-但人工打标签太累，机器能自己找维度吗？完全可以。这里我们就展示使用强大的本地大模型把毫无标记的文字变成
-1024 维的向量。 看这个表格，这是大模型刚跑出来的结果：它计算的 A320
-和起降原理的余弦相似度最高，属于同领域，而日常菜谱只有沾了点语法标点的
-0.32。结果非常精准。这展现了多维向量化运算在系统判别中的核心优势。</p>
+个维度的词库画像，搜索起落架故障时就不是找关键字，而是找距离最近的手册内容坐标。这就是早期搜索系统的核心原理。</p>
+<p>我们会发现，虽然这很有效，但这种“人工打标签”的方式对人工标注的依赖程度过高，且容易受到人类主观意识的影响。若要进入真正的现代
+AI
+时代，我们必须解决一个核心问题：<strong>能否实现维度的自主学习，从而让机器自动将文本转化为向量，而无需进行繁琐的人工标注？</strong></p>
+<p>答案是肯定的，且机器在处理该任务时的精确度与效率远超人类。下面我们将通过演示直观展示这一过程。</p>
 </aside>
 </section>
 <section id="万物皆可向量化只要有特征就是点" class="slide level2">
@@ -845,21 +878,27 @@ class="math inline">\(\Rightarrow\)</span> 空间距离无限缩短</li>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
 <p>在上一章中，我们演示了如何通过人工提取“空客”、“降落”等 4
 个离散标签，将文本转化为 <code>[1, 0, 1, 0]</code>
-这样的二进制特征向量。但思考一下：一本波音 737 的 FCOM
-飞行手册有几千页，如果让人类给每一页手工打标签，那将消耗极大的人力和时间。而且人类的主观性太强——有人标记“襟翼”，有人标记“增升装置”，有人用“flap”，同一个概念被叫了三个名字，系统就乱套了。</p>
+这样的二进制特征向量。但各位可以预见：一本波音 737 的 FCOM
+飞行手册包含数千页内容，若完全依赖人工为每一页标注标签，其标注成本将极其高昂，且效率难以满足工业化需求。此外，人工标注具有较强的主观性——不同的技术人员可能使用“襟翼”、“增升装置”或“flap”等不同术语描述同一概念，这会导致系统检索精度大幅下降。</p>
 <p>现代 AI
-的核心突破，就是让机器自己读完海量的文字，自己去发现词语之间的关系，自己构建出那个精确的
-1024 维坐标体系。完全不需要人员去打标签。</p>
-<p>您可以将 AI
-训练阶段看作是一台全天候运转的机器，面前堆满了人们积累的网页、书籍、论文、手册等。它的任务便是：反复阅读计算，最终对每一个词在什么上下文出现、和哪些词搭配，形成一种精细的数据分布。这就是词嵌入矩阵（Embedding
-Matrix）。你可以把它想象成一本极其庞大的超级词典。它告诉系统的不是文字解释，而是一个精确的
-1024 维坐标——就好比给每个词加了极其精确的定位。</p>
+的核心突破，在于实现机器的自主阅读与语义识别。机器能够通过处理海量文本，自主发现词项间的深层关联，并构建出精确的
+1024
+维坐标体系，从而彻底摆脱对人工标注的依赖。这就是本章要探讨的底层逻辑：Embedding（词嵌入）与
+Transformer 架构。</p>
+<p>各位可以这样想象：<strong>AI
+在大规模预训练阶段，相当于在一个极度庞大的封闭语料库中，通过持续的自主学习来构建语言模型。</strong>
+它处理了包括网页、书籍、论文、新闻等在内的海量文本，其核心任务是通过分析每一个词项在不同上下文中的出现频次及其关联模式，形成一种高维特征表达。</p>
+<p>这种“特征表达”，在数学上就叫做<strong>词嵌入矩阵（Embedding
+Matrix）</strong>。</p>
+<p>你可以把它想象成一本<strong>数字化的超级词典</strong>。普通词典通过文字对“飞机”进行解释；但这本数字化词典则赋予了每个词语一个精确的
+1024 维坐标——类似于为每个词语分配了一个多维空间的 GPS
+定位。无论“飞机”、“航空器”还是“苹果”，在空间中均有其精确的坐标定位。</p>
 </aside>
 </section>
 <section id="词嵌入的深层数学表现" class="slide level2">
@@ -887,14 +926,39 @@ ext{航空器}}}{\|\mathbf{e}_{   ext{飞机}}\|
 </div>
 <aside class="notes">
 <p>在数学上，这个过程是这样的：AI
-系统维护着一个庞大的词汇表。在最原始的状态下，每个词只是一个互不相干的编号。“飞机”的关系和“苹果”没有任何区别，它们点乘的结果为零。</p>
-<p>但经过疯狂地阅读文本后，AI
-自行学习出了一个致密的权重矩阵。当“飞机”这个词被输入时，矩阵 <span
+系统维护着一个庞大的词汇表（Vocabulary），假设包含 <span
+class="math inline">\(|V| = 50000\)</span>
+个词。在最原始的状态下，每个词只是一个编号，彼此之间没有任何语义联系——“飞机”是第
+3742 号，“航空器”是第 28156
+号，它们的关系和”飞机”与”苹果”没有任何区别：</p>
+<p><span class="math inline">\(\mathbf{x}_{\text{飞机}} \cdot
+\mathbf{x}_{\text{苹果}} = 0\)</span> <span
+class="math inline">\(\mathbf{x}_{\text{飞机}} \cdot
+\mathbf{x}_{\text{航空器}} = 0\)</span></p>
+<p>这就像一个航空公司的通讯录，只有工号，没有部门信息。你光看工号，根本不知道谁和谁是同事。</p>
+<p>但经过大规模预训练之后，AI
+自行学习出了一个致密的<strong>权重矩阵（Embedding
+Matrix）</strong>，记为 <span class="math inline">\(E \in \mathbb{R}^{d
+\times |V|}\)</span>（<span class="math inline">\(d =
+1024\)</span>）。当”飞机”这个词被输入时，矩阵 <span
 class="math inline">\(E\)</span>
 就像一台精密的坐标转换仪，瞬间把它从一个无意义的编号，投射成一个拥有
-1024 个数字的稠密坐标。在这个由 AI
-自主构建的高维空间里——语义相近的词，坐标自动靠近。最终“飞机”和“航空器”的余弦相似度高达
-0.95，可以说是几乎重叠了。没人专门教它飞机和航空器是同义词，它完全是通过计算百亿次数据得出的客观规律。</p>
+1024 个数字的稠密坐标：</p>
+<p><span class="math display">\[\mathbf{e}_i = E \cdot
+\mathbf{x}_i\]</span></p>
+<p>在这个由 AI 自主构建的 1024
+维空间里，发生了显著的变化——<strong>语义相近的词，坐标自动靠近：</strong></p>
+<p><span class="math display">\[\text{cos}(\theta) =
+\frac{\mathbf{e}_{\text{飞机}} \cdot
+\mathbf{e}_{\text{航空器}}}{\|\mathbf{e}_{\text{飞机}}\|
+\|\mathbf{e}_{\text{航空器}}\|} \approx 0.95\]</span></p>
+<p>“飞机”和”航空器”的余弦相似度高达
+0.95——它们几乎重叠在一起！而”飞机”和”苹果”呢？可能只有
+0.05，远在天涯。</p>
+<p><strong>没有人告诉机器”飞机”和”航空器”是近义词。</strong>
+它完全是通过大规模阅读文本，发现这两个词总是出现在相似的上下文里（都和”航班”、“起飞”、“机场”做邻居），于是自动把它们的坐标安排到了一起。这就像你到了一个新公司，虽然没人告诉你组织架构，但你观察了一个月后发现，张三和李四总是一起开会、一起吃饭、一起加班——你自然就知道他们是同一个部门的。</p>
+<p>机器用的就是这个极其朴素的逻辑，只不过它的观察对象是几十亿篇文章，它的”部门”有
+1024 个维度。</p>
 </aside>
 </section>
 <section id="上下文突破自注意力机制-self-attention"
@@ -912,15 +976,37 @@ class="slide level2">
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
-<p>刚才我们讲的超级词典有一个问题：每个词只有一个固定的坐标。但是中文里同一个字，在不同的句子里意思可能完全不同。比如“天空很蓝”里的“空”是sky、“空航班”是empty，而如果提问“空飞机多重？”指的是航空里的“空机重量”。如果赋予固定的平均位置，将严重失真。</p>
-<p>解决方案是：看邻居。这就是 Transformer
-架构的核心秘密：自注意力机制（Self-Attention）。您可以想象一个拥有 1024
-根通道的超级调音台。当“空”进入时，它是模糊的。随后，该字向句子里的每一个邻居发出电波——“谁和我有关联联？”。“飞机”产生极强回波，“多重”也强烈响应。于是推子发生剧烈移动：代表“空机重量”的信号被推高，代表“天空”或“空闲”的被压到底。瞬间完成了它在
-1024 维矩阵中的物理跳跃，稳稳锁定“无载客重量”的正确位置。</p>
+<p>刚才我们讲的超级词典有一个巨大的问题：<strong>每个词只有一个固定的坐标。</strong></p>
+<p>但是各位想一想，中文里同一个字，在不同的句子里意思可能完全不同。比如”空”这个字：</p>
+<ul>
+<li>“<strong>天空</strong>很蓝” ——这里的”空”是 sky。</li>
+<li>“这个座位是<strong>空</strong>的” ——这里的”空”是 empty。</li>
+<li>“<strong>SA60L 空飞机多重？</strong>”
+——这里的”空”是航空术语，指的是”空机重量”（Empty
+Weight），也就是飞机不载客、不加油时有多重。</li>
+</ul>
+<p>如果”超级词典”里”空”只有一个固定坐标，那这个坐标就不得不是所有含义的”平均值”——既有点像天空，又有点像空闲，又有点像空重，结果哪个都不像。这就像你在人事系统里查到一个员工同时属于飞行部、客舱部和机务部，那他到底是干嘛的？</p>
+<p>怎么解决？<strong>看邻居。</strong></p>
+<p>这就是 Transformer
+架构的核心秘密：<strong>自注意力机制（Self-Attention）</strong>。</p>
+<p>各位不需要看懂接下来屏幕上的公式。<strong>大家只需要想象一个场景：一个拥有
+1024 根推子（通道）的超级调音台。</strong></p>
+<p>当”空”这个字进入 Transformer 时，它原本的声音是很杂乱的——1024
+根推子处于一个模糊的默认位置，“天空”的频道开着，“空闲”的频道也开着，“空重”的频道也开着，嗡嗡嗡混成一团。</p>
+<p>然后，Transformer
+的技术启动了。“空”字向句子里的每一个邻居发出了一个电波：<strong>“嘿，你们谁和我有关系？”</strong></p>
+<p>“飞机”收到了电波，立刻回应了一个极强的信号——因为”空”和”飞机”在航空语境里经常一起出现。
+“多重”也回应了一个很强的信号——因为”空”和”重量”在这种问句里是天然搭档。
+而”SA60L”回应了一个中等信号。</p>
+<p>于是，在深层矩阵计算下，调音台上的推子发生了剧烈的移动——代表”航空器”和”重量”的推子被猛烈推高，代表”蓝天”和”空闲”的推子被压到了底。一瞬间，“空”字在
+1024
+维空间里完成了一次精准的物理跳跃，从那个模糊的”平均位置”，稳稳落在了”无载客重量”的坐标上。</p>
+<p><strong>这就是机器理解上下文的技术。同一个字，放进不同的句子，得到的坐标完全不同。</strong></p>
+<p>如果你把”空”放进”天空很蓝”这个句子，“蓝”和”天”会把”空”字的推子拨向”sky”的方向。如果放进”这个座位是空的”，“座位”会把推子拨向”empty”的方向。每一次，都是周围的邻居在投票，决定这个字此时此刻的真正含义。</p>
 </aside>
 </section>
 <section id="自注意力机制的核心数学原理" class="slide level2">
@@ -945,13 +1031,41 @@ ight)V \]</span></p>
 \]</span></p>
 </div>
 <aside class="notes">
-<p>以下简要展示此技术的数学公式本质。Transformer
-把每个词同时投影成三个角色：提问者（Query）、被查询者（Key）和信息载体（Value）。</p>
-<p>简略而言就是三步：第一步是打分（<span
-class="math inline">\(QK^T\)</span>）。“空”字对所有邻接词发出演算，经过点积，“飞机”和“多重”得分极高。第二步是分配权重，通过
-$ ext{softmax}$
-计算百分比占比。第三步是吸收特征，根据这套比例，“空”字吸收了大量的飞机和多重信息。简言之，Transformer
-是一套极其精准地计算上下文以改变词语空间指向的技术系统。</p>
+<p>以下简要展示底层的数学公式（非技术背景听众可略过此段）：</p>
+<p>设当前输入的句子构成了矩阵 <span class="math inline">\(X \in
+\mathbb{R}^{L \times d}\)</span>（<span class="math inline">\(L\)</span>
+为序列长度，<span class="math inline">\(d = 1024\)</span>）。Transformer
+把每个词同时投影成三个角色——<strong>提问者（Query）、被查询者（Key）和信息载体（Value）</strong>：</p>
+<ul>
+<li><strong>Query (查询矩阵):</strong> <span class="math inline">\(Q =
+XW^Q\)</span> —— “我在找什么？”</li>
+<li><strong>Key (键矩阵):</strong> <span class="math inline">\(K =
+XW^K\)</span> —— “我能提供什么？”</li>
+<li><strong>Value (值矩阵):</strong> <span class="math inline">\(V =
+XW^V\)</span> —— “我的具体信息是什么？”</li>
+</ul>
+<p>核心的注意力公式：</p>
+<p><span class="math display">\[\text{Attention}(Q, K, V) =
+\text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V\]</span></p>
+<p>通俗理解就是三步：</p>
+<ol type="1">
+<li><strong>打分（<span
+class="math inline">\(QK^T\)</span>）</strong>：“空”字向所有邻居广播——“谁和我最相关？”。通过点积计算，“飞机”得了高分，“多重”也得了高分。</li>
+<li><strong>分配权重（<span
+class="math inline">\(\text{softmax}\)</span>）</strong>：把分数变成百分比。比如”飞机”占
+60%，“多重”占 30%，其他占 10%。</li>
+<li><strong>吸收特征（<span class="math inline">\(\times
+V\)</span>）</strong>：“空”字按照这个比例，吸收邻居们的信息：</li>
+</ol>
+<p><span class="math display">\[\mathbf{z}_{\text{空}} \approx 0.6 \cdot
+\mathbf{v}_{\text{飞机}} + 0.3 \cdot \mathbf{v}_{\text{多重}} + 0.1
+\cdot \mathbf{v}_{\text{其他}}\]</span></p>
+<hr />
+<p>各位不需要记住上面的公式。只需要记住一句话：<strong>Transformer
+就是一台根据上下文自动调整每个字含义的超级调音台。</strong>
+同一个字，在不同的句子里，它的 1024
+维坐标会被邻居们定位到完全不同的位置。这就是为什么 AI
+能理解”空飞机多重”里的”空”是”空重”，而不是”天空”。</p>
 </aside>
 </section>
 <section id="宏观浓缩池化技术-pooling" class="slide level2">
@@ -967,15 +1081,36 @@ $ ext{softmax}$
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
-<p>现在我们遇到了最后一个实际问题。经过自注意力机制运算后，一篇一万字的
-737 FCOM
-手册，系统手里也就有了一万个坐标点。但是我们系统最终的任务是比对整篇文章的相似度，因此必须将一篇文章压缩成一个坐标。</p>
-<p>这类似于评估航线整体经济性，各种独立参数必须压成一个整体报表数据。在应用里，这个操作被称为池化（Pooling）。最直接的做法就是：把所有词类的坐标取个平均值。或者让模型在顶端指定出一个能代表全文核心特征的池化位标识，即
-[CLS] 池化。最终目的，都是把整片文字坍缩成唯一的点。</p>
+<p>好，现在我们遇到了最后一个实际问题。</p>
+<p>经过刚才的自注意力机制，句子里的每一个字都拥有了一个”看过上下文之后”的精确
+1024 维坐标。也就是说，一句 10 个字的提问，我们手里有 10 个坐标点；一份
+10000 个字的波音 737 FCOM 手册，我们手里就有 10000 个坐标点。</p>
+<p>但是我们最终要做的是什么？是拿<strong>一整篇文章</strong>和<strong>另一整篇文章</strong>比较距离。我们需要的是：<strong>一篇文章
+= 一个坐标点。</strong> 不然你怎么比？</p>
+<p>这就像航空公司考核航线的盈利能力。每架航班有上百个数据（客座率、票价、燃油成本、延误时间……），但最终你得把它压缩成一个数字——比如”单位座公里收益”——才能在航线之间横向比较。</p>
+<p>在 AI
+里，这个”压缩”操作叫做<strong>池化（Pooling）</strong>。最常用的方法简单到令人发指：<strong>把所有字的坐标取个平均值。</strong></p>
+<p><span class="math display">\[\mathbf{h}_{\text{doc}} = \frac{1}{L}
+\sum_{i=1}^{L} \mathbf{h}_i\]</span></p>
+<p>10000 个字的手册，每个字有一个 1024 维坐标. 把这 10000
+个坐标逐维度取平均，最终得到一个 <span class="math inline">\(1 \times
+1024\)</span> 的向量——这就是这整篇手册在多维宇宙里的唯一 GPS 坐标。</p>
+<p>另一种更精巧的做法是让模型自己决定哪个位置最能代表全文（<strong>[CLS]
+池化</strong>），但核心理念都是一样的：把一整篇文章坍缩成一个点。</p>
+<p>最后一步，还记得我们之前讲的 L2
+归一化吗？我们把这个向量的长度强制缩放到 1：</p>
+<p><span class="math display">\[\hat{\mathbf{h}} =
+\frac{\mathbf{h}_{\text{doc}}}{\|\mathbf{h}_{\text{doc}}\|_2}\]</span></p>
+<p>至此，<strong>一段复杂、冗长的非结构化人类自然语言，彻底变成了一个标准的
+1024 维坐标 <span class="math inline">\(\hat{\mathbf{h}} \in
+\mathbb{R}^{1024}\)</span>。</strong>
+无论是一句话的提问，还是一整本厚得像砖头一样的飞行手册，在计算机眼里，全都是
+1024 维空间里的一个精确的点。</p>
+<p>而我们之前讲的所有距离计算的技术——余弦相似度、欧氏距离、点乘——现在全都可以直接用上了。有了这个数学基础，我们就可以在航空公司的真实业务中，搭建出高吞吐量的极速决策匹配系统。</p>
 </aside>
 </section>
 <section id="篇章坍缩与归一操作" class="slide level2">
@@ -1045,16 +1180,40 @@ class="slide level2">
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
-<p>这种技术架构可能会引起顾虑：是否意味着需要部署异常高昂并占用超强算力的计算中心？其实，为了让其低成本下落，工程师研发了三大核心绝技。</p>
-<p>第一个是蒸馏（Distillation）。即让昂贵的千亿参数模型充当指导对象，转移逻辑给廉价小模型。只要业务单一深入，其效能几无折损且体积极小。</p>
-<p>第二个是量化（Quantization）。把内部精度很深的浮点格式强制压缩为占用极小的格式，如
-INT4
-量化。这虽然轻微妥协了理论极值精度，但却换取了近七成的体积缩减，使得商用落地大大提速。</p>
-<p>最后则是大模型架构的颠覆：MoE（混合专家模型）。一改全局计算造成的极其耗电费时的“稠密模型”缺点，采用了稀疏结构。如同外包公司——针对不同内容只通电并唤醒特定的模块专家运算。上述“三板斧”直接为极低成本全覆盖的企业级运行奠定了底层商业底气。</p>
+<p>此时，各位负责 IT 预算的领导可能会关注：这种能够处理数千页手册的
+AI，是否需要部署在极其昂贵的超级服务器集群上？我们该如何平衡分公司的部署成本与效能？</p>
+<p>这就是今天我要分享的第二个商业视角。为了实现 AI
+在企业乃至终端设备的低成本落地，全球工程师正在通过以下三项核心技术压榨计算成本：</p>
+<h4 id="蒸馏">蒸馏</h4>
+<p>第一个是<strong>蒸馏（Distillation）</strong>。其核心逻辑可以类比为“知识传递”。我们利用参数量庞大的顶级模型作为“教师模型”，将其逻辑链与思维模式传授给参数规模较小（如
+80
+亿参数）的“学生模型”。小模型学成后，虽然综合知识覆盖面略逊，但在处理特定业务任务（如飞行手册解析）时的表现与大模型高度接近，而体积仅为后者的十分之一。</p>
+<h4 id="量化">量化</h4>
+<p>第二个是<strong>量化（Quantization）</strong>。</p>
+<p>AI
+模型内部的参数本质上是高精度的数字。在研究阶段，为追求极致精度，通常采用
+FP32 或 FP16
+格式。但在企业级部署时，我们会采用一种类似“数据压缩”的技术，将参数精度转换为更紧凑的格式，例如目前主流的
+<strong>INT4 量化</strong>。</p>
+<p>采用 INT4 量化后，模型体积可缩减 70%
+以上。即便在理论精度上存在极轻微的妥协，却能换取极大的部署灵活性——原本需要千万级机房支持的计算任务，现在可以在单台普通的万元级工作站上流畅运行。</p>
+<h4 id="混合专家模型moe">混合专家模型（MoE）</h4>
+<p>除了压缩体积，为了提升算力利用率，业界还对模型架构进行了颠覆性重构：<strong>MoE（混合专家模型，Mixture
+of Experts）</strong>。</p>
+<p>传统的<strong>“稠密模型（Dense）”</strong>在处理任何简单任务时（如基础运算），都需要调动全局参数参与计算，这造成了极大的算力浪费与能耗。</p>
+<p>针对这一痛点，<strong>“稀疏模型（Sparse）”</strong>通过 MoE
+架构实现了计算资源的按需分配。</p>
+<p>一个拥有 <strong>“400 亿总参数量”</strong> 的 MoE
+模型，由多个专注不同领域的“专家模块”（如代码专家、翻译专家、航空领域专家）组成。当系统接收到特定的航空查询时，内部的“路由器”会瞬间识别意图，并<strong>仅唤醒与之匹配的专家模块</strong>，其余模块保持静默。</p>
+<p>这意味着其在处理特定任务时，<strong>实际激活的参数量可能仅为 50
+亿</strong>。这种高效的非稠密架构，使模型在维持极高知识储备的同时，极大降低了单次运算的算力成本。</p>
+<p><strong>蒸馏（缩小参数规模）、量化（压缩数字精度）和
+MoE（减少单次激活规模），这三项核心技术确保了 AI
+不再是昂贵的算力奢侈品，而是企业可以规模化拥抱的生产力底座。</strong></p>
 </aside>
 </section></section>
 <section>
@@ -1081,7 +1240,7 @@ class="fragment"><strong>泛化薄弱</strong>：遇未见特征组合即刻失�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1105,7 +1264,7 @@ class="fragment"><strong>几何表达</strong>：语义特征与图像特征在�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1131,7 +1290,7 @@ class="fragment"><strong>工业现状</strong>：已形成标准化、成熟部�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1155,7 +1314,7 @@ class="fragment"><strong>平权效应</strong>：极简指令即可调用数千�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1183,7 +1342,7 @@ class="fragment"><strong>集成隐患</strong>：语言壁垒与框架拖拽导�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1208,7 +1367,7 @@ class="fragment"><strong>精准切割</strong>：彻底剥离“视觉解析”�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1246,7 +1405,7 @@ class="fragment"><strong>架构主权</strong>：以极高并发及本地私有�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1283,7 +1442,7 @@ class="fragment"><strong>顶层延展</strong>：具备距离计算与几何聚�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1315,7 +1474,7 @@ class="fragment"><strong>顶层延展</strong>：具备距离计算与几何聚�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1349,7 +1508,7 @@ OpenAI 训练 GPT-4，就是在做这件事。</p>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1381,7 +1540,7 @@ OpenAI 训练 GPT-4，就是在做这件事。</p>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1426,7 +1585,7 @@ AlphaGo，用的就是强化学习的技术。</p>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1480,7 +1639,7 @@ Core，它是专门为矩阵乘法设计的物理电路。</p>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1515,7 +1674,7 @@ class="fragment"><strong>无须计算层级</strong>：如肌肉记忆般直出<
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1550,7 +1709,7 @@ class="fragment"><strong>2022年收网</strong>：万卡并行矩阵底座完全
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1588,7 +1747,7 @@ AlexNet ，全世界意识到游戏卡的潜力。</p>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1630,7 +1789,7 @@ class="title-slide slide level1">
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1662,7 +1821,7 @@ class="fragment"><strong>可导航小世界</strong>：小步跃升与贪心路�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1690,7 +1849,7 @@ class="fragment">算法核心：非表面切层，而是深度保留“拓扑结
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1715,7 +1874,7 @@ class="fragment">突破认知：在幽深、海量的坐标云中，仅仅只是
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1750,7 +1909,7 @@ class="title-slide slide level1">
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1787,7 +1946,7 @@ class="slide level2">
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1839,7 +1998,7 @@ Demo：通过提示词限定了系统输出，但它的底层依然是在语境�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1874,7 +2033,7 @@ Skills (Function Calling)
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1905,7 +2064,7 @@ AI
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -1960,7 +2119,7 @@ USB-C 接口。 插上它，AI
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -2003,7 +2162,7 @@ class="title-slide slide level1">
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -2036,7 +2195,7 @@ Agent 面对极度不确定的市场反应往往是追涨杀跌的情绪化映�
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -2072,7 +2231,7 @@ class="title-slide slide level1">
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -2108,7 +2267,7 @@ class="title-slide slide level1">
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -2138,7 +2297,7 @@ class="fragment">对航司警告：利用重资建立的门槛遭遇服务软件
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
@@ -2163,7 +2322,7 @@ class="fragment">对航司警告：利用重资建立的门槛遭遇服务软件
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="missing.jpg" /></p>
+<p><img data-src="Pics/missing.jpg" /></p>
 </div>
 </div>
 <aside class="notes">
