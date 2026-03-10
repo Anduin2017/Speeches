@@ -1386,7 +1386,7 @@ $$ ec{\mathbf{v}}_{norm} = rac{ec{\mathbf{v}}}{\|ec{\mathbf{v}}\|_2} $$
 
 ---
 
-## Demo 7：CUDA 实时渲染与并发奇迹
+## Demo 8：CUDA 实时渲染——亲眼看看 GPU 有多快
 
 ::: {style="text-align: center; margin-top: 20%;"}
 **系统应用**：亿级像素同步解析与高维物理运算对比
@@ -1701,7 +1701,7 @@ $$ ec{\mathbf{v}}_{norm} = rac{ec{\mathbf{v}}}{\|ec{\mathbf{v}}\|_2} $$
 
 ---
 
-## Demo 8：AI 空管 Agent 对话能力
+## Demo 9：AI 空管 Agent 极限测试（两行提示词的技术）
 
 ::: {style="text-align: center; margin-top: 20%;"}
 **系统应用**：受提示词控制约束下进行专业航空应答控制，排除干扰诱导。
@@ -1819,7 +1819,7 @@ $$ ec{\mathbf{v}}_{norm} = rac{ec{\mathbf{v}}}{\|ec{\mathbf{v}}\|_2} $$
 
 ---
 
-## Demo 9.1：MCP 代码编写运行
+## Demo 10：MCP Q&A 让 AI 写一段代码并自己运行
 
 ::: {style="text-align: center; margin-top: 20%;"}
 **系统应用**：利用系统终端实时执行算法运算操作
@@ -1833,7 +1833,7 @@ $$ ec{\mathbf{v}}_{norm} = rac{ec{\mathbf{v}}}{\|ec{\mathbf{v}}\|_2} $$
 
 ---
 
-## Demo 9.2：Agent 测试 737常识系统开发
+## Demo 11：MCP Agent 的极限测试（两分钟写完一个737常识考试题库）
 
 ::: {style="text-align: center; margin-top: 20%;"}
 **系统应用**：验证 MCP 的完整读写执行工程业务全流程
