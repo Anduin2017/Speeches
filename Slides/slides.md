@@ -249,7 +249,7 @@ date: "2026-03-10"
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/missing.jpg)
+![](Pics/vision_detect.png)
 :::
 ::::::::::::::
 
@@ -791,7 +791,7 @@ $$\text{cos}(\theta) = \frac{\mathbf{e}_{\text{飞机}} \cdot \mathbf{e}_{\text{
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/missing.jpg)
+![](Pics/cnn-rnn-self-attention.svg)
 :::
 ::::::::::::::
 
@@ -891,7 +891,7 @@ $$\mathbf{z}_{\text{空}} \approx 0.6 \cdot \mathbf{v}_{\text{飞机}} + 0.3 \cd
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/missing.jpg)
+![](Pics/pooling.jpg)
 :::
 ::::::::::::::
 
