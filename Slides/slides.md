@@ -1395,7 +1395,7 @@ CLIP 的技术突破核心在于：它将**文字的特征空间**与**图片的
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/Flowise_AI_Agent_Workflow_Builder.webp)
+![](Pics/hugging-face-image27.webp)
 :::
 ::::::::::::::
 
