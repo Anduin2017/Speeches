@@ -899,22 +899,66 @@ class="math inline">\(d\)</span> 也就无限趋近于 0。</p>
 </section>
 <section id="b-归一化的奇妙应用" class="slide level2">
 <h2>4.4b 归一化的奇妙应用</h2>
+<div class="columns">
+<div class="column" style="width:100%;">
+<p><strong>重新验证：“炒方便面的做法”</strong> <br></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">博客文章</th>
+<th style="text-align: center;">空客</th>
+<th style="text-align: center;">起飞</th>
+<th style="text-align: center;">降落</th>
+<th style="text-align: center;">波音</th>
+<th style="text-align: center;">特征向量</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>第一篇 (A320 起飞)</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><code>[1, 1, 0, 0]</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>第四篇 (炒方便面)</strong></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><code>[0, 0, 0, 0]</code></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
 <div class="fragment">
-<p>展示单位超球面的三维可视化——各种长短不一的向量被 L2
-归一化后，全部落在球面上。</p>
+<p><strong>点乘核验：</strong> <span class="math display">\[ \mathbf{x}
+\cdot \mathbf{y} = 1 \times 0 + 1 \times 0 + 0 \times 0 + 0 \times 0 = 0
+\]</span></p>
+</div>
+<div class="fragment">
+<ul>
+<li>点乘等于 0</li>
+<li>夹角 <span class="math inline">\(\theta = 90^\circ\)</span> , <span
+class="math inline">\(\cos(90^\circ) = 0\)</span></li>
+<li>结论：没有交集，判定为不相关</li>
+</ul>
+</div>
+</div>
 </div>
 <aside class="notes">
 <p>那炒方便面的做法的事情解决了吗？让我们用新武器重新验证一下。</p>
 <p>还记得那个让欧氏距离失效的例子吗？“A320的起飞”
 <code>[1, 1, 0, 0]</code> 和 “炒方便面的做法” <code>[0, 0, 0, 0]</code>
 的欧氏距离是 1.41，跟”起降原理”一样。但现在，我们用点乘来审判它：</p>
-<p><span class="math display">\[\mathbf{x} \cdot \mathbf{y} = 1 \times 0
-+ 1 \times 0 + 0 \times 0 + 0 \times 0 = 0\]</span></p>
-<p><strong>点乘直接等于 0！</strong>
-两个特征向量在多维空间里完全垂直，夹角 <span
-class="math inline">\(\theta = 90^\circ\)</span>，<span
-class="math inline">\(\cos(90^\circ) = 0\)</span>。在我们这个极简 的 4
-维手工模型里，它们没有任何维度上的交集，判定为<strong>完全不相关</strong>——干净利落。</p>
+<p><span class="math display">\[ \mathbf{x} \cdot \mathbf{y} = 1 \times
+0 + 1 \times 0 + 0 \times 0 + 0 \times 0 = 0 \]</span></p>
+<p>点乘直接等于 0，两个特征向量在多维空间里垂直，夹角 <span
+class="math inline">\(\theta = 90^\circ\)</span> ，<span
+class="math inline">\(\cos(90^\circ) = 0\)</span>。在我们这个极简的 4
+维手工模型里，它们没有任何维度上的交集，判定为不相关。</p>
 <p>在我们手工打造的 4 维标签空间里，点乘为 0
 是完全精确的。但当我们用真正的大模型来处理同样这两篇文章时，你会发现炒方便面的做法
 和 A320 起飞的余弦相似度并不是绝对的
@@ -935,11 +979,10 @@ class="math inline">\(\cos(90^\circ) = 0\)</span>。在我们这个极简 的 4
 \times 0 + 0 \times 0 + 0 \times 0 = 0\)</span></p>
 </div>
 <div class="fragment">
-<div style="text-align: center; font-size: 1.5em; margin-top: 20px;">
+<div style="text-align: center; font-size: 1.0em; margin-top: 20px;">
 <p>点乘直接等于 0！<br> 夹角 <span class="math inline">\(\theta =
 90^\circ\)</span>，<span class="math inline">\(\cos(90^\circ) =
-0\)</span><br> <span
-style="color: red; font-weight: bold;">它们没有任何交集，判定为完全不相关。</span></p>
+0\)</span><br> <span>它们没有任何交集，判定为完全不相关。</span></p>
 </div>
 </div>
 <aside class="notes">

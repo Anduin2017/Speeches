@@ -740,18 +740,41 @@ $$d = \sqrt{2 - 2\cos(\theta)}$$
 
 ## 4.4b 归一化的奇妙应用
 
+:::::::::::::: {.columns}
+::: {.column width="100%"}
+
+**重新验证：“炒方便面的做法”**
+<br>
+
+| 博客文章 | 空客 | 起飞 | 降落 | 波音 | 特征向量 |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **第一篇 (A320 起飞)** | 1 | 1 | 0 | 0 | `[1, 1, 0, 0]` |
+| **第四篇 (炒方便面)** | 0 | 0 | 0 | 0 | `[0, 0, 0, 0]` |
+
+<br>
+
 ::: {.fragment}
-展示单位超球面的三维可视化——各种长短不一的向量被 L2 归一化后，全部落在球面上。
+**点乘核验：**
+$$ \mathbf{x} \cdot \mathbf{y} = 1 \times 0 + 1 \times 0 + 0 \times 0 + 0 \times 0 = 0 $$
 :::
+
+::: {.fragment}
+- 点乘等于 0
+- 夹角 $\theta = 90^\circ$ , $\cos(90^\circ) = 0$
+- 结论：没有交集，判定为不相关
+:::
+
+:::
+::::::::::::::
 
 ::: notes
 那炒方便面的做法的事情解决了吗？让我们用新武器重新验证一下。
 
 还记得那个让欧氏距离失效的例子吗？"A320的起飞" `[1, 1, 0, 0]` 和 "炒方便面的做法" `[0, 0, 0, 0]` 的欧氏距离是 1.41，跟"起降原理"一样。但现在，我们用点乘来审判它：
 
-$$\mathbf{x} \cdot \mathbf{y} = 1 \times 0 + 1 \times 0 + 0 \times 0 + 0 \times 0 = 0$$
+$$ \mathbf{x} \cdot \mathbf{y} = 1 \times 0 + 1 \times 0 + 0 \times 0 + 0 \times 0 = 0 $$
 
-**点乘直接等于 0！** 两个特征向量在多维空间里完全垂直，夹角 $\theta = 90^\circ$，$\cos(90^\circ) = 0$。在我们这个极简 的 4 维手工模型里，它们没有任何维度上的交集，判定为**完全不相关**——干净利落。
+点乘直接等于 0，两个特征向量在多维空间里垂直，夹角 $\theta = 90^\circ$ ，$\cos(90^\circ) = 0$。在我们这个极简的 4 维手工模型里，它们没有任何维度上的交集，判定为不相关。
 
 
 
@@ -773,10 +796,10 @@ $$\mathbf{x} \cdot \mathbf{y} = 1 \times 0 + 1 \times 0 + 0 \times 0 + 0 \times 
 :::
 
 ::: {.fragment}
-<div style="text-align: center; font-size: 1.5em; margin-top: 20px;">
+<div style="text-align: center; font-size: 1.0em; margin-top: 20px;">
 点乘直接等于 0！<br>
 夹角 $\theta = 90^\circ$，$\cos(90^\circ) = 0$<br>
-<span style="color: red; font-weight: bold;">它们没有任何交集，判定为完全不相关。</span>
+<span>它们没有任何交集，判定为完全不相关。</span>
 </div>
 :::
 
