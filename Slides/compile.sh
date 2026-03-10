@@ -6,7 +6,7 @@ echo "Compiling slides.md to index.html using Pandoc..."
 pandoc -t revealjs -s slides.md -o index.html \
     -V revealjs-url=node_modules/reveal.js \
     -V theme=white \
-    --mathjax="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-AMS_HTML-full" \
+    --mathjax="node_modules/mathjax/tex-chtml.js" \
     --slide-level=2
 
 echo "Compilation successful!"
