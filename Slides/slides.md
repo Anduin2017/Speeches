@@ -23,10 +23,11 @@ date: "2026-03-10"
 - 🏢 主要研发方向： 数据中心基础设施
 - ✈️ 山河航空私照飞行学员 (40小时飞行经验)
 - Aiursoft Corporation CEO
+
+<img src="Pics/microsoft_suzhou_office.jpeg" style="width: 100%; border-radius: 10px; margin-top: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
 :::
 :::
 ::: {.column width="45%"}
-![](Pics/microsoft_suzhou_office.jpeg)
 :::
 ::::::::::::::
 
@@ -1283,9 +1284,10 @@ RAG 的本质，其实就是我们刚才讲的 Embedding 向量技术的一次�
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/quantization-performance-of-small-vs-big-models-v0-kywzrfdwzvoe1.webp)
-
-![](Pics/quantization.png)
+<div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+<img src="Pics/quantization-performance-of-small-vs-big-models-v0-kywzrfdwzvoe1.webp" style="max-height: 35vh; object-fit: contain;" />
+<img src="Pics/quantization.png" style="max-height: 35vh; object-fit: contain;" />
+</div>
 :::
 ::::::::::::::
 
@@ -1848,9 +1850,10 @@ AI关键术语与硬件发展
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/NVIDIA_A100_Server_Hardware.webp)
-
-![](Pics/NVIDIA_Data_Center_GPU_Specs_Comparison.webp)
+<div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+<img src="Pics/NVIDIA_A100_Server_Hardware.webp" style="max-height: 35vh; object-fit: contain;" />
+<img src="Pics/NVIDIA_Data_Center_GPU_Specs_Comparison.webp" style="max-height: 35vh; object-fit: contain;" />
+</div>
 :::
 ::::::::::::::
 
@@ -2455,9 +2458,10 @@ HNSW 将每一个向量点视为一个节点，并让距离相近的向量建立
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/autogpt_workflow.png)
-
-![](Pics/Flowise_AI_Agent_Workflow_Builder.webp)
+<div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+<img src="Pics/autogpt_workflow.png" style="max-height: 35vh; object-fit: contain;" />
+<img src="Pics/Flowise_AI_Agent_Workflow_Builder.webp" style="max-height: 35vh; object-fit: contain;" />
+</div>
 :::
 ::::::::::::::
 
@@ -2934,9 +2938,10 @@ Meta 采取了截然不同的路径。它投入巨资研发 Llama 大模型，�
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/deepseek_overview.webp)
-
-![](Pics/deepseek_ai_innovation.jpg)
+<div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+<img src="Pics/deepseek_overview.webp" style="max-height: 40vh; object-fit: contain;" />
+<img src="Pics/deepseek_ai_innovation.jpg" style="max-height: 30vh; object-fit: contain;" />
+</div>
 :::
 ::::::::::::::
 
