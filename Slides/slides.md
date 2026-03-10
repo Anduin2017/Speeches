@@ -2,6 +2,7 @@
 title: "Moog 主办的演讲：AI 在航空业的应用科普"
 author: "Anduin"
 date: "2026-03-10"
+backgroundTransition: "slide"
 ---
 
 # 第一章：问候
@@ -11,6 +12,17 @@ date: "2026-03-10"
 .reveal h1 { font-size: 1.8em; }
 .reveal h2 { font-size: 1.4em; }
 .reveal h3 { font-size: 1.2em; }
+.reveal .slide-background-content {
+  background-image: url("background.jpeg");
+  background-size: cover;
+  background-position: center;
+  /* Add a very subtle dark overlay for better text contrast if needed */
+}
+/* Override for slides that explicitly provide their own custom backgrounds */
+.reveal .slide-background[data-background-image] .slide-background-content {
+  background-image: inherit; /* Let Reveal.js handle inline styles for custom pages */
+  background-color: #fff;
+}
 </style>
 
 ## 欢迎：遇见 Anduin {data-background-image="Pics/Anduin_Profile.jpg" data-background-size="45vw" data-background-position="right"}
@@ -246,8 +258,10 @@ date: "2026-03-10"
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/avigame.png)
-![](Pics/avigame-qr.png)
+<div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+<img src="Pics/avigame.png" style="max-height: 40vh; object-fit: contain;" />
+<img src="Pics/avigame-qr.png" style="max-height: 30vh; object-fit: contain;" />
+</div>
 :::
 ::::::::::::::
 

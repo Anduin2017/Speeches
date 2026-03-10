@@ -50,6 +50,17 @@
 .reveal h1 { font-size: 1.8em; }
 .reveal h2 { font-size: 1.4em; }
 .reveal h3 { font-size: 1.2em; }
+.reveal .slide-background-content {
+  background-image: url("background.jpeg");
+  background-size: cover;
+  background-position: center;
+  /* Add a very subtle dark overlay for better text contrast if needed */
+}
+/* Override for slides that explicitly provide their own custom backgrounds */
+.reveal .slide-background[data-background-image] .slide-background-content {
+  background-image: inherit; /* Let Reveal.js handle inline styles for custom pages */
+  background-color: #fff;
+}
 </style>
 </section>
 <section id="欢迎遇见-anduin" class="slide level2"
@@ -325,8 +336,11 @@ class="slide level2">
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="Pics/avigame.png" /> <img
-data-src="Pics/avigame-qr.png" /></p>
+<div
+style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+<p><img src="Pics/avigame.png" style="max-height: 40vh; object-fit: contain;" />
+<img src="Pics/avigame-qr.png" style="max-height: 30vh; object-fit: contain;" /></p>
+</div>
 </div>
 </div>
 <aside class="notes">
@@ -3633,7 +3647,7 @@ Agent”……谁就能在下一场效率革命中锁定胜局。</p>
 
         // Transition style for full page slide backgrounds
         // (none/fade/slide/convex/concave/zoom)
-        backgroundTransition: 'fade',
+        backgroundTransition: 'slide',
 
         // Number of slides away from the current that are visible
         viewDistance: 3,
