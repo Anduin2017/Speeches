@@ -1968,7 +1968,7 @@ GPU 虽然性能强劲，但能耗较高，通常部署在具备重型冷却系�
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/NVIDIA_A100_Server_Hardware.webp)
+![](Pics/jensen_huang_cuda_demo.jpeg)
 :::
 ::::::::::::::
 
@@ -2754,7 +2754,7 @@ HNSW 将每一个向量点视为一个节点，并让距离相近的向量建立
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/datacenter.jpg)
+![](Pics/tech_company_involves_ai.png)
 :::
 ::::::::::::::
 
@@ -2781,7 +2781,7 @@ HNSW 将每一个向量点视为一个节点，并让距离相近的向量建立
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/Data_Center_Segment_Revenue_FY17_FY22.webp)
+![](Pics/electricity-demand-rising.webp)
 :::
 ::::::::::::::
 
@@ -2806,7 +2806,7 @@ HNSW 将每一个向量点视为一个节点，并让距离相近的向量建立
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/aiursoft.png)
+![](Pics/building_ai_workflow.avif)
 :::
 ::::::::::::::
 
@@ -2876,7 +2876,7 @@ Meta 采取了截然不同的路径。它投入巨资研发 Llama 大模型，�
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/aiursoft.png)
+![](Pics/iphone_ai_features.webp)
 :::
 ::::::::::::::
 
@@ -2982,7 +2982,7 @@ DeepSeek 将强大的 AI 智力以极低的价格向全球释放，大幅降低�
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/hero-robot.png)
+![](Pics/digital_agent_in_factory.png)
 :::
 ::::::::::::::
 
