@@ -116,7 +116,7 @@ Demo H:
 
 使用 Gemini CLI 现场诊断我的服务器。
 
-Demo I:
+Demo I:（已经在演讲稿中暖场Demo过了）
 
 使用Index TTS使用现场观众的声纹去训练然后得到语音。
 
