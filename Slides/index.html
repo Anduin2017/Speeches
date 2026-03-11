@@ -2523,6 +2523,58 @@ Batching</strong> 和 企业级并发调度. Mac
 企业级的并发推理引擎，构成了目前 AI 时代最坚固的壁垒。</strong> 微软
 Azure GPU 实例 150% 的增长率，正是对英伟达的一场豪赌。</p>
 </aside>
+</section>
+<section id="vs-a100你要的是单兵武器还是工业水泵" class="slide level2">
+<h2>3090 vs A100：你要的是“单兵武器”还是“工业水泵”？</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><strong>3090 (GDDR6X) ——
+高性价比的单兵利器</strong>
+<ul>
+<li class="fragment"><strong>通信瓶颈</strong>：显存碎片化，NVLink
+仅支持双卡互联</li>
+<li
+class="fragment"><strong>定位</strong>：单人实验、低成本研发、单路批处理
+(Batch = 1)</li>
+</ul></li>
+<li class="fragment"><strong>A100 (HBM2e) —— 企业级的高并发引擎</strong>
+<ul>
+<li class="fragment"><strong>全局互联</strong>：NVSwitch 全局互联，600
+GB/s 极宽通信</li>
+<li class="fragment"><strong>带宽降维打击</strong>：HBM
+解决极度吃显存的高并发推理难题</li>
+<li class="fragment"><strong>工程隔离</strong>：MIG 物理切分，全链路 ECC
+纠错保护</li>
+<li
+class="fragment"><strong>定位</strong>：多租户高可用云服务、超大模型并行推理与训练</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="Pics/NVIDIA_A100_Server_Hardware.webp" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>在做算力决策时，很多初创公司会问：“用一张 A100 的钱买 8 张 3090
+行不行？”</p>
+<p>单看纸面算力，8 张 3090 诱惑极大，但企业级部署往往最终选择
+A100。核心原因在于： <strong>1. 致命的通信瓶颈：</strong> 3090 的 NVLink
+仅支持双卡互联，8卡集群只能走极慢的 PCIe 总线；而 A100 拥有全互联的
+NVSwitch。遇到需要多卡切分（张量并行）的大模型时，3090 会把时间都浪费在
+PCIe 通信等待上。 <strong>2. 内存带宽决定的高并发：</strong>
+推理其实是“内存带宽受限”任务，需要极高的速度搬运模型权重和庞大的 KV
+Cache。3090 的 GDDR6X 带宽遇到多并发直接堵死；而 A100 的 HBM2e
+拥有数倍带宽，轻松扛住高并发吞吐量（Tokens/s）。 <strong>3.
+资源隔离与系统工程：</strong> A100 的 MIG 技术能从硬件底层把一块 GPU
+物理切分给不同租户，完美支持 Docker。同时它专为机房被动散热设计，而 3090
+放入服务器会面临严重的散热降频、无 ECC 纠错以及 Nvidia 商业授权 (EULA)
+违规问题。</p>
+<p>结论：如果是作为企业对外的工业级高频调用服务，HBM 和 A100
+是绝对刚需；如果是团队内部低成本单人研发环境，3090
+才是高性价比的王道。</p>
+</aside>
 </section></section>
 <section>
 <section id="第八章工程的奇迹向量数据库"
@@ -3416,6 +3468,102 @@ DeepSeek
 <p>DeepSeek 将强大的 AI 智力以极低的价格向全球释放，大幅降低了 AI
 的准入门槛。这向 企业传递了一个明确利好：<strong>高智商的 AI
 服务已变得极其普及且廉价。</strong></p>
+</aside>
+</section>
+<section id="deepseek-的架构奇迹v3-基础模型" class="slide level2">
+<h2>11.3.3 DeepSeek 的架构奇迹：V3 基础模型</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><strong>MoE
+(混合专家)</strong>：精细的负载均衡，降低计算损耗</li>
+<li class="fragment"><strong>MLA
+(多头潜在注意力)</strong>：极大节省显存中的 KV 缓存</li>
+<li
+class="fragment"><strong>极致的推理成本</strong>：6700亿参数中仅激活370亿</li>
+<li
+class="fragment"><strong>打破算力神话</strong>：训练与推理成本的双重断崖式下降</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="Pics/deepseek_ai_innovation.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>DeepSeek
+的成功并非单纯堆砌算力，而是<strong>极致的工程与架构创新</strong>。在 V3
+基础模型中，他们引入了两大核心技术。</p>
+<p>第一是<strong>混合专家架构 (MoE)</strong>
+的优化，解决了传统模型在多节点间的负载均衡问题；第二是<strong>多头潜在注意力机制
+(MLA)</strong>，大幅节省了处理长文本时最吃显存的 KV Cache。</p>
+<p>这带来了一个革命性的结果：一个拥有 6700
+亿参数的庞然大物，在每次推理时<strong>仅需激活 370
+亿个参数</strong>。这种高度稀疏化的结构不仅让训练成本降至惊人的低位（约500多万美元），更重要的是，它<strong>极大地降低了持续的推理运营成本</strong>。这在商业化落地上是一个改变游戏规则的卖点。</p>
+</aside>
+</section>
+<section id="范式颠覆无需人类反馈的强化学习" class="slide level2">
+<h2>11.3.4 范式颠覆：无需人类反馈的强化学习</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><strong>R1 系列模型</strong>：比肩 OpenAI o1
+的推理之王</li>
+<li class="fragment"><strong>强化学习的飞跃</strong>：摒弃昂贵的 RLHF
+(基于人类反馈)</li>
+<li class="fragment"><strong>GRPO
+算法</strong>：直接优化策略，解决大规模算力开销</li>
+<li
+class="fragment"><strong>自我博弈</strong>：靠明确奖励函数自我进化出长链思考</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="Pics/avigame.png" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>在基础模型之上，DeepSeek 推出的推理模型 R1 更是直接对标了 OpenAI
+最强的 o1 模型。它的创新在于彻底颠覆了训练范式。</p>
+<p>以往的主流训练极度依赖昂贵的人工标注与反馈（RLHF）。而 DeepSeek
+R1-Zero
+则证明了，在拥有标准答案的领域（如数学和代码），通过<strong>纯粹的强化学习</strong>，辅以简单的奖励函数（如答案对错、格式是否规范），模型可以在没有任何人类指导的情况下，通过大量的自我博弈和试错，自己进化出极其强大的逻辑推理和长链思考能力。</p>
+<p>并且，他们采用了退化但更高效的 <strong>GRPO
+算法</strong>，砍掉了冗余的结构，进一步解决了大规模强化学习时的算力开销问题。</p>
+</aside>
+</section>
+<section id="开源生态与商业格局的巨震" class="slide level2">
+<h2>11.3.5 开源生态与商业格局的巨震</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li
+class="fragment"><strong>冲击闭源壁垒</strong>：打破垄断溢价，迫使巨头降价</li>
+<li class="fragment"><strong>算力格局松动</strong>：FP8
+优化与高稀疏性，利好泛芯片生态</li>
+<li class="fragment"><strong>应用大爆发</strong>：使高频调用的 AI Agent
+成为好生意</li>
+<li class="fragment"><strong>重塑终端
+AI</strong>：推理边际成本趋零，端侧应用迎红利</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="Pics/tech_company_involves_ai.png" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>DeepSeek 的横空出世，在整个硅谷引发了强烈地震。</p>
+<p><strong>首先是对闭源巨头的冲击</strong>。它证明了 AI
+领域可能不存在不可逾越的技术护城河。如此高智力且开源免费的模型，直接打掉了头部闭源模型因技术垄断带来的高溢价，迫使全行业跟进降价。</p>
+<p><strong>其次是对算力格局的影响</strong>。虽然它没有完全绕过英伟达的
+CUDA，但其对 FP8
+精度的极致利用和对硬件的底层优化，确实在英伟达的壁垒上凿开了一道口子，让
+AMD、TPU 以及各类专用芯片看到了希望。</p>
+<p><strong>最重要的是对下游应用的解放</strong>。因为推理成本的跳水，以往那种每次思考都要耗费大量
+API 成本的复杂 AI
+Agent（智能体）终于变得有利可图；那些部署在手机或本地设备上的端侧 AI
+应用，也因为边际成本趋于零而迎来了真正的爆发期。</p>
 </aside>
 </section>
 <section id="真相四极低的用户黏性与传统行业一夜被颠覆的恐惧"
