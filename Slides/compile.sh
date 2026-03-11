@@ -9,4 +9,7 @@ pandoc -t revealjs -s slides.md -o index.html \
     --mathjax="node_modules/mathjax/tex-chtml.js" \
     --slide-level=2
 
+# Inject sync.js for cross-device speaker remote
+sed -i 's|</body>|<script src="sync.js"></script>\n    </body>|' index.html
+
 echo "Compilation successful!"

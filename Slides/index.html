@@ -1634,6 +1634,67 @@ of Experts）</strong>。</p>
 MoE（减少单次激活规模），这三项核心技术确保了 AI
 不再是昂贵的算力奢侈品，而是企业可以规模化拥抱的生产力底座。</strong></p>
 </aside>
+</section>
+<section id="进阶工程真相哪些场景需要自己动手量化" class="slide level2">
+<h2>5.5 进阶工程真相：哪些场景需要“自己动手量化”？</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><strong>云端“背刺”与本地逆袭</strong>：
+<ul>
+<li class="fragment">量化校准极度消耗 CPU 与 IO (CPU/IO Bound)</li>
+<li class="fragment">本地满血 4090 往往碾压“阉割版”云端 A100</li>
+</ul></li>
+<li class="fragment"><strong>量化不吃显存的秘密 (逐层校准)</strong>：
+<ul>
+<li class="fragment">巨大模型存放于内存 (RAM)，每次仅切出一层放入
+VRAM</li>
+</ul></li>
+<li class="fragment"><strong>三大不可妥协的自量化场景</strong>：
+<ul>
+<li
+class="fragment"><strong>独家私有模型</strong>：自训练/微调模型，社区无现成资源</li>
+<li class="fragment"><strong>极致“量体裁衣”</strong>：精确设定奇葩比特率
+(如 4.65 bpw)，压榨极限硬件性能并保留 KV Cache</li>
+<li
+class="fragment"><strong>掌控校准数据集</strong>：喂给垂直领域数据，避免量化导致的业务“降智”</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div
+style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+<p><img src="Pics/quantization.png" style="max-height: 40vh; object-fit: contain;" /></p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>在了解了量化之后，很多人会问：“既然 HuggingFace
+上满地都是现成的量化模型，白嫖不香吗？为什么要自己去跑量化？”</p>
+<p>这是一个非常硬核的工程真相。首先，<strong>你本地的 4090
+跑量化可能比租的 A100 还快。</strong>
+因为租的云服务器经常是“吕布骑狗”，A100 配着拉胯的 CPU 和 IO，而像 GPTQ
+这种量化算法，在校准（Calibration）阶段，需要海量的 CPU
+计算和数据搬运，正是 <strong>CPU Bound</strong> 和 <strong>IO
+Bound</strong> 的场景。</p>
+<p>其次，<strong>量化并不需要把整个模型塞进显存。</strong>
+主流量化算法采用<strong>逐层校准（Layer-wise
+Calibration）</strong>：巨大的原始模型放系统内存里，每次只切出一个
+Transformer 层进 GPU
+显存，校准、压缩、吐回硬盘，再加载下一层。只要内存够大，单卡也能量化千亿超大模型。</p>
+<p>最后，既然有现成的，<strong>为什么要自己动手量化？</strong>
+为了解决三个无法妥协的痛点： 1. <strong>独家业务的私有模型（Custom
+Fine-tunes）：</strong> 你刚用企业内部数据做完 SFT 或
+LoRA，网上不可能有人替你量化。你要部署就必须自己走一遍流水线。 2.
+<strong>极致的“量体裁衣”（Squeezing the Hardware）：</strong>
+比如你要把模型恰好塞进 48G 显存，还要留 8G
+跑长文本。通过自选量化算法设定极其精准的奇葩比特率（如 4.65
+bpw），这叫精细的内存刀法。 3. <strong>掌控校准数据集（Calibration Data
+Control）：</strong>
+用日常聊天数据校准的代码模型会严重“掉智商”。自己量化可以喂给它极其对口的专业校准数据，最大程度保住它在你垂直领域的精度。</p>
+<p>掌控量化流水线，就等于掌控了算力成本的命脉。</p>
+</aside>
 </section></section>
 <section>
 <section id="第六章" class="title-slide slide level1">
@@ -2035,8 +2096,8 @@ class="title-slide slide level1">
 <h1>第七章 核心概念与算力引擎</h1>
 <p>AI关键术语与硬件发展</p>
 </section>
-<section id="扫盲时间ai-的三大核心问题" class="slide level2">
-<h2>7.1 扫盲时间：AI 的三大核心问题</h2>
+<section id="扫盲时间ai-的四大核心问题" class="slide level2">
+<h2>7.1 扫盲时间：AI 的四大核心问题</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div>
@@ -2044,6 +2105,7 @@ class="title-slide slide level1">
 <li class="fragment">推理 和 训练到底有啥区别？</li>
 <li class="fragment">深度学习到底“深”在哪？</li>
 <li class="fragment">什么是强化学习？</li>
+<li class="fragment">为什么需要推理 (Thinking) 模型？</li>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
@@ -2052,10 +2114,11 @@ data-src="Pics/Neural_Network_Architecture_Layers_Diagram.webp" /></p>
 </div>
 </div>
 <aside class="notes">
-<p>在进入极速检索的工程奇迹之前，我经常被非技术背景的管理者问及三个核心问题：“推理
-和 训练到底有啥区别？”、“深度学习到底深在哪？”、“什么是强化学习？”
-为了不让大家在接下来的硬件 和
-战略章节里迷路，我想用三分钟时间，用通俗易懂的语言帮大家把这三个核心的
+<p>在进入极速检索的工程奇迹之前，我经常被非技术背景的管理者问及四个核心问题：“推理
+和
+训练到底有啥区别？”、“深度学习到底深在哪？”、“什么是强化学习？”以及“现在的
+AI 为什么分成了聊天和推理两个版本？” 为了不让大家在接下来的硬件 和
+战略章节里迷路，我想用几分钟时间，用通俗易懂的语言帮大家把这四个核心的
 AI 术语进行通俗化解析。</p>
 </aside>
 </section>
@@ -2162,7 +2225,49 @@ OpenAI 训练 GPT-4，就是在做这件事。</li>
 节的速度，放出 15 度襟翼，稳住下滑道，我就能得分！”</p>
 <p>它就是在这种虚拟环境里，通过上亿次的自我试错、被惩罚、被奖励，硬生生“自己摸索”出了一套最优策略。当年打败人类围棋冠军的
 AlphaGo，用的就是强化学习的技术。</p>
-<p>这一切都指向了一个客观的物理现实——我们需要前所未有的算力支持！</p>
+</aside>
+</section>
+<section id="聊天模型-vs-推理模型为什么要分化" class="slide level2">
+<h2>7.1.4 聊天模型 vs 推理模型：为什么要分化？</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><strong>直觉与深思</strong>：快思考 (System 1) vs
+慢思考 (System 2)</li>
+<li class="fragment"><strong>聊天模型 (GPT-4o)</strong>：主打“条件反射”
+<ul>
+<li class="fragment">极速响应，适合翻译、润色、日常问答</li>
+</ul></li>
+<li class="fragment"><strong>推理模型 (o1 /
+R1)</strong>：主打“谋定而后动”
+<ul>
+<li class="fragment">内置 Thinking 过程，适合编程、数学、逻辑推演</li>
+</ul></li>
+<li
+class="fragment"><strong>场景隔离</strong>：聊天当客服，推理当顾问</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="Pics/rise_and_change_ai_models.png" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>最后一个核心问题是，现在的模型为什么分化了？比如 OpenAI
+直接把产品拆分成了 4o 和 o1，而各大模型也都在做
+Thinking（思考）功能。为什么有些任务需要 thinking，有些不需要？</p>
+<p>这其实对应了人类大脑的两种工作模式：<strong>快思考 (System
+1)</strong> 和 <strong>慢思考 (System 2)</strong>。</p>
+<p>传统的<strong>聊天模型（如
+GPT-4o）</strong>就像是“快思考”。你问它一个问题，它基于海量语料产生的“条件反射”瞬间给你答案，没有内部的推演打草稿过程。所以在<strong>翻译</strong>、写邮件、日常对话这种需要极速响应、重语感的场景下，用
+4o 是最完美的。</p>
+<p>而<strong>推理模型（如 o1 或 DeepSeek
+R1）</strong>就像是“慢思考”。遇到复杂的数学题或者需要排查一架飞机的系统故障时，它不会马上回答。它会在后台开启一个
+<strong>Thinking（思考）</strong>
+过程——反复推演逻辑、自我纠错、尝试不同的路径，确认逻辑无误后，再给你最终答案。这种能力正是通过上一页讲的“强化学习”训练出来的。</p>
+<p>为什么要拆分两个产品线？因为<strong>成本和场景</strong>的极致隔离。如果让一个深度逻辑顾问去做前台客服，遇到每个问题都深思熟虑半天，不仅响应慢，更是巨大的算力浪费；反过来，让前台客服去解复杂的方程式也是强人所难。因此在企业的业务落地中我们要明确：<strong>翻译和交流用
+4o，复杂逻辑和决策用 o1。</strong></p>
+<p>这一切都指向了一个客观的物理现实——无论是海量数据的训练，还是深度的推演思考，我们需要前所未有的算力支持！</p>
 <p>这就回到了这章最核心的问题：当我们的模型有 270
 亿个参数时，要执行这些动作，我们公司机房里那些装配着顶级 Intel 或 AMD
 CPU
@@ -3899,5 +4004,6 @@ Agent”……谁就能在下一场效率革命中锁定胜局。</p>
         ]
       });
     </script>
+    <script src="sync.js"></script>
     </body>
 </html>
