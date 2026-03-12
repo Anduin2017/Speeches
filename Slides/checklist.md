@@ -1,4 +1,6 @@
 检查服务器ava
+重启mcpo
+测试mcp和rag
 退干净窗口
 打开proart nvtop，实时监控
 打开slides，vscode+static
@@ -11,6 +13,8 @@ Do NOT disturb
 打开Openweb ui
 打开维基百科的C919
 打开 localhost:5000 的照片相似度
+打开openai clip
+打开文件管理器到onnx目录
 
 All stop:
 
