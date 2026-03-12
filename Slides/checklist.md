@@ -10,6 +10,7 @@ Do NOT disturb
 打开上海航空的737操作手册
 打开Openweb ui
 打开维基百科的C919
+打开 localhost:5000 的照片相似度
 
 All stop:
 
