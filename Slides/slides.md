@@ -1,7 +1,7 @@
 ---
-title: "Moog 主办的演讲：AI 在航空业的应用科普"
+title: "Moog 主办的演讲：AI 在航空领域的应用与概念科普"
 author: "Anduin"
-date: "2026-03-10"
+date: "2026-03-13"
 backgroundTransition: "slide"
 ---
 
@@ -72,7 +72,25 @@ backgroundTransition: "slide"
 
 ---
 
-## 暖场 Demo：声音克隆实战 - 嗓音向量化
+## 为这次演示，组建了测试平台
+
+:::::::::::::: {.columns}
+::: {.column width="50%"}
+![proart-dual-3090](Pics/proart-dual-3090.png)
+:::
+::: {.column width="50%"}
+
+- **双 3090** 48GB 显存
+- **Core Ultra 285** 消费级 CPU
+- 成本 **3 万元**
+- 搭载 **Linux** 操作系统
+
+:::
+::::::::::::::
+
+---
+
+## Quick Demo：声音克隆实战 - 嗓音向量化
 
 ::: {style="text-align: center; margin-top: 20%;"}
 **系统应用**：现场捕获声音特征向量，进行瞬时 AI 语音推演复制
