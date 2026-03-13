@@ -1484,7 +1484,7 @@ CLIP 的技术突破核心在于：它将**文字的特征空间**与**图片的
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/Neural_Network_Architecture_Layers_Diagram.webp)
+![](Pics/Flowise_AI_Agent_Workflow_Builder.jpeg)
 :::
 ::::::::::::::
 
@@ -1662,7 +1662,7 @@ $$ \vec{\mathbf{v}}_{norm} = \frac{\vec{\mathbf{v}}}{\|\vec{\mathbf{v}}\|_2} $$
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/avigame.png)
+![](Pics/vision_detect.png)
 :::
 ::::::::::::::
 
@@ -1886,7 +1886,7 @@ AI关键术语与硬件发展
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/missing.jpg)
+![](Pics/Neural_Network_Architecture_Layers_Diagram.jpeg)
 :::
 ::::::::::::::
 
@@ -2053,7 +2053,7 @@ GPU 虽然性能强劲，但能耗较高，通常部署在具备重型冷却系�
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/What_Are_Embeddings_Vector_Space.webp)
+![](Pics/tensor.png)
 :::
 ::::::::::::::
 
@@ -2271,7 +2271,7 @@ GPU 虽然性能强劲，但能耗较高，通常部署在具备重型冷却系�
 
   - Nvidia：高铁速度，企业级并发
 
-- **CUDA 缺失**：Mac 不支持企业级推理引擎
+- CUDA 缺失：Mac 不支持企业级推理引擎
 
 :::
 
@@ -2279,7 +2279,7 @@ GPU 虽然性能强劲，但能耗较高，通常部署在具备重型冷却系�
 
 ::: {.column width="50%"}
 
-![](Pics/NVIDIA_GPU_Chip_HBM_CloseUp.jpg)
+![](Pics/NVIDIA_Data_Center_GPU_Specs_Comparison.webp)
 
 :::
 
@@ -2447,7 +2447,7 @@ HNSW 将每一个向量点视为一个节点，并让距离相近的向量建立
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/K_Means_Clustering_Algorithm_Steps.png)
+![](Pics/umap_digits.webp)
 :::
 ::::::::::::::
 
@@ -2774,11 +2774,11 @@ HNSW 将每一个向量点视为一个节点，并让距离相近的向量建立
 - 误解：强大的理财与交易工具
 - 现实：大语言模型的局限性
 - 盲点：抓取新闻分析财报的风险
-- 目标：界定 AI 的真实效能边界
+- **目标**：界定 AI 的真实效能边界
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/Neural_Network_Handwritten_Digit_Recognition.webp)
+![](Pics/ai_vs_human_benchmarks.png)
 :::
 ::::::::::::::
 
@@ -2840,7 +2840,7 @@ HNSW 将每一个向量点视为一个节点，并让距离相近的向量建立
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/AI_Agent_Orchestration_System_MCP.jpg)
+![](Pics/rise_and_change_ai_models.webp)
 :::
 ::::::::::::::
 
@@ -2906,7 +2906,7 @@ HNSW 将每一个向量点视为一个节点，并让距离相近的向量建立
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/vision_detect.png)
+![](Pics/digital_agent_in_factory.jpeg)
 :::
 ::::::::::::::
 
@@ -3197,7 +3197,7 @@ DeepSeek 的成功并非单纯堆砌算力，而是**极致的工程与架构创
 :::
 :::
 ::: {.column width="50%"}
-![](Pics/avigame.png)
+![](Pics/deepseek3.jpeg)
 :::
 ::::::::::::::
 
@@ -3382,6 +3382,23 @@ DeepSeek 的横空出世，在整个硅谷引发了强烈地震。
 谁能最先理解并应用“向量化”技术，将沉淀的离线数据转化为高维空间的智能路网；谁能率先利用高性价比模型打造出“自主代理 Agent”……谁就能在下一场效率革命中锁定胜局。
 
 希望今天的分享能为各位带来启发，让我们在技术洪流中精准捕捉业务痛点，共同开启智能航空的新篇章。
+:::
+
+---
+
+## 致谢
+
+::: {style="text-align: center; margin-top: 15%;"}
+# 感谢聆听
+### 期待与各位共同探索 AI 航空新纪元
+:::
+
+::: notes
+再次感谢穆格的邀请，也感谢各位高管拨冗参加今天的分享。
+
+希望今天的内容能为各位的业务决策提供一些参考。如果大家有任何技术或应用上的细节想进一步探讨，欢迎随时联系。
+
+祝各位工作顺利，开启智能航空的新篇章！谢谢大家。
 :::
 
 
