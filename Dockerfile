@@ -2,11 +2,19 @@
 # Prepare Build Environment
 FROM --platform=$BUILDPLATFORM hub.aiursoft.com/node:24-alpine AS npm-env
 WORKDIR /src
-COPY . .
-# 关键修改：在alpine上安装pandoc以支持构建
+
+# 1. 安装系统依赖 (Pandoc)
+# 将其放在最前，因为通常不会频繁更换基础系统库
 RUN apk add --no-cache pandoc
+
+# 2. 拷贝并安装项目依赖包 (Node Module)
+# 将 package.json 等单独复制并 install，这样只要依赖不修改，就可以利用 Docker 缓存
+COPY package.json package-lock.json* ./
 RUN npm install --loglevel verbose
-# 使用 prod 命令构建，确保使用相对路径(--base ./)并输出到 dist
+
+# 3. 拷贝项目源码并编译
+# 这一步变化最频繁
+COPY . .
 RUN npm run prod
 
 # ============================
