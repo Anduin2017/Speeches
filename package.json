@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "compile": "bash compile.sh"
+    "compile": "bash compile.sh",
+    "prod": "node build.js"
   },
   "repository": {
     "type": "git",
