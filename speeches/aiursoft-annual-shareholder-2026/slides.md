@@ -5,6 +5,51 @@ date: "2026-04-24"
 backgroundTransition: "slide"
 ---
 
+<style>
+/* ── 基准字号（内容密度高，比 moog 小一档） ── */
+.reveal { font-size: 22px; }
+.reveal h1 { font-size: 2em; }
+.reveal h2 { font-size: 1.5em; }
+.reveal h3 { font-size: 1.2em; }
+
+/* ── 表格：紧凑 + 允许横向滚动 ── */
+.reveal table {
+  font-size: 0.75em;
+  border-collapse: collapse;
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+.reveal table th,
+.reveal table td {
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  white-space: nowrap;
+}
+.reveal table th { background-color: #f0f0f0; font-weight: bold; }
+
+/* ── 两栏布局字号修正 ── */
+.reveal .columns { font-size: 0.9em; }
+
+/* ── incremental list 间距压缩 ── */
+.reveal ul li, .reveal ol li { margin: 0.2em 0; line-height: 1.4; }
+
+/* ── .smaller 类：密集页专用 ── */
+.reveal section.smaller { font-size: 0.78em !important; }
+.reveal section.smaller table { font-size: 0.85em; }
+
+/* ── 背景图 + 白色遮罩（62% 不透明白层，保证黑色文字可读） ── */
+.reveal .slide-background-content {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.62), rgba(255,255,255,0.62)),
+    url("background.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+</style>
+
+
+
 # 第一章：开场
 
 ## Aiursoft 苏州实体年度股东大会 2026
@@ -362,7 +407,7 @@ VIE 是一个很多人听过但不太了解的词，我用一句话解释它的�
 
 ---
 
-## 签署核心协议：《战略合作框架协议》
+## 签署核心协议：《战略合作框架协议》 {.smaller}
 
 :::::::::::::: {.columns}
 ::: {.column width="55%"}
@@ -530,7 +575,7 @@ VIE 是一个很多人听过但不太了解的词，我用一句话解释它的�
 
 ---
 
-## 苏州实体 · 已签合同未来回款预测
+## 苏州实体 · 已签合同未来回款预测 {.smaller}
 
 | 客户 | 合同编号 | 合同性质 | 已收金额（元） | 预期回款 | 回款时间 | 备注 |
 |:---|:---|:---|---:|:---|:---|:---|
@@ -579,7 +624,7 @@ VIE 是一个很多人听过但不太了解的词，我用一句话解释它的�
 
 ---
 
-## AIURSOFT LIMITED 收支明细（2026.01–04）
+## AIURSOFT LIMITED 收支明细（2026.01–04） {.smaller}
 
 | 日期 | 项目 | 金额 | 备注 |
 |---|---|---|---|
@@ -613,7 +658,7 @@ VIE 是一个很多人听过但不太了解的词，我用一句话解释它的�
 
 ---
 
-## 资产审计
+## 资产审计 {.smaller}
 
 ### 一、有形固定资产（苏州实体，账面价值）
 
@@ -640,7 +685,7 @@ VIE 是一个很多人听过但不太了解的词，我用一句话解释它的�
 
 ---
 
-## 资产审计
+## 资产审计 {.smaller}
 
 ### 二、无形资产（集团整体）
 
@@ -669,7 +714,7 @@ aiursoft.com 这个域名有点特殊——它的 ICP 备案在苏州公司名�
 
 ---
 
-## 资产审计
+## 资产审计 {.smaller}
 
 ### 三、云端资产与预付账户
 
@@ -890,7 +935,7 @@ Vultr 是我们的备用服务器平台，账户里充值了约 77 美元，每�
 
 ---
 
-## 技术总监述职 · 客户签约与战略布局
+## 技术总监述职 · 客户签约与战略布局 {.smaller}
 
 | 客户 / 合作方 | 服务类型 | 进展 | 时间线 |
 |---|---|---|---|
@@ -916,7 +961,7 @@ Vultr 是我们的备用服务器平台，账户里充值了约 77 美元，每�
 
 ---
 
-## 技术总监述职 · 产品交付与技术里程碑
+## 技术总监述职 · 产品交付与技术里程碑 {.smaller}
 
 :::::::::::::: {.columns}
 ::: {.column width="50%"}
@@ -1048,7 +1093,7 @@ Jimmy 是今年二月加入的，专注商务拓展。他来自工业领域，�
 
 ---
 
-## Polls 结论 · 员工状态
+## Polls 结论 · 员工状态 {.smaller}
 
 | 问题 | 最高票选项 | 占比 |
 |---|---|---|
@@ -1074,7 +1119,7 @@ Jimmy 是今年二月加入的，专注商务拓展。他来自工业领域，�
 
 ---
 
-## Polls 结论 · 公司评价
+## Polls 结论 · 公司评价 {.smaller}
 
 :::::::::::::: {.columns}
 ::: {.column width="50%"}
@@ -1123,7 +1168,7 @@ Jimmy 是今年二月加入的，专注商务拓展。他来自工业领域，�
 
 # 第七章：主要客户介绍
 
-## 我们的客户全景
+## 我们的客户全景 {.smaller}
 
 | 客户 | 行业 | 合作内容 | 状态 | 年化收入预估 |
 |------|------|---------|------|------------|
@@ -1584,7 +1629,7 @@ Apkg 目前已经上线了最基础的镜像能力，Ze Tian 加入了搜索和�
 
 ---
 
-## 🌐 Translate · Events · AiurDrive · Polls
+## 🌐 Translate · Events · AiurDrive · Polls {.smaller}
 
 | 项目 | 上线时间 | 核心功能 | 状态 |
 |------|---------|---------|------|
@@ -1659,7 +1704,7 @@ CI/CD 流水线支持多架构编译，推送到三地 Registry，Shepherd 自�
 
 # 第九章：工资与薪资结构
 
-## 薪酬框架：L1–L16 职级体系
+## 薪酬框架：L1–L16 职级体系 {.smaller}
 
 | 职级 | 定位 | 年薪区间（苏州） | 主要标准 |
 |------|------|----------------|---------|
@@ -1684,7 +1729,7 @@ CI/CD 流水线支持多架构编译，推送到三地 Registry，Shepherd 自�
 
 ---
 
-## 当前人员薪资概况
+## 当前人员薪资概况 {.smaller}
 
 | 姓名 | 职级 | 职务 | 月基本工资 |
 |------|------|------|-----------|
@@ -1788,7 +1833,7 @@ AnduinOS 1.5 需要从底层做一次大版本跃迁，这需要研发投入。A
 
 ---
 
-## 现行职级能力标准（摘要）
+## 现行职级能力标准（摘要） {.smaller}
 
 | 职级 | 核心能力要求 | 最低经验 |
 |------|------------|---------|
@@ -1893,7 +1938,7 @@ AnduinOS 是我们进入企业市场的关键敲门砖——它是我们跟所�
 
 # 第十四章：决议签署与大会闭幕
 
-## 今日需现场签署的法定文件
+## 今日需现场签署的法定文件 {.smaller}
 
 | # | 文件名称 | 用途 | 状态 |
 |---|---------|------|------|
