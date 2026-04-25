@@ -46,6 +46,20 @@ backgroundTransition: "slide"
   background-size: cover;
   background-position: center;
 }
+
+/* ── Aiursoft logo – 每页右上角 ── */
+body::before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 14px;
+  right: 20px;
+  width: 450px;
+  height: 162px;
+  background: url('logo.png') no-repeat right center / contain;
+  z-index: 10000;
+  pointer-events: none;
+}
 </style>
 
 
